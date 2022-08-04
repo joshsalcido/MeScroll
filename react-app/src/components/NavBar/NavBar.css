@@ -1,0 +1,27 @@
+.logout-button{
+    background-color:#ffb4a5;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 120px;
+    border-radius: 5px;
+}
+.create-post-btn{
+    background-color:#ffb4a5;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    margin-left: 60px;
+    margin-right: 10px;
+    border: none;
+    cursor: pointer;
+    width: 120px;
+    border-radius: 5px;
+}
+
+nav {
+    overflow: hidden;
+    border-bottom: 1px solid #e2e2e2;
+}
