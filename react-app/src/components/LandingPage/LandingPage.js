@@ -8,6 +8,7 @@ export default function LandingPage(){
 
     return (
         <>
+        <div className="top-div-landing"></div>
         <LoginForm/>
         </>
     )
