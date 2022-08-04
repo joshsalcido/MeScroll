@@ -29,15 +29,37 @@ export const thunkGetAllPosts = () => async (dispatch) => {
 }
 
 export const thunkCreatePost = (post) => async (dispatch) => {
-    const respone = await fetch('api/posts/newpost', {
+    const response = await fetch('api/posts/newpost', {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(post),
     })
 
-    if (respone.ok) {
+    if (response.ok) {
         const data = await response.json();
         dispatch(actionCreatePost(data))
         return data;
     }
 }
+
+
+
+const postReducer = (state = {}, action) => {
+    let newState = {...state}
+    switch (action.type) {
+        case GET_ALL_POSTS:
+            newState = {};
+            action.posts.forEach(post => {
+                newState[post.id] = post
+            });
+            return newState;
+
+        case CREATE_POST:
+            newState[action.post.id] = action.post
+            return newState
+        default:
+            return state;
+    }
+}
+
+export default postReducer

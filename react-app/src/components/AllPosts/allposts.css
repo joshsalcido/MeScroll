@@ -1,0 +1,26 @@
+.center-feed-div {
+    padding: 20px 20px 50px 20px;
+    display: grid;
+    align-items: center;
+    margin: auto;
+    border: 1px solid blue;
+}
+
+.indv-post {
+    border: 1px solid blue;
+    width: min-content;
+    height: min-content;
+    /* border: solid 1px blue; */
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem;
+    padding-bottom: -3rem;
+}
+
+.feed-photo {
+    width: 17rem;
+    height: 19rem;
+    object-fit: cover;
+}

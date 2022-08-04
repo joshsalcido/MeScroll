@@ -8,6 +8,8 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
+import LandingPage from './components/LandingPage/LandingPage';
+import AllPosts from './components/AllPosts/allposts';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -26,7 +28,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar />
+      {/* <NavBar /> */}
       <Switch>
         <Route path='/login' exact={true}>
           <LoginForm />
@@ -40,9 +42,12 @@ function App() {
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
-        <ProtectedRoute path='/' exact={true} >
-          <h1>My Home Page</h1>
-        </ProtectedRoute>
+        <Route path='/' exact={true} >
+          <LandingPage/>
+        </Route>
+        <Route path='/myfeed' exact={true} >
+          <AllPosts/>
+        </Route>
       </Switch>
     </BrowserRouter>
   );
