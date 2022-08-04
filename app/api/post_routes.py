@@ -21,7 +21,7 @@ def posts():
 
 # Create a Post
 
-@post_routes.route('/newpost', methods=["POST"])
+@post_routes.route('/newpost', methods=['POST'])
 def newpost():
     form = PostForm()
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -42,3 +42,10 @@ def newpost():
 # Update a Post
 
 # Delete a Post
+
+@post_routes.route('/<id>', methods=['DELETE'])
+def deletepost(id):
+    post = Post.query.get(id)
+    db.session.delete(post)
+    db.session.commit()
+    return post.to_dict()

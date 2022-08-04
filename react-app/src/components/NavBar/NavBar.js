@@ -5,11 +5,11 @@ import LogoutButton from '../auth/LogoutButton';
 import Modal from 'react-modal';
 import PostForm from '../createPostForm/createPostForm';
 
-Modal.setAppElement('body');
 
 
 const NavBar = () => {
   const [showCreateForm, setShowCreateForm] = useState(false);
+  Modal.setAppElement('body');
 
   function openCreateForm(){
     setShowCreateForm(true)
