@@ -4,6 +4,7 @@ import LoginForm from "../auth/LoginForm"
 import { thunkGetAllPosts } from "../../store/posts";
 import './allposts.css'
 import LogoutButton from "../auth/LogoutButton";
+import NavBar from "../NavBar/NavBar";
 
 
 export default function AllPosts(){
@@ -17,7 +18,8 @@ export default function AllPosts(){
 
     return (
         <>
-        <LogoutButton/>
+        <NavBar/>
+        {/* <LogoutButton/> */}
         <div className="center-feed-div">
             {allPosts.map((post) =>
             <>
@@ -32,4 +34,3 @@ export default function AllPosts(){
         </>
     )
 }
-

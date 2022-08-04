@@ -19,7 +19,7 @@ export const actionCreatePost = (post) => {
 // THUNKS
 
 export const thunkGetAllPosts = () => async (dispatch) => {
-    const response = await fetch('api/posts/myfeed')
+    const response = await fetch('/api/posts/myfeed')
 
     if (response.ok) {
         const data = await response.json();
@@ -29,7 +29,7 @@ export const thunkGetAllPosts = () => async (dispatch) => {
 }
 
 export const thunkCreatePost = (post) => async (dispatch) => {
-    const response = await fetch('api/posts/newpost', {
+    const response = await fetch('/api/posts/newpost', {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(post),
@@ -53,7 +53,6 @@ const postReducer = (state = {}, action) => {
                 newState[post.id] = post
             });
             return newState;
-
         case CREATE_POST:
             newState[action.post.id] = action.post
             return newState
