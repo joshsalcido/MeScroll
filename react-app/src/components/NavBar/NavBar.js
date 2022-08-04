@@ -1,16 +1,35 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
+import Modal from 'react-modal';
+import PostForm from '../createPostForm/createPostForm';
+
+Modal.setAppElement('body');
+
 
 const NavBar = () => {
+  const [showCreateForm, setShowCreateForm] = useState(false);
+
+  function openCreateForm(){
+    setShowCreateForm(true)
+  }
+  function closeCreateForm(){
+    setShowCreateForm(false)
+  }
+
+
   return (
-    <nav>
+    <nav className='navvy'>
       <ul>
           <NavLink to='/' exact={true} activeClassName='active'>
             meScroll
           </NavLink>
-        <button className='create-post-btn'>Create Post</button>
+          <button className='create-post-btn' onClick={openCreateForm}>Create Post</button>
+          <Modal isOpen={showCreateForm}>
+            <button className='modal-x' onClick={closeCreateForm}>x</button>
+            <PostForm/>
+          </Modal>
         {/* <li>
           <NavLink to='/login' exact={true} activeClassName='active'>
             Login

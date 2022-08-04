@@ -20,6 +20,13 @@
     width: 120px;
     border-radius: 5px;
 }
+.modal-x {
+    color: black;
+    width: 10px;
+    height: 10px;
+    background: none;
+    font-size: 30px;
+}
 
 nav {
     overflow: hidden;
