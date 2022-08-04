@@ -25,10 +25,10 @@ const NavBar = () => {
           <NavLink to='/' exact={true} activeClassName='active'>
             meScroll
           </NavLink>
-          <button className='create-post-btn' onClick={openCreateForm}>Create Post</button>
+          <button className='create-post-btn' onClick={openCreateForm}>+</button>
           <Modal isOpen={showCreateForm}>
             <button className='modal-x' onClick={closeCreateForm}>x</button>
-            <PostForm/>
+            <PostForm closeCreateForm={closeCreateForm}/>
           </Modal>
         {/* <li>
           <NavLink to='/login' exact={true} activeClassName='active'>

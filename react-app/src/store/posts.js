@@ -1,5 +1,6 @@
 const GET_ALL_POSTS = 'post/getAllPosts';
 const CREATE_POST = 'post/createPost';
+const DELETE_POST = 'post/deletePost'
 
 //  ACTIONS
 export const actionGetAllPosts = (posts) => {
@@ -8,10 +9,17 @@ export const actionGetAllPosts = (posts) => {
         posts
     }
 }
-
 export const actionCreatePost = (post) => {
+    console.log(post, "ACTION CREATE POST")
     return {
-        CREATE_POST,
+        type: CREATE_POST,
+        post
+    }
+}
+export const actionDeletePost = (post) => {
+    console.log(post, "ACTION CREATE POST")
+    return {
+        type: DELETE_POST,
         post
     }
 }
@@ -37,11 +45,23 @@ export const thunkCreatePost = (post) => async (dispatch) => {
 
     if (response.ok) {
         const data = await response.json();
+        console.log(data, "THUNK CREATE DATA")
         dispatch(actionCreatePost(data))
         return data;
     }
 }
+export const thunkDeletePost = (post) => async (dispatch) => {
+    const response = await fetch('/api/posts/newpost', {
+        method: "DELETE",
+    })
 
+    if (response.ok) {
+        const data = await response.json();
+        console.log(data, "THUNK CREATE DATA")
+        dispatch(actionCreatePost(data))
+        return data;
+    }
+}
 
 
 const postReducer = (state = {}, action) => {
@@ -54,6 +74,7 @@ const postReducer = (state = {}, action) => {
             });
             return newState;
         case CREATE_POST:
+            console.log(action, "REDUCER CREATE POST")
             newState[action.post.id] = action.post
             return newState
         default:
