@@ -24,3 +24,33 @@
     height: 19rem;
     object-fit: cover;
 }
+
+.post-options-btn {
+    font-size: 20px;
+    height: 20px;
+    width: 10px;
+    padding: 8px 30px 40px 15px;
+    margin-left: 40px;
+    color: black;
+}
+/* .post-options-Modal{
+    border: 1px solid blue;
+    top: '50%';
+    left: '50%';
+    right: 'auto';
+    bottom: 'auto';
+    margin-right: '-50%';
+    transform: 'translate(-50%, -50%)';
+    background-color: 'rgba(0, 0, 0, 0.5)';
+} */
+.delete-post-btn{
+    width: 30px;
+    height: 30px;
+    margin-right: 20px;
+    padding: 8px 50px 20px 15px;
+}
+.cancel-options-btn{
+    width: 30px;
+    height: 30px;
+    padding: 8px 50px 20px 15px;
+}

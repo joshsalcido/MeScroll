@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import { thunkCreatePost } from "../../store/posts";
 
 
-export default function PostForm(){
+export default function PostForm({closeCreateForm}){
     const dispatch = useDispatch()
     const sessionUser = useSelector(state => state.session.user)
 
@@ -26,6 +26,8 @@ export default function PostForm(){
         }
 
         dispatch(thunkCreatePost(post))
+
+        closeCreateForm()
 
         setPhoto('')
         setCaption('')

@@ -5,19 +5,20 @@
     margin: 8px 0;
     border: none;
     cursor: pointer;
-    width: 120px;
+    width: 80px;
     border-radius: 5px;
 }
 .create-post-btn{
     background-color:#ffb4a5;
     color: white;
-    padding: 14px 20px;
+    font-size: 20px;
+    padding: 9px 27px 10px 17px;
     margin: 8px 0;
-    margin-left: 60px;
     margin-right: 10px;
+    margin-left: 70px;
     border: none;
     cursor: pointer;
-    width: 120px;
+    width: 20px;
     border-radius: 5px;
 }
 .modal-x {
