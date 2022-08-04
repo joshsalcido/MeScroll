@@ -41,3 +41,25 @@ export const thunkCreatePost = (post) => async (dispatch) => {
         return data;
     }
 }
+
+
+const initialState = {}
+
+const postReducer = (state = initialState, action) => {
+    let newState = {...state}
+    switch (action.type) {
+        case GET_ALL_POSTS:
+            newState = {};
+            action.posts.forEach(post => {
+                newState[post.id] = post
+            });
+            return newState;
+        case CREATE_POST:
+            newState[action.post.id] = action.post
+            return newState
+        default:
+            return state;
+    }
+}
+
+esport default postReducer
