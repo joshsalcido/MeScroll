@@ -7,9 +7,14 @@ class User(db.Model, UserMixin):
     __tablename__ = 'users'
 
     id = db.Column(db.Integer, primary_key=True)
+    full_name = db.Column(db.String(50), nullable=False)
+    profile_pic = db.Column(db.String(300), nullable=True)
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
+
+    posts = db.relationship("Post", back_populates="users")
+    comments = db.relationship("Comment", back_populates="user")
 
     @property
     def password(self):
@@ -24,7 +29,9 @@ class User(db.Model, UserMixin):
 
     def to_dict(self):
         return {
-            'id': self.id,
+            'id' : self.id,
+            'full_name' : self.full_name,
+            'profile_pic' : self.profile_pic,
             'username': self.username,
             'email': self.email
         }
