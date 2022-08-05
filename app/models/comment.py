@@ -20,5 +20,4 @@ class Comment(db.Model):
             'post_id': self.post_id,
             'comment_body': self.comment_body,
             'user': self.user.to_dict()
-
         }

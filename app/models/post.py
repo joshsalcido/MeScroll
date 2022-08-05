@@ -13,11 +13,21 @@ class Post(db.Model):
     users = db.relationship("User", back_populates="posts")
     comments = db.relationship("Comment", back_populates="post")
 
+    def get_users(self):
+        data = self.users.to_dict()
+        return data
+
+    def get_comments(self):
+        data = [comment.to_dict() for comment in self.comments]
+        return data
+
     def to_dict(self):
         return {
             'id' : self.id,
             'user_id' : self.user_id,
             'photo' : self.photo,
             'caption' : self.caption,
-            'location' : self.location
+            'location' : self.location,
+            'userInfo' : self.get_users(),
+            'comments' : self.get_comments()
         }

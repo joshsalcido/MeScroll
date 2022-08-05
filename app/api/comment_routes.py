@@ -2,7 +2,7 @@ from flask import Blueprint, request, jsonify
 from app.models import db, Post, Comment, User
 from app.forms import PostForm, CommentForm
 
-post_routes = Blueprint('posts', __name__)
+comment_routes = Blueprint('comments', __name__)
 
 def validation_errors_to_error_messages(validation_errors):
     errorMessages = []
@@ -12,14 +12,14 @@ def validation_errors_to_error_messages(validation_errors):
     return errorMessages
 
 
-# Get all Posts
-@post_routes.route('/myfeed')
+# Get all Comments
+@comment_routes.route('/myfeed')
 def posts():
     posts = Post.query.all()
     data = [post.to_dict() for post in posts]
     return {'posts': data}
 
-# Create a Post
+# Create a Comment
 
 @post_routes.route('/newpost', methods=['POST'])
 def newpost():
@@ -37,9 +37,7 @@ def newpost():
         return new_post.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
-# Get a Single Post (when on a profile Page, this will be a modal)
-
-# Update a Post
+# Update a Comment
 
 @post_routes.route('/<id>', methods=['PUT'])
 def updatepost(id):
@@ -55,7 +53,7 @@ def updatepost(id):
         return post.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
-# Delete a Post
+# Delete a Comment
 
 @post_routes.route('/<id>', methods=['DELETE'])
 def deletepost(id):
@@ -63,12 +61,3 @@ def deletepost(id):
     db.session.delete(post)
     db.session.commit()
     return post.to_dict()
-
-#  COMMENTS
-
-@post_routes.route('/<id>/comments')
-def allComments(id):
-    post = Post.query.get(id)
-    comments = post.comments
-    data = [comment.to_dict() for comment in comments]
-    return {'comments' : data}

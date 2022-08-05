@@ -51,7 +51,7 @@ export const thunkCreatePost = (post) => async (dispatch) => {
 
     if (response.ok) {
         const data = await response.json();
-        console.log(data, "THUNK CREATE DATA")
+        // console.log(data, "THUNK CREATE DATA")
         dispatch(actionCreatePost(data))
         return data;
     }

@@ -33,7 +33,7 @@ export const actionUpdateComment = (comment) => {
 // THUNKS
 
 export const thunkGetAllComments = (postId) => async (dispatch) => {
-    const response = await fetch(`/api/posts/${postId}`)
+    const response = await fetch(`/api/posts/${postId}/comments`)
 
     if (response.ok) {
         const data = await response.json();
@@ -81,3 +81,20 @@ export const thunkCreateComment = (postId, comment) => async (dispatch) => {
 //         return data;
 //     }
 // }
+
+const commentReducer = (state = {}, action) => {
+    let newState = {...state}
+    switch (action.type) {
+        case GET_ALL_COMMENTS:
+            newState = {};
+            action.comments.forEach(comment => {
+                newState[comment.id] = comment
+            });
+            return newState;
+        default:
+            return state;
+    }
+}
+
+
+export default commentReducer
