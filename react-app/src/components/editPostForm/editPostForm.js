@@ -4,16 +4,16 @@ import { NavLink, useParams } from "react-router-dom";
 import { thunkCreatePost, thunkUpdatePost } from "../../store/posts";
 
 
-export default function EditPostForm({closeEditForm, postId}){
+export default function EditPostForm({closeEditForm, postId, closePostOptions, closePostDetails}){
     const dispatch = useDispatch()
     // const { postId } = useParams()
 
-    console.log(postId, 'EDIT FORM POSTID++')
+    // console.log(postId, 'EDIT FORM POSTID++')
 
     const sessionUser = useSelector(state => state.session.user)
     const post = useSelector(state => state.postReducer[postId])
 
-    console.log(post, 'EDIT FORM POST')
+    // console.log(post, 'EDIT FORM POST')
 
     const [photo, setPhoto] = useState(`${post.photo}`);
     const [caption, setCaption] = useState(`${post.caption}`);
@@ -39,6 +39,8 @@ export default function EditPostForm({closeEditForm, postId}){
 
         setHasSubmitted(true);
         closeEditForm();
+        closePostOptions();
+        closePostDetails();
 
         setPhoto('')
         setCaption('')
@@ -69,6 +71,7 @@ export default function EditPostForm({closeEditForm, postId}){
               onChange={(e) => setLocation(e.target.value)}
             />
             <button type="submit">Update Post</button>
+            <button onClick={()=> closeEditForm()}>Cancel</button>
         </form>
         </>
     )

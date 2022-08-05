@@ -50,8 +50,8 @@ export default function AllPosts(){
                 <span>
                     <button className="post-options-btn" onClick={()=> setPostOptions(true)}>...</button>
                     <Modal portalClassName="post-options-Modal" isOpen={postOptions}  transparent={true}>
-                        <button className="delete-post-btn" onClick={()=> {dispatch(thunkDeletePost(post.id)); setPostOptions(false)}}>Delete</button>
-                        <button className="edit-post-btn" onClick={()=> {setShowEditForm(true)}}>Edit</button>
+                        <button className="unfollow-fromfeed">Unfollow</button>
+                        <button className="go-to-post-fromfeed">Go to Post</button>
                         {showEditForm && (<EditPostForm closeEditForm={closeEditForm} postId={post.id}/>)}
                         <button className="cancel-options-btn" onClick={() => setPostOptions(false)}>Cancel</button>
                     </Modal>
