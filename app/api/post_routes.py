@@ -41,6 +41,20 @@ def newpost():
 
 # Update a Post
 
+@post_routes.route('/<id>', methods=['PUT'])
+def updatepost(id):
+    form = PostForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    post = Post.query.get(id)
+    if form.validate_on_submit():
+        post.photo = form.data['photo']
+        post.caption = form.data['caption']
+        post.location = form.data['location']
+
+        db.session.commit()
+        return post.to_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+
 # Delete a Post
 
 @post_routes.route('/<id>', methods=['DELETE'])

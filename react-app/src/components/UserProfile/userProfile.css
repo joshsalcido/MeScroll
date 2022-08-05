@@ -1,0 +1,56 @@
+.user-photo-grid {
+    border: 1px solid blue;
+    position: relative;
+    width: auto;
+    height: auto;
+    /* max-width: 90rem; */
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    /* border: solid 1px blue; */
+    margin: 3rem 3rem 2rem 3rem;
+    align-items: center;
+    justify-content: center;
+}
+.profile-info{
+    border: 1px solid red;
+}
+.user-indv-post{
+    width: min-content;
+    height: min-content;
+    /* border: solid 1px blue; */
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem;
+    padding-bottom: -3rem;
+    cursor: pointer;
+}
+
+.user-indv-img {
+    width: 17rem;
+    height: 16rem;
+    /* border-radius: 5%; */
+    object-fit: cover;
+}
+.indv-post-options-btn {
+    font-size: 20px;
+    height: 20px;
+    width: 10px;
+    padding: 8px 30px 40px 15px;
+    margin-left: 600px;
+    color: black;
+}
+.edit-post-btn{
+    width: 70px;
+    height: 30px;
+    padding: 8px 20px 20px 15px;
+    margin-right: 10px;
+}
+.delete-post-btn {
+    width: 70px;
+    height: 30px;
+    margin-right: 10px;
+    padding: 8px 50px 20px 15px;
+}
