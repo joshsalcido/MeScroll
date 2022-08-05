@@ -1,7 +1,8 @@
 import { useSelector, useDispatch } from "react-redux"
 import { useEffect, useState } from "react";
 import LoginForm from "../auth/LoginForm"
-import { thunkGetAllPosts, thunkDeletePost, thunkUpdatePost } from "../../store/posts";
+import { thunkGetAllPosts } from "../../store/posts";
+import { thunkGetAllComments } from "../../store/comments";
 import './allposts.css'
 import LogoutButton from "../auth/LogoutButton";
 import NavBar from "../NavBar/NavBar";
@@ -14,6 +15,9 @@ import EditPostForm from "../editPostForm/editPostForm";
 export default function AllPosts(){
     const dispatch = useDispatch();
     const allPosts = useSelector(state => Object.values(state.postReducer))
+    const allComments = allPosts
+
+    console.log(allPosts, "All Comments")
 
     Modal.setAppElement('body')
 
@@ -35,6 +39,7 @@ export default function AllPosts(){
 
     useEffect(()=> {
         dispatch(thunkGetAllPosts())
+        dispatch(thunkGetAllComments)
     }, [dispatch])
 
 
@@ -46,7 +51,9 @@ export default function AllPosts(){
             {allPosts.map((post) =>
             <>
             <div key={post.id} className="indv-post">
-                <p>{post.location}</p>
+                <h4>{post.userInfo.username} --- </h4>
+                <span></span>
+                <p> {post.location}</p>
                 <span>
                     <button className="post-options-btn" onClick={()=> setPostOptions(true)}>...</button>
                     <Modal portalClassName="post-options-Modal" isOpen={postOptions}  transparent={true}>
@@ -59,6 +66,15 @@ export default function AllPosts(){
                 <img className="feed-photo" src={post.photo}></img>
                 <p>{post.caption}</p>
                 <br></br>
+                <br></br>
+                <div className='comment-section'>
+                    <p>Comments:</p>
+                    {post.comments.map(comment =>
+                        <>
+                        <div>{comment.comment_body}</div>
+                        </>
+                    )}
+                </div>
             </div>
             </>)}
         </div>

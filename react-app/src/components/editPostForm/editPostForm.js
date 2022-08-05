@@ -1,7 +1,7 @@
 import React, { useState, useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useParams } from "react-router-dom";
-import { thunkCreatePost, thunkUpdatePost } from "../../store/posts";
+import { thunkCreatePost, thunkGetAllPosts, thunkUpdatePost } from "../../store/posts";
 
 
 export default function EditPostForm({closeEditForm, postId, closePostOptions, closePostDetails}){
@@ -37,15 +37,20 @@ export default function EditPostForm({closeEditForm, postId, closePostOptions, c
 
         dispatch(thunkUpdatePost(updatedPost))
 
+
         setHasSubmitted(true);
         closeEditForm();
         closePostOptions();
-        closePostDetails();
+        // closePostDetails();
 
         setPhoto('')
         setCaption('')
         setLocation('')
     }
+
+    useEffect(()=> {
+      dispatch(thunkGetAllPosts())
+    }, [dispatch])
 
 
     return (
