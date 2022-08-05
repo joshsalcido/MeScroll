@@ -1,22 +1,24 @@
 import { useSelector, useDispatch } from "react-redux"
 import { useEffect, useState } from "react";
 import LoginForm from "../auth/LoginForm"
-import { thunkGetAllPosts, thunkDeletePost } from "../../store/posts";
+import { thunkGetAllPosts, thunkDeletePost, thunkUpdatePost } from "../../store/posts";
 import './allposts.css'
 import LogoutButton from "../auth/LogoutButton";
 import NavBar from "../NavBar/NavBar";
 import Modal from "react-modal";
+import PostForm from "../createPostForm/createPostForm";
+import EditPostForm from "../editPostForm/editPostForm";
 
 
 
 export default function AllPosts(){
     const dispatch = useDispatch();
     const allPosts = useSelector(state => Object.values(state.postReducer))
-    console.log(allPosts, "ALLPOSTS!!!");
+
     Modal.setAppElement('body')
 
     const [postOptions, setPostOptions] = useState(false);
-
+    const [showEditForm, setShowEditForm] = useState(false);
     // const onDelete = () => {
         //     dispatch(thunkDeletePost())
         // }
@@ -26,7 +28,10 @@ export default function AllPosts(){
         }
         function closePostOptions () {
             setPostOptions(false)
-    }
+        }
+        function closeEditForm (){
+            setShowEditForm(false)
+        }
 
     useEffect(()=> {
         dispatch(thunkGetAllPosts())
@@ -40,12 +45,14 @@ export default function AllPosts(){
         <div className="center-feed-div">
             {allPosts.map((post) =>
             <>
-            <div className="indv-post">
+            <div key={post.id} className="indv-post">
                 <p>{post.location}</p>
                 <span>
                     <button className="post-options-btn" onClick={()=> setPostOptions(true)}>...</button>
                     <Modal portalClassName="post-options-Modal" isOpen={postOptions}  transparent={true}>
                         <button className="delete-post-btn" onClick={()=> {dispatch(thunkDeletePost(post.id)); setPostOptions(false)}}>Delete</button>
+                        <button className="edit-post-btn" onClick={()=> {setShowEditForm(true)}}>Edit</button>
+                        {showEditForm && (<EditPostForm closeEditForm={closeEditForm} postId={post.id}/>)}
                         <button className="cancel-options-btn" onClick={() => setPostOptions(false)}>Cancel</button>
                     </Modal>
                 </span>
