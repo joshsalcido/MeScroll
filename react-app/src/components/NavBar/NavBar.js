@@ -1,5 +1,6 @@
 
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
 import Modal from 'react-modal';
@@ -8,7 +9,13 @@ import PostForm from '../createPostForm/createPostForm';
 
 
 const NavBar = () => {
+  const sessionUser = useSelector(state => state.session?.user)
+
+  console.log(sessionUser, "NAVBAR SESION USER")
+
   const [showCreateForm, setShowCreateForm] = useState(false);
+
+
   Modal.setAppElement('body');
 
   function openCreateForm(){
@@ -40,11 +47,9 @@ const NavBar = () => {
             Sign Up
           </NavLink>
         </li> */}
-        {/* <li>
-          <NavLink to='/users' exact={true} activeClassName='active'>
-            Users
+          <NavLink to={`/users/${sessionUser.id}`} exact={true} activeClassName='active'>
+            <button className='my-profile-btn'>My Profile</button>
           </NavLink>
-        </li> */}
           <LogoutButton />
       </ul>
     </nav>

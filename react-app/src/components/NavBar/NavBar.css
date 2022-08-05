@@ -14,11 +14,21 @@
     font-size: 20px;
     padding: 9px 27px 10px 17px;
     margin: 8px 0;
-    margin-right: 10px;
-    margin-left: 70px;
+    margin-right: 3px;
+    margin-left: 100px;
     border: none;
     cursor: pointer;
     width: 20px;
+    border-radius: 5px;
+}
+.my-profile-btn {
+    background-color:#ffb4a5;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 10px;
+    border: none;
+    cursor: pointer;
+    width: 100px;
     border-radius: 5px;
 }
 .modal-x {
