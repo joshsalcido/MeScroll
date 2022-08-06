@@ -9,6 +9,7 @@ import NavBar from "../NavBar/NavBar";
 import Modal from "react-modal";
 import PostForm from "../createPostForm/createPostForm";
 import EditPostForm from "../editPostForm/editPostForm";
+import CommentForm from "../commentForm.js/commentForm";
 
 
 
@@ -35,22 +36,6 @@ export default function AllPosts(){
     function closeEditForm (){
         setShowEditForm(false)
     }
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        const comment = {
-            user_id: userId,
-            post_id: currentPost.id,
-            comment_body
-        }
-
-        dispatch(thunkCreateComment(currentPost.id, comment))
-        // dispatch(thunkGetAllComments(currentPost.id))
-
-        setComment_body('')
-    }
-
 
 
     useEffect(()=> {
@@ -92,16 +77,7 @@ export default function AllPosts(){
                         </>
                     )}
                 </div>
-            <form className="create-comment" onSubmit={handleSubmit}>
-                <textarea
-                onClick={()=> setCurrentPost(post)}
-                className="comment-textarea"
-                value={comment_body}
-                onChange={(e) => setComment_body(e.target.value)}
-                placeholder='Add a Comment...'
-                ></textarea>
-                <button >Post</button>
-            </form>
+            <CommentForm currentPost={post}/>
             </div>
             </>)}
         </div>
