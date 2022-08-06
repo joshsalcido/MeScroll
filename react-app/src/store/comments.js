@@ -32,8 +32,8 @@ export const actionUpdateComment = (comment) => {
 
 // THUNKS
 
-export const thunkGetAllComments = (postId) => async (dispatch) => {
-    const response = await fetch(`/api/posts/${postId}/comments`)
+export const thunkGetAllComments = () => async (dispatch) => {
+    const response = await fetch(`/api/comments/`)
 
     if (response.ok) {
         const data = await response.json();
@@ -43,7 +43,7 @@ export const thunkGetAllComments = (postId) => async (dispatch) => {
 }
 
 export const thunkCreateComment = (postId, comment) => async (dispatch) => {
-    const response = await fetch(`/api/posts/${postId}/newcomment`, {
+    const response = await fetch(`/api/comments/${postId}/new`, {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(comment),

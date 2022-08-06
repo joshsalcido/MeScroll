@@ -64,11 +64,3 @@ def deletepost(id):
     db.session.commit()
     return post.to_dict()
 
-#  COMMENTS
-
-@post_routes.route('/<id>/comments')
-def allComments(id):
-    post = Post.query.get(id)
-    comments = post.comments
-    data = [comment.to_dict() for comment in comments]
-    return {'comments' : data}
