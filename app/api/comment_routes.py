@@ -12,52 +12,25 @@ def validation_errors_to_error_messages(validation_errors):
     return errorMessages
 
 
-# Get all Comments
-@comment_routes.route('/myfeed')
-def posts():
-    posts = Post.query.all()
-    data = [post.to_dict() for post in posts]
-    return {'posts': data}
+#  COMMENTS
 
-# Create a Comment
+@comment_routes.route('/')
+def allComments():
+    comments = Comment.query.all()
+    data = [comment.to_dict() for comment in comments]
+    return {'comments' : data}
 
-@post_routes.route('/newpost', methods=['POST'])
-def newpost():
-    form = PostForm()
+@comment_routes.route('/<id>/new', methods=['POST'])
+def createComment(id):
+    form = CommentForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        new_post = Post(
+        new_comment = Comment(
             user_id = form.data['user_id'],
-            photo = form.data['photo'],
-            caption = form.data['caption'],
-            location = form.data['location']
+            post_id = form.data['post_id'],
+            comment_body = form.data['comment_body']
         )
-        db.session.add(new_post)
+        db.session.add(new_comment)
         db.session.commit()
-        return new_post.to_dict()
+        return new_comment.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
-
-# Update a Comment
-
-@post_routes.route('/<id>', methods=['PUT'])
-def updatepost(id):
-    form = PostForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
-    post = Post.query.get(id)
-    if form.validate_on_submit():
-        post.photo = form.data['photo']
-        post.caption = form.data['caption']
-        post.location = form.data['location']
-
-        db.session.commit()
-        return post.to_dict()
-    return {'errors': validation_errors_to_error_messages(form.errors)}, 400
-
-# Delete a Comment
-
-@post_routes.route('/<id>', methods=['DELETE'])
-def deletepost(id):
-    post = Post.query.get(id)
-    db.session.delete(post)
-    db.session.commit()
-    return post.to_dict()

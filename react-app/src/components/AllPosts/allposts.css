@@ -60,3 +60,12 @@
     padding: 8px 20px 20px 15px;
     margin-right: 20px;
 }
+
+.create-comment {
+    /* border: 1px solid red; */
+    border: none;
+    box-shadow: none;
+}
+.comment-textarea {
+    resize: none;
+}
