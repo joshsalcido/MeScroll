@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from "react-redux"
 import { useEffect, useState } from "react";
 import LoginForm from "../auth/LoginForm"
 import { thunkGetAllPosts } from "../../store/posts";
-import { thunkGetAllComments, thunkDeleteComment} from "../../store/comments";
+import { thunkGetAllComments, thunkDeleteComment, thunkUpdateComment} from "../../store/comments";
 import './allposts.css'
 import LogoutButton from "../auth/LogoutButton";
 import NavBar from "../NavBar/NavBar";
@@ -11,6 +11,7 @@ import PostForm from "../createPostForm/createPostForm";
 import EditPostForm from "../editPostForm/editPostForm";
 import CommentForm from "../commentForm.js/commentForm";
 import ReactModal from "react-modal";
+import EditCommentForm from "../commentForm.js/editComment";
 
 
 
@@ -26,24 +27,48 @@ export default function AllPosts(){
     const [showEditForm, setShowEditForm] = useState(false);
     const [currentComment, setCurrentComment ] = useState('');
     const [showCommentOptions, setShowCommentOptions] = useState(false);
+    const [showEditComment, setShowEditComment] = useState(false);
 
     const [comment_body, setComment_body] = useState('')
 
-    function openPostOptions () {
+    // const post = useSelector(state => state.postReducer[postId])
+    const [updatedComment, setUpdatedComment] = useState('')
+    // const [photo, setPhoto] = useState(`${post.photo}`);
+    // const [caption, setCaption] = useState(`${post.caption}`);
+    // const [location, setLocation] = useState(`${post.location}`);
+
+    function openPostOptions(){
         setPostOptions(true)
     }
-    function closePostOptions () {
+    function closePostOptions(){
         setPostOptions(false)
     }
-    function closeEditForm (){
+    function closeEditForm(){
         setShowEditForm(false)
     }
-    function onDelete (){
+    function onDelete(){
 
         dispatch(thunkDeleteComment(currentComment.id))
+        dispatch(thunkGetAllComments())
         dispatch(thunkGetAllPosts())
 
         setShowCommentOptions(false)
+    }
+    function updateComment(){
+
+
+        const editedComment = {
+            user_id: userId,
+            post_id: currentComment.post_id,
+            id: currentComment.id,
+            fart: null,
+            comment_body: updatedComment
+        }
+
+        console.log(editedComment, "UpdatedCOMMENT")
+
+        dispatch(thunkUpdateComment(editedComment))
+        dispatch(thunkGetAllPosts())
     }
 
 
@@ -52,7 +77,7 @@ export default function AllPosts(){
         dispatch(thunkGetAllComments())
     }, [dispatch])
 
-    console.log(allPosts, "AllPOST PAGE")
+
     return (
         <>
         <NavBar/>
@@ -81,14 +106,32 @@ export default function AllPosts(){
                     <p>Comments:</p>
                     {post.comments.map(comment =>
                         <>
-                        <div>{comment.comment_body}</div>
+                        <p>{comment.comment_body}</p>
+                        {showEditComment && currentComment.id == comment.id && (
+                            <textarea
+                            value={null}
+                            onChange={(e) => setUpdatedComment(e.target.value)}
+                            >
+                            {comment.comment_body}
+                            </textarea>
+                        )}
                         {comment.user_id == userId && (
                         <>
+                        { showEditComment === false && (
                         <button onClick={() => { setCurrentComment(comment); setShowCommentOptions(true) } }>...</button>
+                        )}
+                        { showEditComment && currentComment.id == comment.id && (
+                        <>
+                        <button onClick={() => {setShowEditComment(false); updateComment()}}>Update Comment</button>
+                        <button onClick={() => setShowEditComment(false)}>Cancel</button>
+                        </>
+                        )}
                         <ReactModal isOpen={showCommentOptions}>
+                            <button onClick={() => {setShowEditComment(true); setShowCommentOptions(false)}}>Edit</button>
                             <button onClick={() => onDelete()}>Delete Comment</button>
                             <button onClick={() => setShowCommentOptions(false)}>Cancel</button>
                         </ReactModal>
+                        {/* { showEditComment && ( <EditCommentForm currentComment={currentComment}/> )} */}
                         </>
                         )}
                         <span>----------------</span>
