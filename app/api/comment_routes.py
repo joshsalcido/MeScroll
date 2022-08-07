@@ -14,11 +14,15 @@ def validation_errors_to_error_messages(validation_errors):
 
 #  COMMENTS
 
+# Get All Comments
+
 @comment_routes.route('/')
 def allComments():
     comments = Comment.query.all()
     data = [comment.to_dict() for comment in comments]
     return {'comments' : data}
+
+# Create A Comment
 
 @comment_routes.route('/<id>/new', methods=['POST'])
 def createComment(id):
@@ -34,3 +38,12 @@ def createComment(id):
         db.session.commit()
         return new_comment.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+
+# Delete a Comment
+
+@comment_routes.route('/<id>', methods=['DELETE'])
+def deletepost(id):
+    comment = Comment.query.get(id)
+    db.session.delete(comment)
+    db.session.commit()
+    return comment.to_dict()

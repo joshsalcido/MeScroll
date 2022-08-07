@@ -13,7 +13,7 @@ export default function CommentForm({currentPost}){
 
     const [submitted, setHasSubmitted]= useState(false);
 
-    console.log(currentPost.id, 'ComentForm')
+    // console.log(currentPost.id, 'ComentForm')
 
     const handleSubmit = async (e) => {
         e.preventDefault();

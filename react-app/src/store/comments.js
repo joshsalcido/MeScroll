@@ -55,18 +55,19 @@ export const thunkCreateComment = (postId, comment) => async (dispatch) => {
         return data;
     }
 }
-// export const thunkDeletePost = (postId) => async (dispatch) => {
-//     const response = await fetch(`/api/posts/${postId}`, {
-//         method: "DELETE",
-//     })
 
-//     if (response.ok) {
-//         const deletedPost = await response.json();
-//         // console.log(data, "THUNK CREATE DATA")
-//         dispatch(actionDeletePost(postId))
-//         return deletedPost;
-//     }
-// }
+export const thunkDeleteComment = (commentId) => async (dispatch) => {
+    const response = await fetch(`/api/comments/${commentId}`, {
+        method: "DELETE",
+    })
+
+    if (response.ok) {
+        const deletedComment = await response.json();
+        // console.log(data, "THUNK CREATE DATA")
+        dispatch(actionDeleteComment(commentId))
+        return deletedComment;
+    }
+}
 
 // export const thunkUpdatePost = (post) => async (dispatch) => {
 //     const response = await fetch(`/api/posts/${post.id}`, {
@@ -91,6 +92,9 @@ const commentReducer = (state = {}, action) => {
                 newState[comment.id] = comment
             });
             return newState;
+        case DELETE_COMMENT:
+            delete newState[action.commentId]
+            return newState
         default:
             return state;
     }

@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from "react-redux"
 import { useEffect, useState } from "react";
 import LoginForm from "../auth/LoginForm"
 import { thunkGetAllPosts } from "../../store/posts";
-import { thunkGetAllComments, thunkCreateComment} from "../../store/comments";
+import { thunkGetAllComments, thunkDeleteComment} from "../../store/comments";
 import './allposts.css'
 import LogoutButton from "../auth/LogoutButton";
 import NavBar from "../NavBar/NavBar";
@@ -10,6 +10,7 @@ import Modal from "react-modal";
 import PostForm from "../createPostForm/createPostForm";
 import EditPostForm from "../editPostForm/editPostForm";
 import CommentForm from "../commentForm.js/commentForm";
+import ReactModal from "react-modal";
 
 
 
@@ -23,7 +24,8 @@ export default function AllPosts(){
 
     const [postOptions, setPostOptions] = useState(false);
     const [showEditForm, setShowEditForm] = useState(false);
-    const [currentPost, setCurrentPost ] = useState('');
+    const [currentComment, setCurrentComment ] = useState('');
+    const [showCommentOptions, setShowCommentOptions] = useState(false);
 
     const [comment_body, setComment_body] = useState('')
 
@@ -36,6 +38,13 @@ export default function AllPosts(){
     function closeEditForm (){
         setShowEditForm(false)
     }
+    function onDelete (){
+
+        dispatch(thunkDeleteComment(currentComment.id))
+        dispatch(thunkGetAllPosts())
+
+        setShowCommentOptions(false)
+    }
 
 
     useEffect(()=> {
@@ -43,7 +52,7 @@ export default function AllPosts(){
         dispatch(thunkGetAllComments())
     }, [dispatch])
 
-
+    console.log(allPosts, "AllPOST PAGE")
     return (
         <>
         <NavBar/>
@@ -73,6 +82,15 @@ export default function AllPosts(){
                     {post.comments.map(comment =>
                         <>
                         <div>{comment.comment_body}</div>
+                        {comment.user_id == userId && (
+                        <>
+                        <button onClick={() => { setCurrentComment(comment); setShowCommentOptions(true) } }>...</button>
+                        <ReactModal isOpen={showCommentOptions}>
+                            <button onClick={() => onDelete()}>Delete Comment</button>
+                            <button onClick={() => setShowCommentOptions(false)}>Cancel</button>
+                        </ReactModal>
+                        </>
+                        )}
                         <span>----------------</span>
                         </>
                     )}
