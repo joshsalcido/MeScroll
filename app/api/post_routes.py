@@ -44,6 +44,7 @@ def newpost():
 @post_routes.route('/<id>', methods=['PUT'])
 def updatepost(id):
     form = PostForm()
+    
     form['csrf_token'].data = request.cookies['csrf_token']
     post = Post.query.get(id)
     if form.validate_on_submit():
@@ -63,4 +64,3 @@ def deletepost(id):
     db.session.delete(post)
     db.session.commit()
     return post.to_dict()
-

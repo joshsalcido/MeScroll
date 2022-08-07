@@ -24,6 +24,7 @@ export const actionDeleteComment = (commentId) => {
 }
 
 export const actionUpdateComment = (comment) => {
+    console.log(comment, "COMMENT FROM ACTION")
     return {
         type: UPDATE_COMMENT,
         comment
@@ -55,32 +56,36 @@ export const thunkCreateComment = (postId, comment) => async (dispatch) => {
         return data;
     }
 }
-// export const thunkDeletePost = (postId) => async (dispatch) => {
-//     const response = await fetch(`/api/posts/${postId}`, {
-//         method: "DELETE",
-//     })
 
-//     if (response.ok) {
-//         const deletedPost = await response.json();
-//         // console.log(data, "THUNK CREATE DATA")
-//         dispatch(actionDeletePost(postId))
-//         return deletedPost;
-//     }
-// }
+export const thunkDeleteComment = (commentId) => async (dispatch) => {
+    const response = await fetch(`/api/comments/${commentId}`, {
+        method: "DELETE",
+    })
 
-// export const thunkUpdatePost = (post) => async (dispatch) => {
-//     const response = await fetch(`/api/posts/${post.id}`, {
-//         method: 'PUT',
-//         headers: {"Content-Type": "application/json"},
-//         body: JSON.stringify(post),
-//     })
+    if (response.ok) {
+        const deletedComment = await response.json();
+        // console.log(data, "THUNK CREATE DATA")
+        dispatch(actionDeleteComment(commentId))
+        return deletedComment;
+    }
+}
 
-//     if (response.ok) {
-//         const data = await response.json();
-//         dispatch(actionUpdatePost(data))
-//         return data;
-//     }
-// }
+export const thunkUpdateComment = (comment) => async (dispatch) => {
+    const commentId = comment.id
+    console.log(comment, "COMMENT FROM THUNK")
+    // const commentBody = comment.comment_body
+    const response = await fetch(`/api/comments/${commentId}/edit`, {
+        method: 'PUT',
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(comment),
+    })
+
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(actionUpdateComment(data))
+        return data;
+    }
+}
 
 const commentReducer = (state = {}, action) => {
     let newState = {...state}
@@ -91,6 +96,12 @@ const commentReducer = (state = {}, action) => {
                 newState[comment.id] = comment
             });
             return newState;
+        case DELETE_COMMENT:
+            delete newState[action.commentId]
+            return newState
+        case UPDATE_COMMENT:
+            newState[action.comment.id] = action.comment
+            return newState
         default:
             return state;
     }
