@@ -1,7 +1,8 @@
 import React, { useState, useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { thunkCreatePost } from "../../store/posts";
+import { thunkGetAllComments } from "../../store/comments";
+import { thunkCreatePost, thunkGetAllPosts } from "../../store/posts";
 
 
 export default function PostForm({closeCreateForm}){
@@ -26,6 +27,8 @@ export default function PostForm({closeCreateForm}){
         }
 
         dispatch(thunkCreatePost(post))
+        dispatch(thunkGetAllComments())
+        dispatch(thunkGetAllPosts())
 
         closeCreateForm()
 
@@ -33,6 +36,11 @@ export default function PostForm({closeCreateForm}){
         setCaption('')
         setLocation('')
     }
+
+    useEffect(()=> {
+      dispatch(thunkGetAllComments())
+      dispatch(thunkGetAllPosts())
+    }, [dispatch])
 
 
     return (
