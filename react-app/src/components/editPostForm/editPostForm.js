@@ -37,7 +37,6 @@ export default function EditPostForm({closeEditForm, postId, closePostOptions, c
 
         dispatch(thunkUpdatePost(updatedPost))
 
-
         setHasSubmitted(true);
         closeEditForm();
         closePostOptions();

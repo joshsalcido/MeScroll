@@ -22,7 +22,9 @@ function User() {
 
   const onlyUserPost = allPosts.filter(post => post.user_id === parseInt(userId))
 
-  // console.log(clickedPost, "Clicked POST+++")
+  const specificPost = useSelector( state => state.postReducer[clickedPost.id])
+
+  console.log(specificPost, "SPECIFIC POST")
   // console.log(onlyUserPost, "USER POSTS", userId, "<--- USERID")
 
   function closeEditForm (){
@@ -36,6 +38,9 @@ function User() {
   }
 
   useEffect(() => {
+
+    dispatch(thunkGetAllPosts())
+
     if (!userId) {
       return;
     }
@@ -45,7 +50,6 @@ function User() {
       setUser(user);
     })();
 
-    dispatch(thunkGetAllPosts())
   }, [dispatch,userId]);
 
   if (!user) {
@@ -75,14 +79,14 @@ function User() {
           <ReactModal isOpen={showPostDetails}>
             <button className='indv-post-options-btn' onClick={()=> setShowPostOptions(true)}>...</button>
               <ReactModal portalClassName="post-options-Modal" isOpen={showPostOptions}  transparent={true}>
-                  <button className="delete-post-btn" onClick={()=> {dispatch(thunkDeletePost(post.id)); setShowPostDetails(false)}}>Delete</button>
+                  <button className="delete-post-btn" onClick={()=> {dispatch(thunkDeletePost(clickedPost.id)); setShowPostDetails(false)}}>Delete</button>
                   <button className="edit-post-btn" onClick={()=> {setShowEditForm(true)}}>Edit</button>
                   {showEditForm && (<EditPostForm closeEditForm={closeEditForm} closePostOptions={closePostOptions} closePostDetails={closePostDetails} postId={clickedPost.id}/>)}
                   <button className="cancel-options-btn" onClick={() => setShowPostOptions(false)}>Cancel</button>
               </ReactModal>
-            <p>{clickedPost.location}</p>
-            <img src={clickedPost.photo}></img>
-            <p>{clickedPost.caption}</p>
+            <p>{specificPost.location}</p>
+            <img src={specificPost.photo}></img>
+            <p>{specificPost.caption}</p>
             <button onClick={()=> setShowPostDetails(false)}>Cancel</button>
           </ReactModal>
         </>
