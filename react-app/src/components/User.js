@@ -18,13 +18,13 @@ function User() {
   const [showPostOptions, setShowPostOptions] = useState(false);
   const [showEditForm, setShowEditForm] = useState(false);
 
-  const allPosts = useSelector(state => Object.values(state.postReducer))
+  const allPosts = useSelector(state => Object.values(state.postReducer)).reverse()
 
   const onlyUserPost = allPosts.filter(post => post.user_id === parseInt(userId))
 
   const specificPost = useSelector( state => state.postReducer[clickedPost.id])
 
-  console.log(specificPost, "SPECIFIC POST")
+  // console.log(specificPost, "SPECIFIC POST")
   // console.log(onlyUserPost, "USER POSTS", userId, "<--- USERID")
 
   function closeEditForm (){
@@ -84,9 +84,9 @@ function User() {
                   {showEditForm && (<EditPostForm closeEditForm={closeEditForm} closePostOptions={closePostOptions} closePostDetails={closePostDetails} postId={clickedPost.id}/>)}
                   <button className="cancel-options-btn" onClick={() => setShowPostOptions(false)}>Cancel</button>
               </ReactModal>
-            <p>{specificPost.location}</p>
-            <img src={specificPost.photo}></img>
-            <p>{specificPost.caption}</p>
+            <p>{specificPost?.location}</p>
+            <img src={specificPost?.photo}></img>
+            <p>{specificPost?.caption}</p>
             <button onClick={()=> setShowPostDetails(false)}>Cancel</button>
           </ReactModal>
         </>

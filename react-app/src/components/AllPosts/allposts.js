@@ -1,33 +1,35 @@
 import { useSelector, useDispatch } from "react-redux"
 import { useEffect, useState } from "react";
-import LoginForm from "../auth/LoginForm"
+// import LoginForm from "../auth/LoginForm"
 import { thunkGetAllPosts } from "../../store/posts";
 import { thunkGetAllComments, thunkDeleteComment, thunkUpdateComment} from "../../store/comments";
 import './allposts.css'
-import LogoutButton from "../auth/LogoutButton";
+// import LogoutButton from "../auth/LogoutButton";
 import NavBar from "../NavBar/NavBar";
 import Modal from "react-modal";
-import PostForm from "../createPostForm/createPostForm";
+// import PostForm from "../createPostForm/createPostForm";
 import EditPostForm from "../editPostForm/editPostForm";
 import CommentForm from "../commentForm.js/commentForm";
-import ReactModal from "react-modal";
-import EditCommentForm from "../commentForm.js/editComment";
+// import ReactModal from "react-modal";
+// import EditCommentForm from "../commentForm.js/editComment";
+import CommentSection from "../comment-section/feedComments";
 
 
+Modal.setAppElement('body')
 
 export default function AllPosts(){
     const dispatch = useDispatch();
-    const allPosts = useSelector(state => Object.values(state.postReducer))
-    const userId = useSelector(state => state.session?.user?.id)
+    const allPosts = useSelector(state => Object.values(state.postReducer)).reverse()
+    // const userId = useSelector(state => state.session?.user?.id)
 
 
-    Modal.setAppElement('body')
+
+    // console.log(allPosts[1].comments.map(comment => comment.comment_body), "ALLPOSTS") //.comments.map(comment => comment.comment_body)
+    // console.log(allComments.filter(comment => comment.post_id == 2).map(comment => comment.comment_body), "ALLCOMMENTS")
 
     const [postOptions, setPostOptions] = useState(false);
     const [showEditForm, setShowEditForm] = useState(false);
-    const [currentComment, setCurrentComment ] = useState('');
-    const [showCommentOptions, setShowCommentOptions] = useState(false);
-    const [showEditComment, setShowEditComment] = useState(false);
+
 
     const [comment_body, setComment_body] = useState('')
 
@@ -46,37 +48,22 @@ export default function AllPosts(){
     function closeEditForm(){
         setShowEditForm(false)
     }
-    function onDelete(){
-
-        dispatch(thunkDeleteComment(currentComment.id))
-        dispatch(thunkGetAllComments())
-        dispatch(thunkGetAllPosts())
-
-        setShowCommentOptions(false)
-    }
-    function updateComment(){
-
-
-        const editedComment = {
-            user_id: userId,
-            post_id: currentComment.post_id,
-            id: currentComment.id,
-            fart: null,
-            comment_body: updatedComment
-        }
-
-        console.log(editedComment, "UpdatedCOMMENT")
-
-        dispatch(thunkUpdateComment(editedComment))
-        dispatch(thunkGetAllPosts())
-    }
-
 
     useEffect(()=> {
         dispatch(thunkGetAllPosts())
         dispatch(thunkGetAllComments())
     }, [dispatch])
 
+    const customStyles = {
+        content: {
+            top: '50%',
+            left: '50%',
+            right: 'auto',
+            bottom: 'auto',
+            marginRight: '-50%',
+            transform: 'translate(-50%, -50%)',
+        }
+    }
 
     return (
         <>
@@ -91,7 +78,7 @@ export default function AllPosts(){
                 <p> {post.location}</p>
                 <span>
                     <button className="post-options-btn" onClick={()=> setPostOptions(true)}>...</button>
-                    <Modal portalClassName="post-options-Modal" isOpen={postOptions}  transparent={true}>
+                    <Modal portalClassName="post-modal-options" isOpen={postOptions} style={customStyles}>
                         <button className="unfollow-fromfeed">Unfollow</button>
                         <button className="go-to-post-fromfeed">Go to Post</button>
                         {showEditForm && (<EditPostForm closeEditForm={closeEditForm} postId={post.id}/>)}
@@ -102,43 +89,8 @@ export default function AllPosts(){
                 <p>{post.caption}</p>
                 <br></br>
                 <span></span>
-                <div className='comment-section'>
-                    <p>Comments:</p>
-                    {post.comments.map(comment =>
-                        <>
-                        <p>{comment.comment_body}</p>
-                        {showEditComment && currentComment.id == comment.id && (
-                            <textarea
-                            value={null}
-                            onChange={(e) => setUpdatedComment(e.target.value)}
-                            >
-                            {comment.comment_body}
-                            </textarea>
-                        )}
-                        {comment.user_id == userId && (
-                        <>
-                        { showEditComment === false && (
-                        <button onClick={() => { setCurrentComment(comment); setShowCommentOptions(true) } }>...</button>
-                        )}
-                        { showEditComment && currentComment.id == comment.id && (
-                        <>
-                        <button onClick={() => {setShowEditComment(false); updateComment()}}>Update Comment</button>
-                        <button onClick={() => setShowEditComment(false)}>Cancel</button>
-                        </>
-                        )}
-                        <ReactModal isOpen={showCommentOptions}>
-                            <button onClick={() => {setShowEditComment(true); setShowCommentOptions(false)}}>Edit</button>
-                            <button onClick={() => onDelete()}>Delete Comment</button>
-                            <button onClick={() => setShowCommentOptions(false)}>Cancel</button>
-                        </ReactModal>
-                        {/* { showEditComment && ( <EditCommentForm currentComment={currentComment}/> )} */}
-                        </>
-                        )}
-                        <span>----------------</span>
-                        </>
-                    )}
-                </div>
-            <CommentForm currentPost={post}/>
+                <CommentSection currentPost={post}/>
+                <CommentForm currentPost={post}/>
             </div>
             </>)}
         </div>

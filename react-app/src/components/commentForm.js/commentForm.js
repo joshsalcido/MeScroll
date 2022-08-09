@@ -24,8 +24,8 @@ export default function CommentForm({currentPost}){
             comment_body
         }
 
-        dispatch(thunkCreateComment(currentPost.id, comment))
-        dispatch(thunkGetAllPosts())
+        await dispatch(thunkCreateComment(currentPost.id, comment))
+        .then(dispatch(thunkGetAllComments()))
         // dispatch(thunkGetAllComments(currentPost.id))
 
         setComment_body('')
@@ -42,7 +42,7 @@ export default function CommentForm({currentPost}){
                 onChange={(e) => setComment_body(e.target.value)}
                 placeholder='Add a Comment...'
                 ></textarea>
-                <button>Post</button>
+                <button type="submit">Post</button>
             </form>
         </>
     )

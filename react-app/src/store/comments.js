@@ -24,7 +24,6 @@ export const actionDeleteComment = (commentId) => {
 }
 
 export const actionUpdateComment = (comment) => {
-    console.log(comment, "COMMENT FROM ACTION")
     return {
         type: UPDATE_COMMENT,
         comment
@@ -64,7 +63,6 @@ export const thunkDeleteComment = (commentId) => async (dispatch) => {
 
     if (response.ok) {
         const deletedComment = await response.json();
-        // console.log(data, "THUNK CREATE DATA")
         dispatch(actionDeleteComment(commentId))
         return deletedComment;
     }
@@ -72,8 +70,7 @@ export const thunkDeleteComment = (commentId) => async (dispatch) => {
 
 export const thunkUpdateComment = (comment) => async (dispatch) => {
     const commentId = comment.id
-    console.log(comment, "COMMENT FROM THUNK")
-    // const commentBody = comment.comment_body
+
     const response = await fetch(`/api/comments/${commentId}/edit`, {
         method: 'PUT',
         headers: {"Content-Type": "application/json"},
@@ -91,10 +88,12 @@ const commentReducer = (state = {}, action) => {
     let newState = {...state}
     switch (action.type) {
         case GET_ALL_COMMENTS:
-            newState = {};
             action.comments.forEach(comment => {
                 newState[comment.id] = comment
             });
+            return newState;
+        case CREATE_COMMENT:
+            newState[action.comment.id] = action.comment
             return newState;
         case DELETE_COMMENT:
             delete newState[action.commentId]
