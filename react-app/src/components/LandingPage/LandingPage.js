@@ -1,4 +1,5 @@
 import LoginForm from "../auth/LoginForm"
+import SignUpForm from "../auth/SignUpForm"
 
 
 
@@ -6,10 +7,13 @@ import LoginForm from "../auth/LoginForm"
 export default function LandingPage(){
 
 
+
     return (
-        <>
-        <div className="top-div-landing"></div>
-        <LoginForm/>
-        </>
+        <html className="landing-page">
+            <body>
+            <div className="top-div-landing"></div>
+            <LoginForm/>
+            </body>
+        </html>
     )
 }
