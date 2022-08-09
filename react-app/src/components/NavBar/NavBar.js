@@ -47,7 +47,7 @@ const NavBar = () => {
             Sign Up
           </NavLink>
         </li> */}
-          <NavLink to={`/users/${sessionUser.id}`} exact={true} activeClassName='active'>
+          <NavLink to={`/users/${sessionUser?.id}`} exact={true} activeClassName='active'>
             <button className='my-profile-btn'>My Profile</button>
           </NavLink>
           <LogoutButton />

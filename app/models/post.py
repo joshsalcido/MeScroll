@@ -10,7 +10,7 @@ class Post(db.Model):
     location = db.Column(db.String(500), nullable=True)
 
 
-    users = db.relationship("User", back_populates="posts")
+    users = db.relationship("User", back_populates="posts", lazy='subquery')
     comments = db.relationship("Comment", back_populates="post")
 
     def get_users(self):

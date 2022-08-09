@@ -22,6 +22,15 @@ def allComments():
     data = [comment.to_dict() for comment in comments]
     return {'comments' : data}
 
+# Get Single Post Comments
+# @comment_routes.route('/<id>')
+# def allSinglePostComments(id):
+#     post = Post.query.get(id)
+#     comments = post.comments
+#     data = [comment.to_dict() for comment in comments]
+#     return {'comments' : data}
+
+
 # Create A Comment
 
 @comment_routes.route('/<id>/new', methods=['POST'])

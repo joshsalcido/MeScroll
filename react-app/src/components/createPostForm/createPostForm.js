@@ -27,8 +27,8 @@ export default function PostForm({closeCreateForm}){
         }
 
         dispatch(thunkCreatePost(post))
-        dispatch(thunkGetAllComments())
-        dispatch(thunkGetAllPosts())
+        // dispatch(thunkGetAllComments())
+        // dispatch(thunkGetAllPosts())
 
         closeCreateForm()
 
