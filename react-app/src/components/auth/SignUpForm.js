@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { Redirect } from 'react-router-dom';
-import { signUp } from '../../store/session';
+import { NavLink, Redirect } from 'react-router-dom';
+import { signUp, login } from '../../store/session';
+import '../LandingPage/LandingPage.css'
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
@@ -20,6 +21,12 @@ const SignUpForm = () => {
         setErrors(data)
       }
     }
+  };
+  const demoLogin = async (e) => {
+    // e.preventDefault();
+
+      await dispatch(login('demo@aa.io', 'password'))
+
   };
 
   const updateUsername = (e) => {
@@ -43,7 +50,15 @@ const SignUpForm = () => {
   }
 
   return (
-    <form onSubmit={onSignUp}>
+    <>
+    <div className="top-div-signup-landing"></div>
+    <form onSubmit={onSignUp} className="signup-form">
+      <h1>meScroll</h1>
+      <h4>Sign up to see posts from all your buddies!</h4>
+      <button type="button" onClick={()=> demoLogin()}>Continue as Guest</button>
+      <br></br>
+      <span>- Or -</span>
+      <br></br>
       <div>
         {errors.map((error, ind) => (
           <div key={ind}>{error}</div>
@@ -87,7 +102,9 @@ const SignUpForm = () => {
         ></input>
       </div>
       <button type='submit'>Sign Up</button>
+      <span>Have an account? {<NavLink to='/login'>Log in</NavLink>}</span>
     </form>
+    </>
   );
 };
 

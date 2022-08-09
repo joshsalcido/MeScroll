@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
 import '../LandingPage/LandingPage.css'
 
@@ -8,14 +8,25 @@ const LoginForm = () => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [demo, setDemo] = useState(false);
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
+//  const demoLogin = async (e) => {
+//   setEmail('demo@aa.io')
+//   setPassword('password')
+//  }
+
+
   const onLogin = async (e) => {
     e.preventDefault();
-    const data = await dispatch(login(email, password));
-    if (data) {
-      setErrors(data);
+    if (demo){
+      dispatch(login('demo@aa.io', 'password'))
+    } else {
+      const data = await dispatch(login(email, password));
+      if (data) {
+        setErrors(data);
+      }
     }
   };
 
@@ -32,12 +43,15 @@ const LoginForm = () => {
   }
 
   return (
+    <>
+    <div className="top-div-landing"></div>
     <form onSubmit={onLogin}>
-      <div>
+      <h1>meScroll</h1>
+      <ul className='error-messages'>
         {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
+          <li key={ind}>{error}</li>
         ))}
-      </div>
+      </ul>
       <div>
         <label htmlFor='email'>Email</label>
         <input
@@ -58,8 +72,12 @@ const LoginForm = () => {
           onChange={updatePassword}
         />
         <button type='submit'>Login</button>
+        <span>- Or -</span>
+        <button onClick={() => setDemo(true)}>Continue as Guest</button>
       </div>
+      <span>Don't have an account? {<NavLink to='/sign-up'>Sign Up</NavLink>}</span>
     </form>
+    </>
   );
 };
 
