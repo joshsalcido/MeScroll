@@ -56,6 +56,9 @@ function User() {
     return null;
   }
 
+  console.log(showPostDetails,"POST DETAILS")
+  console.log(showPostOptions,"POST OPTIONS")
+
   return (
     <>
       <NavBar/>
@@ -79,7 +82,7 @@ function User() {
           <ReactModal isOpen={showPostDetails}>
             <button className='indv-post-options-btn' onClick={()=> setShowPostOptions(true)}>...</button>
               <ReactModal portalClassName="post-options-Modal" isOpen={showPostOptions}  transparent={true}>
-                  <button className="delete-post-btn" onClick={()=> {dispatch(thunkDeletePost(clickedPost.id)); setShowPostDetails(false)}}>Delete</button>
+                  <button className="delete-post-btn" onClick={()=> {dispatch(thunkDeletePost(specificPost?.id)); setShowPostDetails(false); setShowPostOptions(false)}}>Delete</button>
                   <button className="edit-post-btn" onClick={()=> {setShowEditForm(true)}}>Edit</button>
                   {showEditForm && (<EditPostForm closeEditForm={closeEditForm} closePostOptions={closePostOptions} closePostDetails={closePostDetails} postId={clickedPost.id}/>)}
                   <button className="cancel-options-btn" onClick={() => setShowPostOptions(false)}>Cancel</button>

@@ -62,6 +62,7 @@ export default function AllPosts(){
             bottom: 'auto',
             marginRight: '-50%',
             transform: 'translate(-50%, -50%)',
+
         }
     }
 
@@ -78,7 +79,7 @@ export default function AllPosts(){
                 <p> {post.location}</p>
                 <span>
                     <button className="post-options-btn" onClick={()=> setPostOptions(true)}>...</button>
-                    <Modal portalClassName="post-modal-options" isOpen={postOptions} style={customStyles}>
+                    <Modal portalClassName="post-modal-options" isOpen={postOptions} style={customStyles} backdropColor="transparent">
                         <button className="unfollow-fromfeed">Unfollow</button>
                         <button className="go-to-post-fromfeed">Go to Post</button>
                         {showEditForm && (<EditPostForm closeEditForm={closeEditForm} postId={post.id}/>)}

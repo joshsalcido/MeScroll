@@ -31,17 +31,24 @@ def newpost():
     form = PostForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
+    print(form.__dict__, "~~~~~~~~~~~~~~BACKEND POSTFORM~~~~~~~~~~~~~~~~~~~~~`")
+
     if "photo" not in request.files:
         return {"errors": "image required"}, 400
 
     photo = request.files["photo"]
+
 
     if not allowed_file(photo.filename):
         return {"errors": "file type not permitted"}, 400
 
     photo.filename = get_unique_filename(photo.filename)
 
+    print(photo.filename, "+++++++++++++++++++++BACKEND REQUEST fILEs photo filename")
+
     upload = upload_file_to_s3(photo)
+
+    print(upload, "+++++++++++++++++++++BACKEND REQUEST fILEs upload")
 
     if "url" not in upload:
         # if the dictionary doesn't have a url key
@@ -53,6 +60,7 @@ def newpost():
     # flask_login allows us to get the current user from the request
     # new_image = Image(user=current_user, url=url)
 
+
     if form.validate_on_submit():
         new_post = Post(
             user_id = form.data['user_id'],
@@ -62,7 +70,9 @@ def newpost():
         )
         db.session.add(new_post)
         db.session.commit()
+        print(new_post.to_dict(), "$$$$$$$$$$$$$$$$$$$ NEWPOST.todict $$$$$$$$$$$$$$$$$$$$")
         return new_post.to_dict()
+    print(form, "$$$$$$$$$$$$$$$$$$$ form not validated $$$$$$$$$$$$$$$$$$$$")
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 # Get a Single Post (when on a profile Page, this will be a modal)

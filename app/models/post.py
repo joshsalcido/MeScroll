@@ -11,7 +11,7 @@ class Post(db.Model):
 
 
     users = db.relationship("User", back_populates="posts", lazy='subquery')
-    comments = db.relationship("Comment", back_populates="post")
+    comments = db.relationship("Comment", back_populates="post", cascade="all, delete")
 
     def get_users(self):
         data = self.users.to_dict()

@@ -54,7 +54,7 @@ export default function PostForm({closeCreateForm}){
       setPhoto(file);
   }
 
-
+  // input[type=file]::file-selector-button {  }
     return (
         <>
         <form className="post-form" onSubmit={handleSubmit}>
