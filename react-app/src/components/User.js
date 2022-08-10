@@ -24,8 +24,6 @@ function User() {
 
   const specificPost = useSelector( state => state.postReducer[clickedPost.id])
 
-  // console.log(specificPost, "SPECIFIC POST")
-  // console.log(onlyUserPost, "USER POSTS", userId, "<--- USERID")
 
   function closeEditForm (){
     setShowEditForm(false)
@@ -56,8 +54,6 @@ function User() {
     return null;
   }
 
-  console.log(showPostDetails,"POST DETAILS")
-  console.log(showPostOptions,"POST OPTIONS")
 
   return (
     <>

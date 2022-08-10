@@ -44,7 +44,6 @@ export const thunkGetAllPosts = () => async (dispatch) => {
 }
 
 export const thunkCreatePost = (formData) => async (dispatch) => {
-    console.log(formData, "THUNK POST")
     const response = await fetch('/api/posts/newpost', {
         method: "POST",
         body: formData,
@@ -64,7 +63,6 @@ export const thunkDeletePost = (postId) => async (dispatch) => {
 
     if (response.ok) {
         const deletedPost = await response.json();
-        // console.log(data, "THUNK CREATE DATA")
         dispatch(actionDeletePost(postId))
         return deletedPost;
     }

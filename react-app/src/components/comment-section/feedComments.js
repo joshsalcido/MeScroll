@@ -22,9 +22,6 @@ export default function CommentSection({currentPost}){
 
     const [submitted, setHasSubmitted]= useState(false);
 
-    // console.log(currentPost.id, 'ComentForm')
-    // console.log(allComments, "commentReducer")
-    // console.log(singlePostComments[0]?.comment_body, "singlePostComments")
 
     function closeEditForm(){
         setShowEditForm(false)
