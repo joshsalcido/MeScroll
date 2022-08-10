@@ -7,9 +7,9 @@ import { thunkCreatePost, thunkGetAllPosts } from "../../store/posts";
 
 export default function PostForm({closeCreateForm}){
     const dispatch = useDispatch()
-    const sessionUser = useSelector(state => state.session.user)
+    const sessionUser = useSelector(state => state.session?.user)
 
-    const [photo, setPhoto] = useState('');
+    const [photo, setPhoto] = useState(null);
     const [caption, setCaption] = useState('');
     const [location, setLocation] = useState('');
 
@@ -17,16 +17,23 @@ export default function PostForm({closeCreateForm}){
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
         setHasSubmitted(true);
 
-        const post = {
-            user_id: sessionUser.id,
-            photo: photo,
-            caption,
-            location,
-        }
+        const formData = new FormData();
+        formData.append("user_id", sessionUser.id)
+        formData.append("photo", photo);
+        formData.append("caption", caption);
+        formData.append("location", location);
 
-        dispatch(thunkCreatePost(post))
+        console.log(formData, "formData FROM COMPONENT")
+        // const post = {
+        //     user_id: sessionUser.id,
+        //     photo: photo,
+        //     caption,
+        //     location,
+        // }
+        await dispatch(thunkCreatePost(formData))
         // dispatch(thunkGetAllComments())
         // dispatch(thunkGetAllPosts())
 
@@ -42,17 +49,22 @@ export default function PostForm({closeCreateForm}){
       dispatch(thunkGetAllPosts())
     }, [dispatch])
 
+    const updatePhoto = (e) => {
+      const file = e.target.files[0];
+      setPhoto(file);
+  }
+
 
     return (
         <>
         <form className="post-form" onSubmit={handleSubmit}>
             <label>Photo:</label>
             <input
-              type="text"
+              type="file"
+              name="photo"
+              accept="image/jpg, image/jpeg, image/png, image/gif"
               className="photo-input"
-              value={photo}
-              onChange={(e) => setPhoto(e.target.value)}
-              required
+              onChange={(e) => updatePhoto(e)}
             />
             <label>Caption:</label>
             <textarea

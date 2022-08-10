@@ -11,6 +11,7 @@ export const actionGetAllPosts = (posts) => {
     }
 }
 export const actionCreatePost = (post) => {
+    console.log(post, "CREATE ACTION POST")
     return {
         type: CREATE_POST,
         post
@@ -42,11 +43,11 @@ export const thunkGetAllPosts = () => async (dispatch) => {
     }
 }
 
-export const thunkCreatePost = (post) => async (dispatch) => {
+export const thunkCreatePost = (formData) => async (dispatch) => {
+    console.log(formData, "THUNK POST")
     const response = await fetch('/api/posts/newpost', {
         method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(post),
+        body: formData,
     })
 
     if (response.ok) {
