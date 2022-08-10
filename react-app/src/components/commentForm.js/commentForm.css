@@ -1,0 +1,6 @@
+
+.comment_body{
+    flex: 1;
+    flex-wrap: wrap;
+    max-width: fit-content;
+}
