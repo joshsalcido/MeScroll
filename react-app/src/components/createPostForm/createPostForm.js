@@ -56,12 +56,14 @@ export default function PostForm({closeCreateForm}){
             />
             <label>Caption:</label>
             <textarea
+              required
               value={caption}
               onChange={(e) => setCaption(e.target.value)}
             ></textarea>
             <label>Location:</label>
             <input
-            type="text"
+              required
+              type="text"
               value={location}
               onChange={(e) => setLocation(e.target.value)}
             />

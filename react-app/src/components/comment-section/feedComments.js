@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { thunkGetAllComments, thunkCreateComment, thunkUpdateComment, thunkDeleteComment } from "../../store/comments";
 import { thunkGetAllPosts } from "../../store/posts";
 import ReactModal from "react-modal";
+import '../commentForm.js/commentForm.css'
 
 
 
@@ -58,7 +59,7 @@ export default function CommentSection({currentPost}){
                     <p>Comments:</p>
                     {singlePostComments.map(comment => {
                             return <div>
-                            <p>{comment.comment_body}</p>
+                            <p className="comment_body">{comment.comment_body}</p>
                             {showEditComment && currentComment.id == comment.id && (
                                 <textarea
                                 value={undefined}

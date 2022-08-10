@@ -10,11 +10,16 @@ export default function CommentForm({currentPost}){
     const userId = useSelector(state => state.session?.user?.id)
 
     const [comment_body, setComment_body] = useState('')
+    const [commentButtonDisabled, setCommentButtonDisabled] = useState(true)
 
     const [submitted, setHasSubmitted]= useState(false);
 
     // console.log(currentPost.id, 'ComentForm')
+    const commentButtonStyleOff = {
+        backgroundColor: '#fedcd5',
+    }
 
+    const [commentButtonStyle, setCommentButtonStyle] = useState(commentButtonStyleOff)
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -30,6 +35,15 @@ export default function CommentForm({currentPost}){
 
         setComment_body('')
     }
+    useEffect(()=> {
+        if (comment_body.length){
+            setCommentButtonStyle(null)
+            setCommentButtonDisabled(false)
+        } else {
+            setCommentButtonStyle(commentButtonStyleOff)
+            setCommentButtonDisabled(true)
+        }
+    }, [comment_body])
 
 
     return (
@@ -39,10 +53,11 @@ export default function CommentForm({currentPost}){
                 key={currentPost.id}
                 className="comment-textarea"
                 value={comment_body}
-                onChange={(e) => setComment_body(e.target.value)}
+                onChange={(e) => {setComment_body(e.target.value); setCommentButtonDisabled(false); setCommentButtonStyle(commentButtonStyleOff)}}
                 placeholder='Add a Comment...'
+                maxlength="1000"
                 ></textarea>
-                <button type="submit">Post</button>
+                <button style={commentButtonStyle} disabled={commentButtonDisabled} type="submit">Post</button>
             </form>
         </>
     )

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { NavLink, Redirect } from 'react-router-dom';
 import { signUp, login } from '../../store/session';
@@ -9,24 +9,34 @@ const SignUpForm = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [repeatPassword, setRepeatPassword] = useState('');
+  const [confirmed_Password, setConfirmedPassword] = useState('');
+  const [full_name, setFullName] = useState('');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
   const onSignUp = async (e) => {
     e.preventDefault();
-    if (password === repeatPassword) {
-      const data = await dispatch(signUp(username, email, password));
+    // if (password === repeatPassword) {
+      const data = await dispatch(signUp(username, full_name, email, password, confirmed_Password ));
       if (data) {
         setErrors(data)
       }
-    }
+    // }
+    // errors.push('Confirmed Password does not match')
   };
+
+  useEffect(()=>{
+
+  }, [errors])
   const demoLogin = async (e) => {
     // e.preventDefault();
 
       await dispatch(login('demo@aa.io', 'password'))
 
+  };
+
+  const updateFullName = (e) => {
+    setFullName(e.target.value);
   };
 
   const updateUsername = (e) => {
@@ -41,8 +51,8 @@ const SignUpForm = () => {
     setPassword(e.target.value);
   };
 
-  const updateRepeatPassword = (e) => {
-    setRepeatPassword(e.target.value);
+  const updateConfirmPassword = (e) => {
+    setConfirmedPassword(e.target.value);
   };
 
   if (user) {
@@ -58,24 +68,16 @@ const SignUpForm = () => {
       <button type="button" onClick={()=> demoLogin()}>Continue as Guest</button>
       <br></br>
       <span>- Or -</span>
-      <br></br>
-      <div>
-        {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
+      <ul className="error-messages">
+        {errors && errors.map((error, ind) => (
+          <li key={ind}>{error}</li>
         ))}
-      </div>
-      <div>
-        <label>User Name</label>
-        <input
-          type='text'
-          name='username'
-          onChange={updateUsername}
-          value={username}
-        ></input>
-      </div>
+      </ul>
       <div>
         <label>Email</label>
         <input
+          required
+          placeholder='Email'
           type='text'
           name='email'
           onChange={updateEmail}
@@ -83,8 +85,32 @@ const SignUpForm = () => {
         ></input>
       </div>
       <div>
+        <label>Full Name</label>
+        <input
+          required
+          placeholder='Full Name'
+          type='text'
+          name='username'
+          onChange={updateFullName}
+          value={full_name}
+        ></input>
+      </div>
+      <div>
+        <label>Username</label>
+        <input
+          required
+          placeholder='Username'
+          type='text'
+          name='username'
+          onChange={updateUsername}
+          value={username}
+        ></input>
+      </div>
+      <div>
         <label>Password</label>
         <input
+          required
+          placeholder='Password'
           type='password'
           name='password'
           onChange={updatePassword}
@@ -92,13 +118,15 @@ const SignUpForm = () => {
         ></input>
       </div>
       <div>
-        <label>Repeat Password</label>
+        <label>Confirm Password</label>
         <input
+
+          placeholder='Confirm Password'
           type='password'
           name='repeat_password'
-          onChange={updateRepeatPassword}
-          value={repeatPassword}
-          required={true}
+          onChange={updateConfirmPassword}
+          value={confirmed_Password}
+          required
         ></input>
       </div>
       <button type='submit'>Sign Up</button>
