@@ -61,6 +61,8 @@ export default function AllPosts(){
         }
     }
 
+    console.log(allPosts, "ALLPOSTS")
+
     return (
         <>
         <NavBar/>
@@ -69,9 +71,13 @@ export default function AllPosts(){
             {allPosts.map((post) =>
             <>
             <div key={post.id} className="indv-post">
-                <h4>{post.userInfo.username} --- </h4>
-                <span></span>
-                <p> {post.location}</p>
+                <div className="userInfo-div">
+                    <img className="profile-pic" src={post.userInfo.profile_pic}></img>
+                    <div className="username-location">
+                        <h4 className="username">{post.userInfo.username}</h4>
+                        <p className="post-location">{post.location}</p>
+                    </div>
+                </div>
                 <span>
                     <button className="post-options-btn" onClick={()=> setPostOptions(true)}>...</button>
                     <Modal portalClassName="post-modal-options" isOpen={postOptions} style={customStyles} theme={{colors: {backdrop: "transparent"}}}>

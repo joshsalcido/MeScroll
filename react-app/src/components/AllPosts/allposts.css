@@ -1,13 +1,22 @@
 .center-feed-div {
-    padding: 20px 20px 50px 20px;
+    padding-left: auto;
+    padding-right: auto;
+    padding-top: 10px;
     display: grid;
     align-items: center;
     margin: auto;
-    border: 1px solid blue;
+    background-color: #fff7f5;
+    /* border: 1px solid blue; */
+}
+
+body{
+    background-color: #fff7f6;
+    margin: 0px;
 }
 
 .indv-post {
-    border: 1px solid blue;
+    border: 1px solid rgb(231, 231, 231);
+    border-radius: 7px;
     width: min-content;
     height: min-content;
     /* border: solid 1px blue; */
@@ -15,13 +24,15 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    margin: 1rem;
+    margin: auto;
+    margin-bottom: 12px;
     padding-bottom: -3rem;
+    background-color: white;
 }
 
 .feed-photo {
-    width: 17rem;
-    height: 19rem;
+    width: 33rem;
+    height: 38rem;
     object-fit: cover;
 }
 
@@ -70,6 +81,25 @@
     resize: none;
 }
 
-.body{
+/* .body{
     background: blue;
+} */
+
+.profile-pic {
+    width: 2rem;
+    height: 2rem;
+    object-fit: cover;
+    border-radius: 100%;
+    border: 1px solid green;
+    /* margin-left: -10rem; */
+}
+.username {
+    border: 1px solid green;
+}
+.post-location {
+    border: 1px solid green;
+}
+.userInfo-div {
+    border: 1px solid blue;
+    display: flex;
 }
