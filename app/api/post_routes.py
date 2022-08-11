@@ -85,8 +85,11 @@ def updatepost(id):
 
     form['csrf_token'].data = request.cookies['csrf_token']
     post = Post.query.get(id)
+
+    # print("++++  REQUEST FILES  +++++",request.files["photo"])
+    # print("***** FORM dict ************",form.__dict__)
     if form.validate_on_submit():
-        post.photo = form.data['photo']
+        # post.photo = form.data['photo']
         post.caption = form.data['caption']
         post.location = form.data['location']
 

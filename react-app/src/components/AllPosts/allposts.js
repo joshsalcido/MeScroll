@@ -61,7 +61,7 @@ export default function AllPosts(){
         }
     }
 
-    console.log(allPosts, "ALLPOSTS")
+    // console.log(allPosts, "ALLPOSTS")
 
     return (
         <>
