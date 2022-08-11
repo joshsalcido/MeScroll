@@ -1,4 +1,5 @@
 import React, { useState, useEffect} from "react";
+import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { thunkGetAllComments, thunkCreateComment, thunkUpdateComment, thunkDeleteComment } from "../../store/comments";
 import { thunkGetAllPosts } from "../../store/posts";
@@ -64,15 +65,15 @@ export default function CommentSection({currentPost}){
         }
     }
 
-
-
     return (
         <>
          <div className='comment-section'>
                     {/* <p>Comments:</p> */}
                     {singlePostComments.map(comment => {
                             return <div className="one-comment-div">
-                                <p className="comment-username">{comment.user.username} </p>
+                                <NavLink to={`/users/${comment.user.id}`}>
+                                    <p className="comment-username">{comment.user.username} </p>
+                                </NavLink>
                             <p className="comment_body">{comment.comment_body}</p>
                             {showEditComment && currentComment.id == comment.id && (
                                 <textarea

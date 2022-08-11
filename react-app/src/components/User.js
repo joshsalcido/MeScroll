@@ -24,6 +24,8 @@ function User() {
 
   const specificPost = useSelector( state => state.postReducer[clickedPost.id])
 
+  const userSession = useSelector(state => state.session?.user)
+
 
   function closeEditForm (){
     setShowEditForm(false)
@@ -54,6 +56,8 @@ function User() {
     return null;
   }
 
+console.log(userSession, "usersessionsssssssss")
+console.log(userId, "userPARAMS")
 
   return (
     <>
@@ -76,7 +80,7 @@ function User() {
             <img className='user-indv-img' src={post.photo}></img>
           </div>
           <ReactModal isOpen={showPostDetails}>
-            <button className='indv-post-options-btn' onClick={()=> setShowPostOptions(true)}>...</button>
+            {userId == userSession.id && (<button className='indv-post-options-btn' onClick={()=> setShowPostOptions(true)}>...</button>)}
               <ReactModal portalClassName="post-options-Modal" isOpen={showPostOptions}  transparent={true}>
                   <button className="delete-post-btn" onClick={()=> {dispatch(thunkDeletePost(specificPost?.id)); setShowPostDetails(false); setShowPostOptions(false)}}>Delete</button>
                   <button className="edit-post-btn" onClick={()=> {setShowEditForm(true)}}>Edit</button>
