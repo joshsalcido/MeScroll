@@ -79,7 +79,7 @@ export default function AllPosts(){
                     </div>
                 </div>
                 <span>
-                    <button className="post-options-btn" onClick={()=> setPostOptions(true)}>...</button>
+                    {/* <button className="post-options-btn" onClick={()=> setPostOptions(true)}>...</button> */}
                     <Modal portalClassName="post-modal-options" isOpen={postOptions} style={customStyles} theme={{colors: {backdrop: "transparent"}}}>
                         <button className="unfollow-fromfeed">Unfollow</button>
                         <button className="go-to-post-fromfeed">Go to Post</button>

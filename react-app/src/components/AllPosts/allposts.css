@@ -84,16 +84,16 @@ body{
     height: 2rem;
     object-fit: cover;
     border-radius: 100%;
-    border: 1px solid green;
+    /* border: 1px solid green; */
     /* margin-left: -10rem; */
 }
 .username {
-    border: 1px solid green;
+    /* border: 1px solid green; */
 }
 .post-location {
-    border: 1px solid green;
+    /* border: 1px solid green; */
 }
 .userInfo-div {
-    border: 1px solid blue;
+    /* border: 1px solid blue; */
     display: flex;
 }
