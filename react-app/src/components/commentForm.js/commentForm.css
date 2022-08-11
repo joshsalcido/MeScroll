@@ -1,9 +1,4 @@
 
-.comment_body{
-    flex: 1;
-    flex-wrap: wrap;
-    max-width: fit-content;
-}
 .create-comment {
     /* border: 1px solid red; */
     /* border: 1px solid blue; */
@@ -43,4 +38,70 @@
     margin-right: -1px;
     margin-bottom: -1px;
     border-radius: 4px;
+}
+
+.comment-section{
+    /* border: 1px solid rgb(251, 0, 255); */
+    width: 100%;
+}
+
+.one-comment-div{
+    /* border: 1px solid blue; */
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 525px;
+    margin: 7px;
+    margin-top: 0;
+    border-top: 1px solid rgb(231, 231, 231);
+}
+.comment_body{
+    font-family: 'Montserrat', sans-serif;
+    flex: 1;
+    flex-wrap: wrap;
+    word-wrap: break-word;
+    max-width: 512px;
+    font-size: 15px;
+}
+.comment-username{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    margin-right: 4px;
+    margin-left: 4px;
+}
+
+.comment-options-btn{
+    width: 2rem;
+    height: 1.5rem;
+    padding: 0px;
+    padding-top: -4px;
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+}
+
+.edit-comment-textarea{
+    width: 100%;
+    margin: 0px;
+    margin-bottom: 0px;
+    padding-top: 13px;
+    padding-bottom: 0px;
+    padding-left: 12px;
+    resize: none;
+    font-family: 'Montserrat', sans-serif;
+    float: left;
+    border-radius: 5px;
+}
+.update-comment-btns {
+    /* border: 1px solid blue; */
+    display: flex;
+    height: 3rem;
+    width: 20rem;
+    margin-left: 5.5rem;
+}
+.update-comment{
+    padding: 0px;
+    margin-right: 5px;
+}
+.cancel-comment-update{
+    padding: 0px;
 }
