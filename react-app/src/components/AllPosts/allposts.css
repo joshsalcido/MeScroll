@@ -28,6 +28,7 @@ body{
     margin-bottom: 12px;
     padding-bottom: -3rem;
     background-color: white;
+    max-width: 529px;
 }
 
 .feed-photo {
@@ -72,14 +73,7 @@ body{
     margin-right: 20px;
 }
 
-.create-comment {
-    /* border: 1px solid red; */
-    border: none;
-    box-shadow: none;
-}
-.comment-textarea {
-    resize: none;
-}
+
 
 /* .body{
     background: blue;

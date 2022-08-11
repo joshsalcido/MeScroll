@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { thunkGetAllComments, thunkCreateComment } from "../../store/comments";
 import { thunkGetAllPosts } from "../../store/posts";
-
+import '../commentForm.js/commentForm.css'
 
 export default function CommentForm({currentPost}){
     const dispatch = useDispatch()
@@ -57,7 +57,7 @@ export default function CommentForm({currentPost}){
                 placeholder='Add a Comment...'
                 maxlength="1000"
                 ></textarea>
-                <button style={commentButtonStyle} disabled={commentButtonDisabled} type="submit">Post</button>
+                <button className="comment-post-button" style={commentButtonStyle} disabled={commentButtonDisabled} type="submit">Post</button>
             </form>
         </>
     )
