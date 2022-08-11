@@ -44,39 +44,41 @@ const LoginForm = () => {
 
   return (
     <>
-    <div className="top-div-landing"></div>
-    <form onSubmit={onLogin}>
-      <h1 className='login-logo'>meScroll</h1>
-      <ul className='error-messages'>
-        {errors.map((error, ind) => (
-          <li key={ind}>{error}</li>
-        ))}
-      </ul>
-      <div>
-        <label htmlFor='email'>Email</label>
-        <input
-          name='email'
-          type='text'
-          placeholder='Email'
-          value={email}
-          onChange={updateEmail}
-        />
-      </div>
-      <div>
-        <label htmlFor='password'>Password</label>
-        <input
-          name='password'
-          type='password'
-          placeholder='Password'
-          value={password}
-          onChange={updatePassword}
-        />
-        <button type='submit'>Login</button>
-        <span>- Or -</span>
-        <button onClick={() => setDemo(true)}>Continue as Guest</button>
-      </div>
-      <span>Don't have an account? {<NavLink to='/sign-up'>Sign Up</NavLink>}</span>
-    </form>
+    <div className='top-div-landing'></div>
+    <div className='login-container'>
+      <form onSubmit={onLogin}>
+        <h1 className='login-logo'>meScroll</h1>
+        <ul className='error-messages'>
+          {errors.map((error, ind) => (
+            <li key={ind}>{error}</li>
+          ))}
+        </ul>
+        <div>
+          <label htmlFor='email'>Email</label>
+          <input
+            name='email'
+            type='text'
+            placeholder='Email'
+            value={email}
+            onChange={updateEmail}
+          />
+        </div>
+        <div>
+          <label htmlFor='password'>Password</label>
+          <input
+            name='password'
+            type='password'
+            placeholder='Password'
+            value={password}
+            onChange={updatePassword}
+          />
+          <button type='submit'>Login</button>
+          <span>- Or -</span>
+          <button onClick={() => setDemo(true)}>Continue as Guest</button>
+        </div>
+        <span>Don't have an account? {<NavLink to='/sign-up'>Sign Up</NavLink>}</span>
+      </form>
+    </div>
     </>
   );
 };
