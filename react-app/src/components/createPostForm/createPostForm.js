@@ -60,6 +60,7 @@ export default function PostForm({closeCreateForm}){
         <form className="post-form" onSubmit={handleSubmit}>
             <label>Photo:</label>
             <input
+              required
               type="file"
               name="photo"
               accept="image/jpg, image/jpeg, image/png, image/gif"
@@ -71,6 +72,7 @@ export default function PostForm({closeCreateForm}){
               required
               value={caption}
               onChange={(e) => setCaption(e.target.value)}
+              maxlength="1000"
             ></textarea>
             <label>Location:</label>
             <input

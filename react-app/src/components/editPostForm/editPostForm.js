@@ -67,6 +67,7 @@ export default function EditPostForm({closeEditForm, postId, closePostOptions, c
             <textarea
               value={caption}
               onChange={(e) => setCaption(e.target.value)}
+              maxlength="1000"
             ></textarea>
             <label>Location:</label>
             <input
