@@ -10,8 +10,42 @@ form {
     align-items: center;
     margin: auto;
     background-color: white;
+    min-width: 27rem;
 }
+/* .sign-up-container{
+  background-color: #ffb4a5;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+} */
 
+.login-logo {
+  font-family: 'Berkshire Swash', cursive;
+  color: #ffb4a5;
+  padding-left: 6.1rem;
+  margin-top: 1px;
+  margin-bottom: 0px;
+  font-size: 65px;
+  /* border: 1px solid blue; */
+}
+.signup-logo{
+  font-family: 'Berkshire Swash', cursive;
+  color: #ffb4a5;
+  padding-left: 6.1rem;
+  margin-top: 1px;
+  margin-bottom: 0px;
+  font-size: 65px;
+}
+.signup-subtext{
+  /* border: 1px solid blue; */
+  width: 25.8rem;
+  text-align: center;
+  margin-left: .5rem;
+  margin-top: 5px;
+  margin-bottom: 9px;
+  font-size: 20px;
+  color: rgb(190, 190, 190);
+}
 /* .signup-form {
   font-family: 'Montserrat', sans-serif;
   width: fit-content;
@@ -47,12 +81,13 @@ button {
 }
 
 .top-div-landing {
-  margin-bottom: 210px;
+  margin-bottom: 130px;
   background-color: #ffb4a5;
 }
 
 .top-div-signup-landing {
   margin-bottom: 100px;
+  background-color: #ffb4a5;
 }
 .error-messages {
     color: red;

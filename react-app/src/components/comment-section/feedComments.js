@@ -49,16 +49,34 @@ export default function CommentSection({currentPost}){
         setShowCommentOptions(false)
     }
 
+    const commentOptionStyles = {
+        overlay: {
+            background: 'rgba(0,0,0,0.1)'
+          },
+        content: {
+            top: '50%',
+            left: '50%',
+            right: 'auto',
+            bottom: 'auto',
+            marginRight: '-50%',
+            transform: 'translate(-50%, -50%)',
+
+        }
+    }
+
+
 
     return (
         <>
          <div className='comment-section'>
-                    <p>Comments:</p>
+                    {/* <p>Comments:</p> */}
                     {singlePostComments.map(comment => {
-                            return <div>
+                            return <div className="one-comment-div">
+                                <p className="comment-username">{comment.user.username} </p>
                             <p className="comment_body">{comment.comment_body}</p>
                             {showEditComment && currentComment.id == comment.id && (
                                 <textarea
+                                className="edit-comment-textarea"
                                 value={undefined}
                                 onChange={(e) => setUpdatedComment(e.target.value)}
                                 >
@@ -68,22 +86,21 @@ export default function CommentSection({currentPost}){
                             {comment.user_id == userId && (
                             <>
                             { showEditComment === false && (
-                            <button onClick={() => { setCurrentComment(comment); setShowCommentOptions(true) } }>...</button>
+                            <button className="comment-options-btn" onClick={() => { setCurrentComment(comment); setShowCommentOptions(true) } }>...</button>
                             )}
                             { showEditComment && currentComment.id == comment.id && (
-                            <>
-                            <button onClick={() => {setShowEditComment(false); updateComment()}}>Update Comment</button>
-                            <button onClick={() => setShowEditComment(false)}>Cancel</button>
-                            </>
+                            <div className="update-comment-btns">
+                                <button className="update-comment" onClick={() => {setShowEditComment(false); updateComment()}}>Update Comment</button>
+                                <button className="cancel-comment-update" onClick={() => setShowEditComment(false)}>Cancel</button>
+                            </div>
                             )}
-                            <ReactModal isOpen={showCommentOptions}>
+                            <ReactModal isOpen={showCommentOptions} style={commentOptionStyles}>
                                 <button onClick={() => {setShowEditComment(true); setShowCommentOptions(false)}}>Edit</button>
                                 <button onClick={() => onDelete()}>Delete Comment</button>
                                 <button onClick={() => setShowCommentOptions(false)}>Cancel</button>
                             </ReactModal>
                             </>
                             )}
-                            <span>----------------</span>
                             </div>
                     }
                     )}

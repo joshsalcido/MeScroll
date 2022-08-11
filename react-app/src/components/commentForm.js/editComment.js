@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { thunkGetAllComments, thunkCreateComment } from "../../store/comments";
 import { thunkGetAllPosts } from "../../store/posts";
-
+import './commentForm.css'
 
 export default function EditCommentForm({currentPost}){
     const dispatch = useDispatch()
@@ -37,7 +37,7 @@ export default function EditCommentForm({currentPost}){
         <form className="create-comment" onSubmit={handleSubmit}>
                 <textarea
                 key={currentPost.id}
-                className="comment-textarea"
+                className="edit-comment-textarea"
                 value={comment_body}
                 onChange={(e) => setComment_body(e.target.value)}
                 placeholder='Add a Comment...'
