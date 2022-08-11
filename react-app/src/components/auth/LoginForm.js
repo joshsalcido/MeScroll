@@ -46,7 +46,7 @@ const LoginForm = () => {
     <>
     <div className="top-div-landing"></div>
     <form onSubmit={onLogin}>
-      <h1>meScroll</h1>
+      <h1 className='login-logo'>meScroll</h1>
       <ul className='error-messages'>
         {errors.map((error, ind) => (
           <li key={ind}>{error}</li>

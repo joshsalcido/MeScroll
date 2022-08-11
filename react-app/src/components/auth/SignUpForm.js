@@ -60,79 +60,79 @@ const SignUpForm = () => {
   }
 
   return (
-    <>
-    <div className="top-div-signup-landing"></div>
-    <form onSubmit={onSignUp} className="signup-form">
-      <h1>meScroll</h1>
-      <h4>Sign up to see posts from all your buddies!</h4>
-      <button type="button" onClick={()=> demoLogin()}>Continue as Guest</button>
-      <br></br>
-      <span>- Or -</span>
-      <ul className="error-messages">
-        {errors && errors.map((error, ind) => (
-          <li key={ind}>{error}</li>
-        ))}
-      </ul>
-      <div>
-        <label>Email</label>
-        <input
-          required
-          placeholder='Email'
-          type='text'
-          name='email'
-          onChange={updateEmail}
-          value={email}
-        ></input>
-      </div>
-      <div>
-        <label>Full Name</label>
-        <input
-          required
-          placeholder='Full Name'
-          type='text'
-          name='username'
-          onChange={updateFullName}
-          value={full_name}
-        ></input>
-      </div>
-      <div>
-        <label>Username</label>
-        <input
-          required
-          placeholder='Username'
-          type='text'
-          name='username'
-          onChange={updateUsername}
-          value={username}
-        ></input>
-      </div>
-      <div>
-        <label>Password</label>
-        <input
-          required
-          placeholder='Password'
-          type='password'
-          name='password'
-          onChange={updatePassword}
-          value={password}
-        ></input>
-      </div>
-      <div>
-        <label>Confirm Password</label>
-        <input
+    <div className='sign-up-container'>
+      <div className="top-div-signup-landing"></div>
+      <form onSubmit={onSignUp} className="signup-form">
+        <h1 className='signup-logo'>meScroll</h1>
+        <h4 className='signup-subtext'>Sign up for your own meScroll and view posts from all your buddies!</h4>
+        <button type="button" onClick={()=> demoLogin()}>Log in as Guest</button>
+        <br></br>
+        <span>- Or -</span>
+        <ul className="error-messages">
+          {errors && errors.map((error, ind) => (
+            <li key={ind}>{error}</li>
+          ))}
+        </ul>
+        <div>
+          <label>Email</label>
+          <input
+            required
+            placeholder='Email'
+            type='text'
+            name='email'
+            onChange={updateEmail}
+            value={email}
+          ></input>
+        </div>
+        <div>
+          <label>Full Name</label>
+          <input
+            required
+            placeholder='Full Name'
+            type='text'
+            name='username'
+            onChange={updateFullName}
+            value={full_name}
+          ></input>
+        </div>
+        <div>
+          <label>Username</label>
+          <input
+            required
+            placeholder='Username'
+            type='text'
+            name='username'
+            onChange={updateUsername}
+            value={username}
+          ></input>
+        </div>
+        <div>
+          <label>Password</label>
+          <input
+            required
+            placeholder='Password'
+            type='password'
+            name='password'
+            onChange={updatePassword}
+            value={password}
+          ></input>
+        </div>
+        <div>
+          <label>Confirm Password</label>
+          <input
 
-          placeholder='Confirm Password'
-          type='password'
-          name='repeat_password'
-          onChange={updateConfirmPassword}
-          value={confirmed_Password}
-          required
-        ></input>
-      </div>
-      <button type='submit'>Sign Up</button>
-      <span>Have an account? {<NavLink to='/login'>Log in</NavLink>}</span>
-    </form>
-    </>
+            placeholder='Confirm Password'
+            type='password'
+            name='repeat_password'
+            onChange={updateConfirmPassword}
+            value={confirmed_Password}
+            required
+          ></input>
+        </div>
+        <button type='submit'>Sign Up</button>
+        <span>Have an account? {<NavLink to='/login'>Log in</NavLink>}</span>
+      </form>
+    </div>
   );
 };
 
