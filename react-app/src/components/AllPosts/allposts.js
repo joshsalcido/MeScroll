@@ -13,6 +13,7 @@ import CommentForm from "../commentForm.js/commentForm";
 // import ReactModal from "react-modal";
 // import EditCommentForm from "../commentForm.js/editComment";
 import CommentSection from "../comment-section/feedComments";
+import { NavLink } from "react-router-dom";
 
 
 Modal.setAppElement('body')
@@ -74,7 +75,9 @@ export default function AllPosts(){
                 <div className="userInfo-div">
                     <img className="profile-pic" src={post.userInfo.profile_pic}></img>
                     <div className="username-location">
-                        <h4 className="username">{post.userInfo.username}</h4>
+                        <NavLink to={`/users/${post.userInfo.id}`}>
+                            <h4 className="username">{post.userInfo.username}</h4>
+                        </NavLink>
                         <p className="post-location">{post.location}</p>
                     </div>
                 </div>
