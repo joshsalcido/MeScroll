@@ -11,13 +11,26 @@ form {
     margin: auto;
     background-color: white;
     min-width: 27rem;
+    max-width: 27rem;
 }
-/* .sign-up-container{
+.sign-up-container{
   background-color: #ffb4a5;
   margin: 0;
+  /* padding-top: 100%; */
+  padding-top: 10px;
+  padding-bottom: 130px;
   height: 100%;
   width: 100%;
-} */
+}
+.login-container {
+  background-color: #ffb4a5;
+  margin: 0;
+  /* padding-top: 100%; */
+  padding-top: 5rem;
+  padding-bottom: 24.75rem;
+  height: 100%;
+  width: 100%;
+}
 
 .login-logo {
   font-family: 'Berkshire Swash', cursive;
@@ -81,12 +94,12 @@ button {
 }
 
 .top-div-landing {
-  margin-bottom: 130px;
+  /* margin-bottom: 30px; */
   background-color: #ffb4a5;
 }
 
 .top-div-signup-landing {
-  margin-bottom: 100px;
+  margin-bottom: 30px;
   background-color: #ffb4a5;
 }
 .error-messages {

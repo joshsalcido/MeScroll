@@ -56,23 +56,18 @@ function User() {
     return null;
   }
 
-console.log(userSession, "usersessionsssssssss")
-console.log(userId, "userPARAMS")
 
   return (
     <>
       <NavBar/>
-      <ul className='profile-info'>
-        <li>
-          <strong>User Id</strong> {userId}
-        </li>
-        <li>
-          <strong>Username</strong> {user.username}
-        </li>
-        <li>
+      <div className='profile-info'>
+        <img className='user-profile-page-profile-pic' src={user.profile_pic}></img>
+        <div>{user.full_name}</div>
+        <div>{user.username}</div>
+        <div>
           <strong>Email</strong> {user.email}
-        </li>
-      </ul>
+        </div>
+      </div>
       <div className='user-photo-grid'>
         {onlyUserPost.map((post) =>
         <>

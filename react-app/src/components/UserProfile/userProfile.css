@@ -1,19 +1,33 @@
 .user-photo-grid {
-    border: 1px solid blue;
+    /* border: 1px solid blue; */
     position: relative;
     width: auto;
     height: auto;
-    /* max-width: 90rem; */
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    /* border: solid 1px blue; */
-    margin: 3rem 3rem 2rem 3rem;
+    margin: auto;
     align-items: center;
     justify-content: center;
+    max-width: 880px;
+    padding: 0px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border: 1px solid rgb(231, 231, 231);
+    background-color: white;
+    border-radius: 4px;
+    min-width: 27rem;
 }
 .profile-info{
-    border: 1px solid red;
+    font-family: 'Montserrat', sans-serif;
+    border: 1px solid rgb(231, 231, 231);
+    border-radius: 4px;
+    margin: auto;
+    margin-bottom: 7px;
+    margin-top: 7px;
+    max-width: 818px;
+    background-color: white;
+    padding: 2rem;
 }
 .user-indv-post{
     width: min-content;
@@ -23,8 +37,8 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    margin: 1rem;
-    padding-bottom: -3rem;
+    margin: .5rem;
+    /* padding-bottom: -3rem; */
     cursor: pointer;
 }
 
@@ -53,4 +67,11 @@
     height: 30px;
     margin-right: 10px;
     padding: 8px 50px 20px 15px;
+}
+
+.user-profile-page-profile-pic{
+    width: 8rem;
+    height: 8rem;
+    object-fit: cover;
+    border-radius: 100%;
 }
