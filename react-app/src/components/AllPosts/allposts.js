@@ -91,7 +91,11 @@ export default function AllPosts(){
                     </Modal>
                 </span>
                 <img className="feed-photo" src={post.photo}></img>
-                <p>{post.caption}</p>
+                <div className="username-caption-div">
+                    <p className="username-next-to-caption">{post.userInfo.username}
+                    <p className="indv-caption">{post.caption}</p>
+                    </p>
+                </div>
                 <br></br>
                 <span></span>
                 <CommentSection currentPost={post}/>

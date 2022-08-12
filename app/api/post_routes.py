@@ -13,7 +13,7 @@ def validation_errors_to_error_messages(validation_errors):
     errorMessages = []
     for field in validation_errors:
         for error in validation_errors[field]:
-            errorMessages.append(f'{field} : {error}')
+            errorMessages.append(f'{error}')
     return errorMessages
 
 
@@ -70,9 +70,9 @@ def newpost():
         )
         db.session.add(new_post)
         db.session.commit()
-        print(new_post.to_dict(), "$$$$$$$$$$$$$$$$$$$ NEWPOST.todict $$$$$$$$$$$$$$$$$$$$")
+        # print(new_post.to_dict(), "$$$$$$$$$$$$$$$$$$$ NEWPOST.todict $$$$$$$$$$$$$$$$$$$$")
         return new_post.to_dict()
-    print(form, "$$$$$$$$$$$$$$$$$$$ form not validated $$$$$$$$$$$$$$$$$$$$")
+    print(form.errors, "$$$$$$$$$$$$$$$$$$$ form not validated $$$$$$$$$$$$$$$$$$$$")
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 # Get a Single Post (when on a profile Page, this will be a modal)
