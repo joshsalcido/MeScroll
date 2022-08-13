@@ -78,9 +78,7 @@ export default function PostForm({closeCreateForm}){
       setPhoto(file);
   }
 
-
-console.log(caption?.length, "++CAPTION++")
-console.log(location?.length, "++CAPTION++")
+ 
 
     return (
         <>

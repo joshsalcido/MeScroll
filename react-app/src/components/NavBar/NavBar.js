@@ -29,6 +29,21 @@ const NavBar = () => {
     setShowCreateForm(false)
   }
 
+  const customStyles = {
+    overlay: {
+        background: 'rgba(0,0,0,0.1)'
+      },
+    content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)',
+
+    }
+  }
+
 
   return (
     <nav className='navvy'>
@@ -41,7 +56,7 @@ const NavBar = () => {
             <img src={profileIcon} className='my-profile-btn'></img>
           </NavLink>
           <img className='create-post-btn'onClick={openCreateForm} src={createPostbtn}></img>
-          <Modal isOpen={showCreateForm}>
+          <Modal isOpen={showCreateForm} style={customStyles}>
             <button className='modal-x' onClick={closeCreateForm}>x</button>
             <PostForm closeCreateForm={closeCreateForm}/>
           </Modal>
