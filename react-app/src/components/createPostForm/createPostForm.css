@@ -1,0 +1,40 @@
+
+
+
+.caption-input {
+  font-family: 'Montserrat', sans-serif;
+  width: 100%;
+  padding: 10px 20px;
+  margin: 10px 0;
+  display: grid;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  border-radius: 5px;
+  resize: none;
+}
+
+input[type=file]::file-selector-button {
+    background-color:#ffb4a5;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 5px;
+   }
+
+   .caption-location-length {
+    /* border: 1px solid blue; */
+    display: flex;
+    margin: 0px;
+    margin-top: -7px;
+    margin-bottom: 7px;
+    font-size: 13px;
+    color:rgb(255, 202, 202);
+   }
+
+   .post-form{
+    border: none;
+    box-shadow: none;
+   }

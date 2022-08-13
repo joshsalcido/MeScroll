@@ -84,18 +84,45 @@ body{
     height: 2rem;
     object-fit: cover;
     border-radius: 100%;
-    /* border: 1px solid green; */
+    border: 1px solid green;
     /* margin-left: -10rem; */
 }
-.username {
-    /* border: 1px solid green; */
-}
-.post-location {
-    /* border: 1px solid green; */
-}
-.userInfo-div {
-    /* border: 1px solid blue; */
+
+.username-caption-div{
+    float:left;
+    border: 1px solid red;
     display: flex;
 }
 
+.username-next-to-caption{
+    border: 1px solid green;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    margin: 0px;
+    float: left;
+}
+.indv-caption{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    flex: 1;
+    flex-wrap: wrap;
+    word-wrap: break-word;
+    max-width: 512px;
+    font-size: 14px;
+    border: 1px solid blue;
+    float: left;
+}
 
+/* on top of photo next to profile pic */
+.username {
+    border: 1px solid green;
+    font-family: 'Montserrat', sans-serif;
+}
+.post-location {
+    border: 1px solid green;
+}
+.userInfo-div {
+    border: 1px solid blue;
+    display: flex;
+}

@@ -56,6 +56,32 @@ function User() {
     return null;
   }
 
+  const indvPostStyles = {
+    overlay: {
+        background: 'rgba(0,0,0,0.1)'
+      },
+    content: {
+        height: '45rem',
+        width: '55rem',
+        margin: 'auto',
+    }
+  }
+  const postOptionStyles = {
+    overlay: {
+        background: 'rgba(0,0,0,0.1)'
+      },
+    content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)',
+
+    }
+  }
+
+
 
   return (
     <>
@@ -74,9 +100,9 @@ function User() {
           <div key={post.id} className='user-indv-post' onClick={() => {setShowPostDetails(true); setClickedPost(post)}}>
             <img className='user-indv-img' src={post.photo}></img>
           </div>
-          <ReactModal isOpen={showPostDetails}>
+          <ReactModal isOpen={showPostDetails} style={indvPostStyles}>
             {userId == userSession.id && (<button className='indv-post-options-btn' onClick={()=> setShowPostOptions(true)}>...</button>)}
-              <ReactModal portalClassName="post-options-Modal" isOpen={showPostOptions}  transparent={true}>
+              <ReactModal portalClassName="post-options-Modal" isOpen={showPostOptions}  style={postOptionStyles}>
                   <button className="delete-post-btn" onClick={()=> {dispatch(thunkDeletePost(specificPost?.id)); setShowPostDetails(false); setShowPostOptions(false)}}>Delete</button>
                   <button className="edit-post-btn" onClick={()=> {setShowEditForm(true)}}>Edit</button>
                   {showEditForm && (<EditPostForm closeEditForm={closeEditForm} closePostOptions={closePostOptions} closePostDetails={closePostDetails} postId={clickedPost.id}/>)}
