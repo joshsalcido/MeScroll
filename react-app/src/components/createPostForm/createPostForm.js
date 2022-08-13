@@ -78,7 +78,7 @@ export default function PostForm({closeCreateForm}){
       setPhoto(file);
   }
 
- 
+
 
     return (
         <>
@@ -114,7 +114,7 @@ export default function PostForm({closeCreateForm}){
               value={location}
               onChange={(e) => setLocation(e.target.value)}
             />
-            <p className="caption-location-length" style={locationLimitStyling} >{location?.length}/40</p>
+            <p className="caption-location-length" style={{color: 'red'}} >{location?.length}/40</p>
             <button type="submit">Create Post</button>
         </form>
         </>
