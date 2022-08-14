@@ -17,6 +17,7 @@ export default function PostForm({closeCreateForm}){
     const [location, setLocation] = useState(null);
     const [captionLimitStyling, setCaptionLimitStyling] = useState(null);
     const [locationLimitStyling, setLocationLimitStyling] = useState(null);
+    const [showCreateButton, setShowCreateButton] = useState(true);
 
     const [submitted, setHasSubmitted]= useState(false);
 
@@ -64,6 +65,7 @@ export default function PostForm({closeCreateForm}){
           setPhoto('')
           setCaption('')
           setLocation('')
+          setShowCreateButton(true)
           setHasSubmitted(true);
         }
     }
@@ -115,7 +117,8 @@ export default function PostForm({closeCreateForm}){
               onChange={(e) => setLocation(e.target.value)}
             />
             <p className="caption-location-length" style={locationLimitStyling} >{location?.length}/40</p>
-            <button type="submit">Create Post</button>
+            {showCreateButton && (<button type="submit" onClick={setShowCreateButton(false)}>Create Post</button>)}
+            {showCreateButton === false && (<img src="./createPostForm/Spin-1s-200px.gif"></img>)}
         </form>
         </>
     )
