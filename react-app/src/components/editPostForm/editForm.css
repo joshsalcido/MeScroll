@@ -48,10 +48,15 @@
 }
 .caption-char-counter{
     /* border: 1px solid blue; */
+    padding: 0px;
+    width: max-content;
+    min-width: 60px;
+    max-width: 80px;
     /* float: right; */
     margin-top: 30px;
     text-align: end;
     margin-top: 0px;
+    margin-left: auto;
     color: #ffded8;
     margin-bottom: 0px;
     font-size: 15px;
@@ -73,8 +78,14 @@
 .location-char-counter{
     /* border: 1px solid blue; */
     /* float: right; */
+    padding: 0px;
+    min-width: 40px;
+    max-width: 40px;
+    /* float: right; */
+    margin-top: 30px;
     text-align: end;
     margin-top: 0px;
+    margin-left: auto;
     color: #ffded8;
     margin-bottom: 0px;
     font-size: 15px;

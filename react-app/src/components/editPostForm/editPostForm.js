@@ -106,7 +106,7 @@ export default function EditPostForm({closeEditForm, postId, closePostOptions, c
                 value={location}
                 onChange={(e) => setLocation(e.target.value)}
               />
-              <p className="location-char-counter">{location.length}/40</p>
+              <p className="location-char-counter" style={locationLimitStyling}>{location.length}/40</p>
               <button type="submit">Update Post</button>
               <button onClick={()=> {closeEditForm(); closePostOptions()}}>Cancel</button>
             </div>
