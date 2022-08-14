@@ -79,9 +79,16 @@ nav {
 }
 
 .modal-x {
+    font-family: 'Montserrat', sans-serif;
     color: black;
     width: 10px;
     height: 10px;
     background: none;
     font-size: 30px;
+    font-weight: 100;
+    /* border: 1px solid blue; */
+    margin: auto;
+    padding: 0px;
+    margin-left: 9px;
+    margin-bottom: 30px;
 }
