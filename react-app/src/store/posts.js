@@ -11,7 +11,6 @@ export const actionGetAllPosts = (posts) => {
     }
 }
 export const actionCreatePost = (post) => {
-    console.log(post, "CREATE ACTION POST")
     return {
         type: CREATE_POST,
         post
