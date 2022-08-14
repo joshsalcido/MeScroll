@@ -40,6 +40,10 @@ const NavBar = () => {
         bottom: 'auto',
         marginRight: '-50%',
         transform: 'translate(-50%, -50%)',
+        height: '33rem',
+        padding: '4px',
+        paddingBottom: '0px',
+        borderRadius: '12px',
 
     }
   }

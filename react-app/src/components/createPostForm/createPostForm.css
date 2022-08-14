@@ -13,14 +13,16 @@
   resize: none;
 }
 
-input[type=file]::file-selector-button {
+input[type=file]::file-selector-button{
     background-color:#ffb4a5;
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
+    margin-right: 25px;
     border: none;
+    width: 120px;
+    max-width: 120px;
     cursor: pointer;
-    width: 100%;
     border-radius: 5px;
    }
 
@@ -37,4 +39,14 @@ input[type=file]::file-selector-button {
    .post-form{
     border: none;
     box-shadow: none;
+   }
+
+   .loading-gif{
+    /* border: 1px solid blue; */
+    padding: 0px;
+    margin: auto;
+    margin-bottom: 0px;
+    margin-top: 16px;
+    width: 5rem;
+    height: 5rem;
    }

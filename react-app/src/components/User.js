@@ -58,7 +58,7 @@ function User() {
 
   const indvPostStyles = {
     overlay: {
-        background: 'rgba(0,0,0,0.1)'
+        background: 'rgba(0,0,0,0.01)'
       },
     content: {
         height: '45rem',
@@ -68,7 +68,7 @@ function User() {
   }
   const postOptionStyles = {
     overlay: {
-        background: 'rgba(0,0,0,0.1)'
+        background: 'rgba(0,0,0,0.02)'
       },
     content: {
         top: '50%',
@@ -78,6 +78,19 @@ function User() {
         marginRight: '-50%',
         transform: 'translate(-50%, -50%)',
 
+    }
+  }
+
+  const editPostStyling = {
+    overlay: {
+      background: 'rgba(0,0,0,0.02)'
+    },
+    content: {
+        padding: '0px',
+        height: '43.5rem',
+        width: '63.8rem',
+        margin: 'auto',
+        borderRadius: '20px',
     }
   }
 
@@ -104,9 +117,11 @@ function User() {
             {userId == userSession.id && (<button className='indv-post-options-btn' onClick={()=> setShowPostOptions(true)}>...</button>)}
               <ReactModal portalClassName="post-options-Modal" isOpen={showPostOptions}  style={postOptionStyles}>
                   <button className="delete-post-btn" onClick={()=> {dispatch(thunkDeletePost(specificPost?.id)); setShowPostDetails(false); setShowPostOptions(false)}}>Delete</button>
-                  <button className="edit-post-btn" onClick={()=> {setShowEditForm(true)}}>Edit</button>
-                  {showEditForm && (<EditPostForm closeEditForm={closeEditForm} closePostOptions={closePostOptions} closePostDetails={closePostDetails} postId={clickedPost.id}/>)}
+                  <button className="edit-post-btn" onClick={()=> {setShowEditForm(true);}}>Edit</button>
                   <button className="cancel-options-btn" onClick={() => setShowPostOptions(false)}>Cancel</button>
+              </ReactModal>
+              <ReactModal isOpen={showEditForm} style={editPostStyling}>
+                  <EditPostForm closeEditForm={closeEditForm} closePostOptions={closePostOptions} closePostDetails={closePostDetails} postId={clickedPost.id}/>
               </ReactModal>
             <p>{specificPost?.location}</p>
             <img src={specificPost?.photo}></img>

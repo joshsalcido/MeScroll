@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import { thunkGetAllComments } from "../../store/comments";
 import { thunkCreatePost, thunkGetAllPosts } from "../../store/posts";
 import "../createPostForm/createPostForm.css"
+import loadingGif from './Spin-1s-200px.gif'
 
 
 export default function PostForm({closeCreateForm}){
@@ -17,6 +18,7 @@ export default function PostForm({closeCreateForm}){
     const [location, setLocation] = useState(null);
     const [captionLimitStyling, setCaptionLimitStyling] = useState(null);
     const [locationLimitStyling, setLocationLimitStyling] = useState(null);
+    const [showCreateButton, setShowCreateButton] = useState(true);
 
     const [submitted, setHasSubmitted]= useState(false);
 
@@ -42,6 +44,7 @@ export default function PostForm({closeCreateForm}){
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setShowCreateButton(false)
         const errors = []
 
         if (caption.trim().length === 0) errors.push("Can't submit empty caption, please enter text")
@@ -64,6 +67,7 @@ export default function PostForm({closeCreateForm}){
           setPhoto('')
           setCaption('')
           setLocation('')
+          setShowCreateButton(true)
           setHasSubmitted(true);
         }
     }
@@ -78,12 +82,12 @@ export default function PostForm({closeCreateForm}){
       setPhoto(file);
   }
 
- 
+
 
     return (
         <>
         <form className="post-form" onSubmit={handleSubmit}>
-            <label>Photo:</label>
+            <label>Upload a Photo:</label>
             <input
               required
               type="file"
@@ -115,7 +119,9 @@ export default function PostForm({closeCreateForm}){
               onChange={(e) => setLocation(e.target.value)}
             />
             <p className="caption-location-length" style={locationLimitStyling} >{location?.length}/40</p>
-            <button type="submit">Create Post</button>
+            {showCreateButton && (<button type="submit">Create Post</button>)}
+            {!showCreateButton && (<img className="loading-gif" src={loadingGif}></img>)}
+            {/* <img src={loadingGif}></img> */}
         </form>
         </>
     )
