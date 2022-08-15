@@ -70,7 +70,7 @@ function User() {
   }
   const postOptionStyles = {
     overlay: {
-        background: 'rgba(0,0,0,0.02)'
+        background: 'rgba(0,0,0,0.09)'
       },
     content: {
         top: '50%',
@@ -96,7 +96,7 @@ function User() {
     }
   }
 
-
+console.log(onlyUserPost.length, "++++++")
 
   return (
     <>
@@ -110,6 +110,11 @@ function User() {
           </div>
         </div>
         <div className='user-photo-grid'>
+          {onlyUserPost.length === 0 && (
+          <>
+          <h1>You currently have zero Posts</h1>
+          </>
+          )}
           {onlyUserPost.map((post) =>
           <>
             <div key={post.id} className='user-indv-post' onClick={() => {setShowPostDetails(true); setClickedPost(post)}}>
