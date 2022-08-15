@@ -94,15 +94,15 @@ export default function EditPostForm({closeEditForm, postId, closePostOptions, c
                 className="edit-caption"
                 value={caption}
                 onChange={(e) => setCaption(e.target.value)}
-                maxlength="2000"
+                maxLength={2000}
               ></textarea>
-              <p className="caption-char-counter" style={captionLimitStyling}>{parseInt(caption.length).toLocaleString("en-Us")}/2,000</p>
+              <p className="caption-char-counter" style={captionLimitStyling}>{parseInt(caption?.length).toLocaleString("en-Us")}/2,000</p>
               <label className="location-edit-label" >Location:</label>
               <input
                 required
                 className="edit-location-input"
                 type="text"
-                maxlength="40"
+                maxLength={40}
                 value={location}
                 onChange={(e) => setLocation(e.target.value)}
               />

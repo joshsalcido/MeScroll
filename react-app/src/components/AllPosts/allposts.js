@@ -83,34 +83,33 @@ export default function AllPosts(){
             <>
             <div key={post.id} className="indv-post">
                 <div className="userInfo-div">
-                    <img className="profile-pic" src={post.userInfo.profile_pic}></img>
+                    {/* <img className="profile-pic" src={post.userInfo.profile_pic}></img> */}
                     <div className="username-location">
-                        <NavLink to={`/users/${post.userInfo.id}`}>
-                            <h4 className="username">{post.userInfo.username}</h4>
+                        <NavLink style={{textDecoration: 'none', color: 'black'}} to={`/users/${post.userInfo.id}`}>
+                            <h4 className="username-allposts-at-top">{post.userInfo.username}</h4>
                         </NavLink>
                         <p className="post-location">{post.location}</p>
                     </div>
-                </div>
-                <span>
                     {post.user_id === sessionUserId && (
                     <button className="post-options-btn" onClick={()=> {setPostOptions(true); setClickedPost(post)}}>...</button>
                     )}
-                    <Modal portalClassName="post-modal-options" isOpen={postOptions} style={customStyles} theme={{colors: {backdrop: "transparent"}}}>
-                        {/* <button className="unfollow-fromfeed">Unfollow</button>
-                        <button className="go-to-post-fromfeed">Go to Post</button> */}
-                        <button onClick={() => {setShowEditForm(true); closePostOptions()}}>Edit Your Post</button>
-                        <button className="delete-post-btn" onClick={()=> {dispatch(thunkDeletePost(clickedPost?.id)); setPostOptions(false)}}>Delete Your Post</button>
-                        <button className="cancel-options-btn" onClick={() => setPostOptions(false)}>Cancel</button>
-                    </Modal>
-                    <Modal isOpen={showEditForm} style={editPostStyling}>
-                        <EditPostForm closeEditForm={closeEditForm} postId={clickedPost?.id} closePostOptions={closePostOptions}/>
-                    </Modal>
-                </span>
+                </div>
+                <Modal portalClassName="post-modal-options" isOpen={postOptions} style={customStyles} theme={{colors: {backdrop: "transparent"}}}>
+                    {/* <button className="unfollow-fromfeed">Unfollow</button>
+                    <button className="go-to-post-fromfeed">Go to Post</button> */}
+                    <button onClick={() => {setShowEditForm(true); closePostOptions()}}>Edit Your Post</button>
+                    <button onClick={()=> {dispatch(thunkDeletePost(clickedPost?.id)); setPostOptions(false)}}>Delete Your Post</button>
+                    <button onClick={() => setPostOptions(false)}>Cancel</button>
+                </Modal>
+                <Modal isOpen={showEditForm} style={editPostStyling}>
+                    <EditPostForm closeEditForm={closeEditForm} postId={clickedPost?.id} closePostOptions={closePostOptions}/>
+                </Modal>
                 <img className="feed-photo" src={post.photo}></img>
                 <div className="username-caption-div">
-                    <p className="username-next-to-caption">{post.userInfo.username}
+                    <NavLink style={{textDecoration: 'none', color: 'black'}} to={`/users/${post.userInfo.id}`}>
+                        <p className="username-next-to-caption">{post.userInfo.username}</p>
+                    </NavLink>
                     <p className="indv-caption">{post.caption}</p>
-                    </p>
                 </div>
                 <br></br>
                 <span></span>

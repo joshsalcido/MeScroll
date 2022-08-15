@@ -73,12 +73,16 @@
 }
 
 .comment-options-btn{
+    /* border: 1px solid blue; */
+    text-align: center;
     width: 2rem;
     height: 1.5rem;
     padding: 0px;
-    padding-top: -4px;
+    padding-bottom: 5px;
+    /* padding-top: -4px; */
     color: rgb(255, 255, 255);
-    font-size: 20px;
+    font-size: 15px;
+    vertical-align: middle;
 }
 
 .edit-comment-textarea{
@@ -106,4 +110,30 @@
 }
 .cancel-comment-update{
     padding: 0px;
+}
+
+.comment-length{
+    /* border: 1px solid blue; */
+    color:rgb(255, 202, 202);
+    margin-left: auto;
+    margin-right: 5px;
+    margin-bottom: 0px;
+    font-size: 14px;
+}
+.error-messages{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+}
+
+.edit-comment-length-reached{
+    /* border: 1px solid blue; */
+    color: red;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    width: 370px;
+    height: 100%;
+    margin: 0px;
+    margin-right: 0px;
+    margin-left: 20px;
+    float: right;
 }

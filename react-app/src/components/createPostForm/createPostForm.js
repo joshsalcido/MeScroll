@@ -107,13 +107,13 @@ export default function PostForm({closeCreateForm}){
               required
               value={caption}
               onChange={(e) => setCaption(e.target.value)}
-              maxlength="2000"
+              maxLength={2000}
             ></textarea>
             <p className="caption-location-length" style={captionLimitStyling} >{caption?.length}/2000</p>
             <label>Location:</label>
             <input
               required
-              maxlength="40"
+              maxLength={40}
               type="text"
               value={location}
               onChange={(e) => setLocation(e.target.value)}

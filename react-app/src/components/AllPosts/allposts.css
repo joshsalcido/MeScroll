@@ -42,8 +42,11 @@ body{
     height: 20px;
     width: 10px;
     padding: 8px 30px 40px 15px;
-    margin-left: 40px;
+    /* margin-left: 40px; */
     color: white;
+    margin-left: auto;
+    margin-right: 10px;
+    float: right;
 }
 /* .post-modal-options {
     border: 1px solid blue;
@@ -89,40 +92,64 @@ body{
 }
 
 .username-caption-div{
-    float:left;
-    border: 1px solid red;
-    display: flex;
+    /* border: 1px solid red; */
+    /* margin-right: auto; */
+    padding: 7px;
+    padding-bottom: 0px;
+    width: 100%;
+    margin-bottom: -5px;
 }
 
 .username-next-to-caption{
-    border: 1px solid green;
+    /* border: 1px solid green; */
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
     font-size: 15px;
+    line-height: 15px;
     margin: 0px;
     float: left;
+    margin-right: 5px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    width:fit-content;
 }
 .indv-caption{
     font-family: 'Montserrat', sans-serif;
-    font-weight: 400;
-    flex: 1;
+    font-weight: 100;
+    /* flex: 1; */
     flex-wrap: wrap;
     word-wrap: break-word;
     max-width: 512px;
     font-size: 14px;
-    border: 1px solid blue;
-    float: left;
+    /* border: 1px solid blue; */
+    /* float: right; */
+    /* margin-right: auto; */
+    margin-top: 0px;
 }
 
 /* on top of photo next to profile pic */
-.username {
-    border: 1px solid green;
+.username-location {
+    /* border: 1px solid orange; */
+    margin-left: 10px;
+    height: 40px;
+    padding: 1px;
+    margin-top: 12px;
+}
+.username-allposts-at-top {
+    text-decoration: none;
+    /* border: 1px solid green; */
     font-family: 'Montserrat', sans-serif;
+    margin: 0px;
 }
 .post-location {
-    border: 1px solid green;
+    /* border: 1px solid green; */
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 100;
+    font-size: 13px;
+    margin: 0px;
 }
 .userInfo-div {
-    border: 1px solid blue;
+    /* border: 1px solid blue; */
     display: flex;
+    width: 100%;
 }

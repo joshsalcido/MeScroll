@@ -21,6 +21,14 @@ export default function CommentSection({currentPost}){
     const [updatedComment, setUpdatedComment] = useState('');
     const [showEditForm, setShowEditForm] = useState(false);
 
+    const [correctCounter, setCorrectCounter] = useState(currentComment.comment_body);
+    const [limitReached, setLimitReached] = useState(false);
+    const [emptyComment, setEmptyComment] = useState(false);
+    const [checkError, setCheckError] = useState(false);
+
+    const [disableComment, setDisableComment] = useState(false);
+    const [disableStyle, setDisableStyle] = useState(null);
+
     const [submitted, setHasSubmitted]= useState(false);
 
 
@@ -28,7 +36,7 @@ export default function CommentSection({currentPost}){
         setShowEditForm(false)
     }
 
-    function updateComment(){
+    async function updateComment(){
 
 
         const editedComment = {
@@ -37,8 +45,15 @@ export default function CommentSection({currentPost}){
             id: currentComment.id,
             comment_body: updatedComment
         }
+        const data = await dispatch(thunkUpdateComment(editedComment))
+        if (data) {
+            setEmptyComment(true)
+        } else {
+            setLimitReached(false)
+            setShowEditComment(false)
+        }
 
-        dispatch(thunkUpdateComment(editedComment))
+
     }
 
     const onDelete = async (e) => {
@@ -49,6 +64,29 @@ export default function CommentSection({currentPost}){
 
         setShowCommentOptions(false)
     }
+
+    useEffect(()=> {
+
+        if (updatedComment.length === 1000) {
+            setLimitReached(true);
+        } else {
+            setLimitReached(false)
+        }
+        if (checkError) {
+            if (updatedComment.trim().length === 0) {
+                setEmptyComment(true)
+                setDisableComment(true)
+                setDisableStyle({backgroundColor: '#ffdddd'})
+            } else {
+                setEmptyComment(false)
+                setDisableComment(false)
+                setDisableStyle(null)
+            }
+        } else {
+            return
+        }
+
+    }, [updatedComment])
 
     const commentOptionStyles = {
         overlay: {
@@ -69,33 +107,41 @@ export default function CommentSection({currentPost}){
          <div className='comment-section'>
                     {/* <p>Comments:</p> */}
                     {singlePostComments.map(comment => {
-                            return <div className="one-comment-div">
-                                <NavLink to={`/users/${comment.user.id}`}>
+                            return <div key={comment.id} className="one-comment-div">
+                                <NavLink style={{textDecoration: 'none', color: 'black'}} to={`/users/${comment.user.id}`}>
                                     <p className="comment-username">{comment.user.username} </p>
                                 </NavLink>
                             <p className="comment_body">{comment.comment_body}</p>
                             {showEditComment && currentComment.id == comment.id && (
                                 <textarea
+                                required
                                 className="edit-comment-textarea"
+                                maxLength={1000}
                                 value={undefined}
-                                onChange={(e) => setUpdatedComment(e.target.value)}
+                                onClick={()=> {setCheckError(true)}}
+                                onFocus={()=> {setCheckError(true)}}
+                                onChange={(e) => {setUpdatedComment(e.target.value); setCheckError(true)}}
                                 >
                                 {comment.comment_body}
                                 </textarea>
                             )}
                             {comment.user_id == userId && (
-                            <>
+                                <>
                             { showEditComment === false && (
-                            <button className="comment-options-btn" onClick={() => { setCurrentComment(comment); setShowCommentOptions(true) } }>...</button>
+                                <button className="comment-options-btn" onClick={() => { setCurrentComment(comment); setShowCommentOptions(true) } }>...</button>
                             )}
                             { showEditComment && currentComment.id == comment.id && (
-                            <div className="update-comment-btns">
-                                <button className="update-comment" onClick={() => {setShowEditComment(false); updateComment()}}>Update Comment</button>
-                                <button className="cancel-comment-update" onClick={() => setShowEditComment(false)}>Cancel</button>
-                            </div>
+                                <>
+                                <div className="update-comment-btns">
+                                    <button className="update-comment" style={disableStyle} disabled={disableComment} onClick={() => {updateComment(); } }>Update Comment</button>
+                                    <button className="cancel-comment-update" onClick={() => {setShowEditComment(false); setEmptyComment(false); setDisableComment(false); setDisableStyle(null)}}>Cancel</button>
+                                </div>
+                                    {limitReached && (<p className="edit-comment-length-reached" style={{ color: 'red' }}>1000 Character limit reached</p>)}
+                                    { emptyComment && (<p className="edit-comment-length-reached" >Can't Submit empty comment, please enter text</p>)}
+                                </>
                             )}
                             <ReactModal isOpen={showCommentOptions} style={commentOptionStyles}>
-                                <button onClick={() => {setShowEditComment(true); setShowCommentOptions(false)}}>Edit</button>
+                                <button onClick={() => {setShowEditComment(true); setShowCommentOptions(false)}}>Edit Comment</button>
                                 <button onClick={() => onDelete()}>Delete Comment</button>
                                 <button onClick={() => setShowCommentOptions(false)}>Cancel</button>
                             </ReactModal>
