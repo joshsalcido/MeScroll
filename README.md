@@ -1,129 +1,100 @@
-# Flask React Project
+# Welcome to Stays!
 
-This is the starter for the Flask React project.
+Just like Airbnb, at **Stays** you can explore multiple vacation listings across the world and find the one you'd love to  **Stay** at! If you have a stay of your own that you would like to offer to others you can create your very own listing! If you stayed at a stay recently and would like to leave a review you can also do that once you are logged in to your **Stays** account. Checkout [Stays](https://stays-app.herokuapp.com/) now!
 
-## Getting started
-1. Clone this repository (only this branch)
-
-   ```bash
-   git clone https://github.com/appacademy-starters/python-project-starter.git
-   ```
-
-2. Install dependencies
-
-      ```bash
-      pipenv install --dev -r dev-requirements.txt && pipenv install -r requirements.txt
-      ```
-
-3. Create a **.env** file based on the example with proper settings for your
-   development environment
-4. Setup your PostgreSQL user, password and database and make sure it matches your **.env** file
-
-5. Get into your pipenv, migrate your database, seed your database, and run your flask app
-
-   ```bash
-   pipenv shell
-   ```
-
-   ```bash
-   flask db upgrade
-   ```
-
-   ```bash
-   flask seed all
-   ```
-
-   ```bash
-   flask run
-   ```
-
-6. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
-
-***
+Created with: **JavaScript**, **PostgresSQL**, **Sequelize**, **Express**, **React**, **Redux**, **CSS**
 
 
-*IMPORTANT!*
-   psycopg2-binary MUST remain a dev dependency because you can't install it on alpine-linux.
-   There is a layer in the Dockerfile that will install psycopg2 (not binary) for us.
-***
+## Home Page
 
-### Dev Containers (OPTIONAL for M1 Users)
-The following instructions detail an *optional* development setup for M1 Mac users having issues with the `psycopg` package.
+Checkout all of **Stays** listings without having to be logged in!
 
-1. Make sure you have the [Microsoft Remote - Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension installed. 
-2. Make sure you have [Docker](https://www.docker.com/products/docker-desktop/) installed on your computer. 
-3. Clone the repository (only this branch)
-   ```bash
-   git clone https://github.com/appacademy-starters/python-project-starter.git
-   ```
-4. Open the repo in VS Code. 
-5. Click "Open in Container" when VS Code prompts to open container in the bottom right hand corner. 
-6. **Be Patient!** The initial install will take a LONG time, it's building a container that has postgres preconfigured and even installing all your project dependencies. (For both flask and react!)
+![Screen Shot 2022-07-04 at 11 55 51 AM](https://user-images.githubusercontent.com/75753879/177201359-16519b04-25be-4d3c-803b-7f998860c26a.png)
 
-   **Note:** This will take much less time on future starts because everything will be cached.
 
-7. Once everything is up, be sure to make a `.env` file based on `.env.example` in both the root directory and the *react-app* directory before running your app. You do not need a `DATABASE_URL` in the `.env` file if you are using this Docker setup for development - the URL is already set in the image (see `.devcontainer/Dockerfile` for the URL).
+## Guest/Demo User
 
-8. Get into your pipenv, migrate your database, seed your database, and run your flask app
+Don't have time to Sign up and create a new account, no worries! Simply log in with our provided Demo/Guest user, and explore **Stays** and all its capabilities! Create a Listing and leave some reviews!
 
-   ```bash
-   pipenv shell
-   ```
+![Screen Shot 2022-07-04 at 10 27 25 AM](https://user-images.githubusercontent.com/75753879/177201418-3d4eb096-004e-4f49-a2fc-992e23e4f9dc.png)
+![Screen Shot 2022-07-04 at 10 27 36 AM](https://user-images.githubusercontent.com/75753879/177201421-c0a718b5-7351-4ea8-989a-f613a472c455.png)
 
-   ```bash
-   flask db upgrade
-   ```
+## Create a Listing!
 
-   ```bash
-   flask seed all
-   ```
+Once you have signed up and logged in you can now Create your first listing within your 'My Profile' page. You can also instantly delete it or edit it as you please!
 
-   ```bash
-   flask run
-   ```
+![Screen Shot 2022-07-04 at 10 34 13 AM](https://user-images.githubusercontent.com/75753879/177201458-9bf8861a-2212-4f4d-baec-448cd3495749.png)
+![Screen Shot 2022-07-04 at 10 37 40 AM](https://user-images.githubusercontent.com/75753879/177201481-1aacc479-c885-415a-864f-0192be1d942c.png)
+![Screen Shot 2022-07-04 at 10 38 05 AM](https://user-images.githubusercontent.com/75753879/177201493-9f9efa0e-140a-4458-a2da-8da3aad6ce2f.png)
 
-9. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
+## Leave some Reviews!
 
-<br>
+Once you are logged in on Stays you can leave a review on any listing and even your own listings! You can also delete your review if you end up changing your mind!
 
-## Deploy to Heroku
-This repo comes configured with Github Actions. When you push to your main branch, Github will automatically pull your code, package and push it to Heroku, and then release the new image and run db migrations. 
+## Technical Implementation Details
 
-1. Write your Dockerfile. In order for the Github action to work effectively, it must have a configured Dockerfile. Follow the comments found in this [Dockerfile](./Dockerfile) to write your own!
+Taking the time to setup my database properly and understand the relationship between my models was super important to me and came in handy when I needed to pull related data from other data. This situation first presented itself in the reviews feature, I wanted to showcase reviews in the same individual spot (or individual stay/listing) page and underneath the individual spot/listing information. Since I also created a reducer specifically for my reviews I was able to easily access reviews through the state.
 
-2. Create a new project on Heroku.
 
-3. Under Resources click "Find more add-ons" and add the add on called "Heroku Postgres".
+    const  reviewsObj  =  useSelector(state  =>  state.reviewReducer)
+    const  reviews  =  Object.values(reviewsObj);
 
-4. Configure production environment variables. In your Heroku app settings -> config variables you should have two environment variables set:
+I was then able to iterate through all the reviews that the particular spot/listing had and display them!
 
-   |    Key          |    Value    |
-   | -------------   | ----------- |
-   | `DATABASE_URL`  | Autogenerated when adding postgres to Heroku app |
-   | `SECRET_KEY`    | Random string full of entropy |
+  
 
-5. Generate a Heroku OAuth token for your Github Action. To do so, log in to Heroku via your command line with `heroku login`. Once you are logged in, run `heroku authorizations:create`. Copy the GUID value for the Token key.
+    {  reviews  &&  reviews.map((review) => (
+    <div  key={review.id}>
+	    {(
+	    <div  className="reviewBox"> 
+		    <h5>Rating: {review.rating}</h5>
+		    <span>{review.review}</span>
+	    {userId  &&  userId  ===  review.userId && (
+	    <button  onClick={()=>  onDelete(review.id)}>Delete Your Review!</button>
+	    )}
+	    </div>
+	    )}
+    </div>
+    ))}
+Using conditionals within my JSX was a great way to solve some of my road bumps, for example figuring out how to Display a delete button only if the logged in users Id matched the userId asspciated to that review. After overcoming this road bump I was able to use multiple conditionals to display specific features throughout Stays
 
-6. In your Github Actions Secrets you should have two environment variables set. You can set these variables via your Github repository settings -> secrets -> actions. Click "New respository secret" to create
-each of the following variables:
+    {userId  &&  userId  ===  review.userId && (
+    <button  onClick={()=>  onDelete(review.id)}>Delete Your Review!</button>
+    )}
 
-   |    Key            |    Value    |
-   | -------------     | ----------- |
-   | `HEROKU_API_KEY`  | Heroku Oauth Token (from step 6)|
-   | `HEROKU_APP_NAME` | Heroku app name    |
+## Stays layout and Plan:
 
-7. Push to your `main` branch! This will trigger the Github Action to build your Docker image and deploy your application to the Heroku container registry. Please note that the Github Action will automatically upgrade your production database with `flask db upgrade`. However, it will *not* automatically seed your database. You must manually seed your production database if/when you so choose (see step 8).
+ - [Database Schema](https://github.com/joshsalcido/stays-app/wiki/Database-Schema)
+ - [Feature List](https://github.com/joshsalcido/stays-app/wiki/MVP-Feature-List)
+ - [Store Shape](https://github.com/joshsalcido/stays-app/wiki/Store-Shape)
 
-8. *Attention!* Please run this command *only if you wish to seed your production database*: `heroku run -a HEROKU_APP_NAME flask seed all`
+## Install Instructions
 
-## Helpful commands
-|    Command            |    Purpose    |
-| -------------         | ------------- |
-| `pipenv shell`        | Open your terminal in the virtual environment and be able to run flask commands without a prefix |
-| `pipenv run`          | Run a command from the context of the virtual environment without actually entering into it. You can use this as a prefix for flask commands  |
-| `flask db upgrade`    | Check in with the database and run any needed migrations  |
-| `flask db downgrade`  | Check in with the database and revert any needed migrations  |
-| `flask seed all`      | Just a helpful syntax to run queries against the db to seed data. See the **app/seeds** folder for reference and more details |
-| `heroku login -i`      | Authenticate your heroku-cli using the command line. Drop the -i to authenticate via the browser |
-| `heroku authorizations:create` | Once authenticated, use this to generate an Oauth token |
-| `heroku run -a <app name>` | Run a command from within the deployed container on Heroku |
+Run Stays locally! Clone the stays repo to a local folder
+
+    git clone https://github.com/joshsalcido/stays-app.git
+
+In both the backend directory and frontend run npm install to install all dependencies
+
+    npm install
+
+#### In the backend directory create a .env file, use the .env.example file as a reference and fill it out with your desired port, username, password, and database name
+*now in the backend directory create, migrate, and seed the database, run:*
+
+    npx dotenv sequelize db:create
+    npx dotenv sequelize db:migrate
+    npx dotenv sequelize db:seed:all
+
+Final step, run the server, navigate to the backend directory in one terminal and in another terminal navigate to the frontend directory and run this in both:
+
+    npm start
+
+## To-dos/Future Features
+
+Given the time constraint of a week, here are some features that haven't made the site yet but will be implemented soon!
+
+ - Listing Categories ex. Cabins, Islands, Modern Design, A-frames etc.
+ - Bookings
+ - AWS local photo uploads
+ - Favorites, save listings to a Favorites list
+ - Listing Search bar
