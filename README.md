@@ -49,6 +49,7 @@ My Allposts component contains a lot of functionality and other components withi
  - [Database Schema](https://github.com/joshsalcido/MeScroll/wiki/Database-Schema)
  - [Feature List](https://github.com/joshsalcido/mescroll/wiki/MVP-Features#feature-list)
  - [Store Shape](https://github.com/joshsalcido/stays-app/wiki/Store-Shape)
+ - [User Stories](https://github.com/joshsalcido/mescroll/wiki/User-Stories)
 
 
 ## To-dos/Future Features
