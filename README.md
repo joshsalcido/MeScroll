@@ -39,68 +39,24 @@ https://user-images.githubusercontent.com/75753879/184597037-54bf33e3-d62f-4633-
 
 ## Technical Implementation Details
 
-Taking the time to setup my database properly and understand the relationship between my models was super important to me and came in handy when I needed to pull related data from other data. This situation first presented itself in the reviews feature, I wanted to showcase reviews in the same individual spot (or individual stay/listing) page and underneath the individual spot/listing information. Since I also created a reducer specifically for my reviews I was able to easily access reviews through the state.
+My Allposts component contains a lot of functionality and other components within it. It still has room for clean up and organization, but at the start of this project I was running into several different issues as I was trying to render my comments and all my forms associated with everything on the mainfeed inside the Allposts component! I created two separate components one for a comment section and one for my comment form, and I took advantage of props to pass down the data needed for those components. It cleaned up my code a lot, and made it easier and more efficient to work with!
+
+![Screen Shot 2022-08-15 at 2 01 53 AM](https://user-images.githubusercontent.com/75753879/184598663-fcbe3962-aa96-49a4-82ef-e278dfd9315f.png)
 
 
-    const  reviewsObj  =  useSelector(state  =>  state.reviewReducer)
-    const  reviews  =  Object.values(reviewsObj);
+## meScroll layout and Plan:
 
-I was then able to iterate through all the reviews that the particular spot/listing had and display them!
-
-  
-
-    {  reviews  &&  reviews.map((review) => (
-    <div  key={review.id}>
-	    {(
-	    <div  className="reviewBox"> 
-		    <h5>Rating: {review.rating}</h5>
-		    <span>{review.review}</span>
-	    {userId  &&  userId  ===  review.userId && (
-	    <button  onClick={()=>  onDelete(review.id)}>Delete Your Review!</button>
-	    )}
-	    </div>
-	    )}
-    </div>
-    ))}
-Using conditionals within my JSX was a great way to solve some of my road bumps, for example figuring out how to Display a delete button only if the logged in users Id matched the userId asspciated to that review. After overcoming this road bump I was able to use multiple conditionals to display specific features throughout Stays
-
-    {userId  &&  userId  ===  review.userId && (
-    <button  onClick={()=>  onDelete(review.id)}>Delete Your Review!</button>
-    )}
-
-## Stays layout and Plan:
-
- - [Database Schema](https://github.com/joshsalcido/stays-app/wiki/Database-Schema)
- - [Feature List](https://github.com/joshsalcido/stays-app/wiki/MVP-Feature-List)
+ - [Database Schema](https://github.com/joshsalcido/MeScroll/wiki/Database-Schema)
+ - [Feature List](https://github.com/joshsalcido/mescroll/wiki/MVP-Features#feature-list)
  - [Store Shape](https://github.com/joshsalcido/stays-app/wiki/Store-Shape)
 
-## Install Instructions
-
-Run Stays locally! Clone the stays repo to a local folder
-
-    git clone https://github.com/joshsalcido/stays-app.git
-
-In both the backend directory and frontend run npm install to install all dependencies
-
-    npm install
-
-#### In the backend directory create a .env file, use the .env.example file as a reference and fill it out with your desired port, username, password, and database name
-*now in the backend directory create, migrate, and seed the database, run:*
-
-    npx dotenv sequelize db:create
-    npx dotenv sequelize db:migrate
-    npx dotenv sequelize db:seed:all
-
-Final step, run the server, navigate to the backend directory in one terminal and in another terminal navigate to the frontend directory and run this in both:
-
-    npm start
 
 ## To-dos/Future Features
 
-Given the time constraint of a week, here are some features that haven't made the site yet but will be implemented soon!
+Here are some features that haven't made the site yet but will be implemented soon!
 
- - Listing Categories ex. Cabins, Islands, Modern Design, A-frames etc.
- - Bookings
- - AWS local photo uploads
- - Favorites, save listings to a Favorites list
- - Listing Search bar
+ - Followers and capability to Follow
+ - User profile editing, and profile pic uploading
+ - Search Bar to find other users
+ - Likes
+ - Post Bookmarking
