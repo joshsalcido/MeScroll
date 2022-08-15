@@ -1,13 +1,13 @@
 # Welcome to meScroll!
 
-Similiar to the popular photo sharing app Instagram, at **meScroll** you can upload photo posts, comments on photo posts, and view your very own profile, and other users profiles as well! Checkout it outs here --> [meScroll](https://mescroll.herokuapp.com/) now!
+Similiar to the popular photo sharing app Instagram, at **meScroll** you can upload photo posts, comments on photo posts, and view your very own profile, and other users profiles as well! Checkout it out [meScroll](https://mescroll.herokuapp.com/) now!
 
-Created with: **JavaScript**, **PostgresSQL**, **Sequelize**, **Express**, **React**, **Redux**, **CSS**
+Created with: **JavaScript**, **Python**, **React**, **Redux**, **PostgresSQL**, **Flask**, **SQLAlchemy**, **Docker**, **CSS**, **Heroku**
 
 
-## Home Page
+## Landing Page
 
-Checkout all of **Stays** listings without having to be logged in!
+If you have a **meScroll** account Log in! If you don't feel free to browse around by clicking 
 
 ![Screen Shot 2022-07-04 at 11 55 51 AM](https://user-images.githubusercontent.com/75753879/177201359-16519b04-25be-4d3c-803b-7f998860c26a.png)
 
