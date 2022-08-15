@@ -7,19 +7,18 @@ Created with: **JavaScript**, **Python**, **React**, **Redux**, **PostgresSQL**,
 
 ## Landing Page
 
-If you have a **meScroll** account Log in! If you don't feel free to browse around by clicking 
+If you have a **meScroll** account Log in! If you don't have an account yet feel free to browse around by using our Guest Login Button, or click our Sign Up link and get started creating an account! 
 
-![Screen Shot 2022-07-04 at 11 55 51 AM](https://user-images.githubusercontent.com/75753879/177201359-16519b04-25be-4d3c-803b-7f998860c26a.png)
+![Screen Shot 2022-08-15 at 1 17 49 AM](https://user-images.githubusercontent.com/75753879/184592654-e114626f-46c9-4f27-b6e6-e00b88638cee.png)
+
+## Sign-Up Page
+
+Fill out the Sign-Up form and get started on **meScroll** with your very own account!
+
+![Screen Shot 2022-08-15 at 1 18 07 AM](https://user-images.githubusercontent.com/75753879/184592713-5fbee0e1-a186-47fa-b5df-c6120a6a3e92.png)
 
 
-## Guest/Demo User
-
-Don't have time to Sign up and create a new account, no worries! Simply log in with our provided Demo/Guest user, and explore **Stays** and all its capabilities! Create a Listing and leave some reviews!
-
-![Screen Shot 2022-07-04 at 10 27 25 AM](https://user-images.githubusercontent.com/75753879/177201418-3d4eb096-004e-4f49-a2fc-992e23e4f9dc.png)
-![Screen Shot 2022-07-04 at 10 27 36 AM](https://user-images.githubusercontent.com/75753879/177201421-c0a718b5-7351-4ea8-989a-f613a472c455.png)
-
-## Create a Listing!
+## Create a Post!
 
 Once you have signed up and logged in you can now Create your first listing within your 'My Profile' page. You can also instantly delete it or edit it as you please!
 
