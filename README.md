@@ -20,15 +20,22 @@ Fill out the Sign-Up form and get started on **meScroll** with your very own acc
 
 ## Create a Post!
 
-Once you have signed up and logged in you can now Create your first listing within your 'My Profile' page. You can also instantly delete it or edit it as you please!
+Once you have signed up you will automatically be logged in and taken to our main meScroll feed, where you will see all posts of our users. On our Navigation Menu you will see a square witha + sign, click on it to create your first post! Wether you are on the main feed home page, or in your own profile page, you will automatically see your photo be live and posted! You can also instantly delete it or edit it from both location, mainfeed (home page) and your user profile!
 
-![Screen Shot 2022-07-04 at 10 34 13 AM](https://user-images.githubusercontent.com/75753879/177201458-9bf8861a-2212-4f4d-baec-448cd3495749.png)
-![Screen Shot 2022-07-04 at 10 37 40 AM](https://user-images.githubusercontent.com/75753879/177201481-1aacc479-c885-415a-864f-0192be1d942c.png)
-![Screen Shot 2022-07-04 at 10 38 05 AM](https://user-images.githubusercontent.com/75753879/177201493-9f9efa0e-140a-4458-a2da-8da3aad6ce2f.png)
+![Screen Shot 2022-08-15 at 1 25 37 AM](https://user-images.githubusercontent.com/75753879/184593887-84b67260-0327-49d1-8f54-9d0e61a6dba4.png)
 
-## Leave some Reviews!
+![Screen Shot 2022-08-15 at 1 34 28 AM](https://user-images.githubusercontent.com/75753879/184594757-9c6e32fb-3bd5-4cb3-9783-84c61733831b.png)
 
-Once you are logged in on Stays you can leave a review on any listing and even your own listings! You can also delete your review if you end up changing your mind!
+![Screen Shot 2022-08-15 at 1 34 45 AM](https://user-images.githubusercontent.com/75753879/184594780-1a3167d7-4fec-49ec-9877-cc7129b7cf31.png)
+
+## Leave some Comments!
+
+meScroll users are able to leave multiple comments on there own posts and other users posts as well! Users can also edit and delete there own comment in the mainfeed/home page! 
+
+
+https://user-images.githubusercontent.com/75753879/184597037-54bf33e3-d62f-4633-b091-0f6e3b9c0026.mov
+
+
 
 ## Technical Implementation Details
 
