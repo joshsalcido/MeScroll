@@ -130,7 +130,7 @@ const SignUpForm = () => {
           ></input>
         </div>
         <button type='submit'>Sign Up</button>
-        <span>Have an account? {<NavLink to='/login'>Log in</NavLink>}</span>
+        <span>Have an account? {<NavLink style={{textDecoration: 'none', color: '#ffb4a5'}} to='/login'>Log in</NavLink>}</span>
       </form>
     </div>
   );
