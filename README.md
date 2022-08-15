@@ -1,6 +1,6 @@
 # Welcome to meScroll!
 
-Similiar to the popular photo sharing app Instagram, at **meScroll** you can upload photo posts, comments on photo posts, and view your very own profile, and other users profiles as well! Checkout it out [meScroll](https://mescroll.herokuapp.com/) now!
+Similiar to the popular photo sharing app Instagram, at **meScroll** you can upload photo posts, comments on photo posts, and view your very own profile, and other users profiles as well! Check out [meScroll](https://mescroll.herokuapp.com/) now!
 
 Created with: **JavaScript**, **Python**, **React**, **Redux**, **PostgresSQL**, **Flask**, **SQLAlchemy**, **Docker**, **CSS**, **Heroku**
 
