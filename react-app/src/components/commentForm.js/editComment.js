@@ -38,6 +38,7 @@ export default function EditCommentForm({currentPost}){
                 <textarea
                 key={currentPost.id}
                 className="edit-comment-textarea"
+                maxlength="1000"
                 value={comment_body}
                 onChange={(e) => setComment_body(e.target.value)}
                 placeholder='Add a Comment...'

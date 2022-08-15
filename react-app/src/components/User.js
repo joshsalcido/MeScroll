@@ -58,12 +58,14 @@ function User() {
 
   const indvPostStyles = {
     overlay: {
-        background: 'rgba(0,0,0,0.01)'
-      },
+      background: 'rgba(0,0,0,0.02)'
+    },
     content: {
-        height: '45rem',
-        width: '55rem',
+        padding: '25px',
+        height: '43.5rem',
+        width: '63.8rem',
         margin: 'auto',
+        borderRadius: '20px',
     }
   }
   const postOptionStyles = {
@@ -99,38 +101,47 @@ function User() {
   return (
     <>
       <NavBar/>
-      <div className='profile-info'>
-        <img className='user-profile-page-profile-pic' src={user.profile_pic}></img>
-        <div>{user.full_name}</div>
-        <div>{user.username}</div>
-        <div>
-          <strong>Email</strong> {user.email}
-        </div>
-      </div>
-      <div className='user-photo-grid'>
-        {onlyUserPost.map((post) =>
-        <>
-          <div key={post.id} className='user-indv-post' onClick={() => {setShowPostDetails(true); setClickedPost(post)}}>
-            <img className='user-indv-img' src={post.photo}></img>
+        <div className='profile-info'>
+          {/* <img className='user-profile-page-profile-pic' src={user.profile_pic}></img> */}
+          <div>{user.full_name}</div>
+          <div>{user.username}</div>
+          <div>
+            <strong>Email</strong> {user.email}
           </div>
-          <ReactModal isOpen={showPostDetails} style={indvPostStyles}>
-            {userId == userSession.id && (<button className='indv-post-options-btn' onClick={()=> setShowPostOptions(true)}>...</button>)}
-              <ReactModal portalClassName="post-options-Modal" isOpen={showPostOptions}  style={postOptionStyles}>
-                  <button className="delete-post-btn" onClick={()=> {dispatch(thunkDeletePost(specificPost?.id)); setShowPostDetails(false); setShowPostOptions(false)}}>Delete</button>
-                  <button className="edit-post-btn" onClick={()=> {setShowEditForm(true);}}>Edit</button>
-                  <button className="cancel-options-btn" onClick={() => setShowPostOptions(false)}>Cancel</button>
-              </ReactModal>
-              <ReactModal isOpen={showEditForm} style={editPostStyling}>
-                  <EditPostForm closeEditForm={closeEditForm} closePostOptions={closePostOptions} closePostDetails={closePostDetails} postId={clickedPost.id}/>
-              </ReactModal>
-            <p>{specificPost?.location}</p>
-            <img src={specificPost?.photo}></img>
-            <p>{specificPost?.caption}</p>
-            <button onClick={()=> setShowPostDetails(false)}>Cancel</button>
-          </ReactModal>
-        </>
-          )}
-      </div>
+        </div>
+        <div className='user-photo-grid'>
+          {onlyUserPost.map((post) =>
+          <>
+            <div key={post.id} className='user-indv-post' onClick={() => {setShowPostDetails(true); setClickedPost(post)}}>
+              <img className='user-indv-img' src={post.photo}></img>
+            </div>
+            <ReactModal isOpen={showPostDetails} style={indvPostStyles}>
+                <ReactModal portalClassName="post-options-Modal" isOpen={showPostOptions}  style={postOptionStyles}>
+                    <button  onClick={()=> {setShowEditForm(true);}}>Edit</button>
+                    <button  onClick={()=> {dispatch(thunkDeletePost(specificPost?.id)); setShowPostDetails(false); setShowPostOptions(false)}}>Delete</button>
+                    <button  onClick={() => setShowPostOptions(false)}>Cancel</button>
+                </ReactModal>
+                <ReactModal isOpen={showEditForm} style={editPostStyling}>
+                    <EditPostForm closeEditForm={closeEditForm} closePostOptions={closePostOptions} closePostDetails={closePostDetails} postId={clickedPost.id}/>
+                </ReactModal>
+                <div className='clicked-on-post-div'>
+                  <div className='single-post-photo-div'>
+                    <img className='clicked-on-image' src={specificPost?.photo}></img>
+                  </div>
+                  <div className='single-post-info-div'>
+                  {userId == userSession.id && (<button className='indv-post-options-btn' onClick={()=> setShowPostOptions(true)}>...</button>)}
+                    {/* <p>{specificPost}</p> */}
+                    <label className='caption-location-single-post'>Location:</label>
+                    <p >{specificPost?.location}</p>
+                    <label className='caption-location-single-post'>Caption:</label>
+                    <p >{specificPost?.caption}</p>
+                    <button onClick={()=> setShowPostDetails(false)}>Cancel</button>
+                  </div>
+                </div>
+            </ReactModal>
+          </>
+            )}
+        </div>
     </>
   );
 }

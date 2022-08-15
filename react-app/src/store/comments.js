@@ -80,7 +80,12 @@ export const thunkUpdateComment = (comment) => async (dispatch) => {
     if (response.ok) {
         const data = await response.json();
         dispatch(actionUpdateComment(data))
-        return data;
+        return null;
+    } else if ( response.status < 500) {
+        const data = await response.json();
+        if (data) {
+            return data
+        }
     }
 }
 
