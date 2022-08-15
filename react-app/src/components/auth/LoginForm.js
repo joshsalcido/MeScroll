@@ -76,7 +76,7 @@ const LoginForm = () => {
           <span>- Or -</span>
           <button onClick={() => setDemo(true)}>Continue as Guest</button>
         </div>
-        <span>Don't have an account? {<NavLink to='/sign-up'>Sign Up</NavLink>}</span>
+        <span>Don't have an account? {<NavLink style={{textDecoration: 'none', color: '#ffb4a5'}} to='/sign-up'>Sign Up</NavLink>}</span>
       </form>
     </div>
     </>
