@@ -44,7 +44,7 @@
 }
 
 .clicked-on-post-div{
-     border: 1px solid orange;
+     /* border: 1px solid orange; */
      height: 40rem;
      width: 60rem;
      box-shadow: none;
@@ -54,7 +54,7 @@
 }
 
 .single-post-photo-div {
-    border: 1px solid blue;
+    /* border: 1px solid blue; */
     max-width: 30rem;
     min-width: 30rem;
     margin-right: 0px;
@@ -69,10 +69,18 @@
 }
 
 .single-post-info-div{
-    border: 1px solid red;
+    /* border: 1px solid red; */
     max-width: 30rem;
     min-width: 29rem;
     float: right;
+    flex-wrap: wrap;
+    word-wrap: break-word;
+    font-family: 'Montserrat', sans-serif;
+}
+.caption-location-single-post{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    margin-bottom: 0px;
 }
 
 .user-indv-img {
@@ -82,12 +90,14 @@
     object-fit: cover;
 }
 .indv-post-options-btn {
-    /* font-size: 20px;
+    font-size: 20px;
     height: 20px;
-    width: 10px;
-    padding: 8px 30px 40px 15px;
-    margin-left: 600px;
-    color: black; */
+    width: 30px;
+    padding: 0px;
+    padding-bottom: 30px;
+    text-align: center;
+    margin: auto;
+    float: right;
 }
 .edit-post-btn{
     width: 70px;

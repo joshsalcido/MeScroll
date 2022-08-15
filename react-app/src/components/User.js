@@ -131,8 +131,10 @@ function User() {
                   <div className='single-post-info-div'>
                   {userId == userSession.id && (<button className='indv-post-options-btn' onClick={()=> setShowPostOptions(true)}>...</button>)}
                     {/* <p>{specificPost}</p> */}
-                    <p>{specificPost?.location}</p>
-                    <p>{specificPost?.caption}</p>
+                    <label className='caption-location-single-post'>Location:</label>
+                    <p >{specificPost?.location}</p>
+                    <label className='caption-location-single-post'>Caption:</label>
+                    <p >{specificPost?.caption}</p>
                     <button onClick={()=> setShowPostDetails(false)}>Cancel</button>
                   </div>
                 </div>
