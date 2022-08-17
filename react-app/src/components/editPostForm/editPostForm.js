@@ -74,6 +74,8 @@ export default function EditPostForm({closeEditForm, postId, closePostOptions, c
     //   dispatch(thunkGetAllPosts())
     // }, [dispatch])
 
+    // console.log(caption?.length, "caption length in editForm")
+    // console.log(post.caption.length, "post.caption length")
 
     return (
         <>
