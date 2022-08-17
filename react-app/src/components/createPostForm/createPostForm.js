@@ -44,7 +44,6 @@ export default function PostForm({closeCreateForm}){
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setShowCreateButton(false)
         const errors = []
 
         if (caption.trim().length === 0) errors.push("Can't submit empty caption, please enter text")
@@ -54,6 +53,7 @@ export default function PostForm({closeCreateForm}){
         if (errors.length) {
           return
         } else {
+          setShowCreateButton(false)
           const formData = new FormData();
           formData.append("user_id", sessionUser.id)
           formData.append("photo", photo);
@@ -82,7 +82,7 @@ export default function PostForm({closeCreateForm}){
       setPhoto(file);
   }
 
-
+console.log(caption?.length, "caption length in create")
 
     return (
         <>

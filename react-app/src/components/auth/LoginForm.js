@@ -48,6 +48,7 @@ const LoginForm = () => {
     <div className='login-container'>
       <form onSubmit={onLogin}>
         <h1 className='login-logo'>meScroll</h1>
+        <h4 className='signup-subtext'>Sign up for your own meScroll and view posts from all your buddies!</h4>
         <ul className='error-messages'>
           {errors.map((error, ind) => (
             <li key={ind}>{error}</li>

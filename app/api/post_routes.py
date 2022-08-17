@@ -31,7 +31,7 @@ def newpost():
     form = PostForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
-    print(form.__dict__, "~~~~~~~~~~~~~~BACKEND POSTFORM~~~~~~~~~~~~~~~~~~~~~`")
+    # print(form.__dict__, "~~~~~~~~~~~~~~BACKEND POSTFORM~~~~~~~~~~~~~~~~~~~~~`")
 
     if "photo" not in request.files:
         return {"errors": "image required"}, 400
@@ -44,11 +44,11 @@ def newpost():
 
     photo.filename = get_unique_filename(photo.filename)
 
-    print(photo.filename, "+++++++++++++++++++++BACKEND REQUEST fILEs photo filename")
+    # print(photo.filename, "+++++++++++++++++++++BACKEND REQUEST fILEs photo filename")
 
     upload = upload_file_to_s3(photo)
 
-    print(upload, "+++++++++++++++++++++BACKEND REQUEST fILEs upload")
+    # print(upload, "+++++++++++++++++++++BACKEND REQUEST fILEs upload")
 
     if "url" not in upload:
         # if the dictionary doesn't have a url key
@@ -72,7 +72,7 @@ def newpost():
         db.session.commit()
         # print(new_post.to_dict(), "$$$$$$$$$$$$$$$$$$$ NEWPOST.todict $$$$$$$$$$$$$$$$$$$$")
         return new_post.to_dict()
-    print(form.errors, "$$$$$$$$$$$$$$$$$$$ form not validated $$$$$$$$$$$$$$$$$$$$")
+    # print(form.errors, "$$$$$$$$$$$$$$$$$$$ form not validated $$$$$$$$$$$$$$$$$$$$")
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 # Get a Single Post (when on a profile Page, this will be a modal)

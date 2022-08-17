@@ -74,6 +74,7 @@ export default function CommentForm({currentPost}){
     //   setErrors(valErrors);
     }, [comment_body])
 
+    
 
     return (
         <>
