@@ -4,7 +4,8 @@
 .caption-input {
   font-family: 'Montserrat', sans-serif;
   width: 100%;
-  padding: 10px 20px;
+  height: 90px;
+  padding: 10px 10px;
   margin: 10px 0;
   display: grid;
   border: 1px solid #ccc;
@@ -12,7 +13,12 @@
   border-radius: 5px;
   resize: none;
 }
+/* .location-input-CreateForm {
+  padding: 0px 60px;
+  color: blue;
+} */
 
+/* Choose file button */
 input[type=file]::file-selector-button{
     background-color:#ffb4a5;
     color: white;

@@ -4,6 +4,7 @@ import { NavLink, Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
 import '../LandingPage/LandingPage.css'
 
+
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState('');
