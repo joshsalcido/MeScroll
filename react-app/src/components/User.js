@@ -117,7 +117,7 @@ function User() {
           <form>
             <div>
               <img className='user-profile-page-profile-pic' src={user.profile_pic}></img>
-              <input type="file"></input>
+              <input type="file" disabled ></input>
             </div>
             <label>Name</label>
             <input
@@ -131,7 +131,7 @@ function User() {
             <input
             value={user.email}
             ></input>
-            <button>Submit Changes</button>
+            <button disabled >Submit Changes</button>
           </form>
           <button onClick={() => setEditProfileModal(false)}>Cancel</button>
         </ReactModal>

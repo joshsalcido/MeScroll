@@ -51,7 +51,7 @@ export const thunkCreatePost = (formData) => async (dispatch) => {
 
     if (response.ok) {
         const data = await response.json();
-        console.log(data.caption.length, "THUNK POST caption length")
+        // console.log(data.caption.length, "THUNK POST caption length")
         dispatch(actionCreatePost(data))
         return data;
     }

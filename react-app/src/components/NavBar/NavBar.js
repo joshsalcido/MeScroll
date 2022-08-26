@@ -67,10 +67,10 @@ const NavBar = () => {
           <NavLink to='/'>
             <img className='homebutton' src={homebutton}></img>
           </NavLink>
-          <a href="https://www.linkedin.com/in/joshua-salcido-57036a215/">
+          <a href="https://www.linkedin.com/in/joshua-salcido-57036a215/" target="_blank" rel="noopener noreferrer">
             <img className='linkedIn-button' src={linkedInLogo}></img>
           </a>
-          <a href="https://github.com/joshsalcido">
+          <a href="https://github.com/joshsalcido" target="_blank" rel="noopener noreferrer">
             <img className='github-button' src={githubLogo}></img>
           </a>
       </div>
