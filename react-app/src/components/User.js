@@ -17,6 +17,7 @@ function User() {
   const [clickedPost, setClickedPost] = useState('');
   const [showPostOptions, setShowPostOptions] = useState(false);
   const [showEditForm, setShowEditForm] = useState(false);
+  const [editProfileModal, setEditProfileModal] = useState(false);
 
   const allPosts = useSelector(state => Object.values(state.postReducer)).reverse()
 
@@ -70,7 +71,7 @@ function User() {
   }
   const postOptionStyles = {
     overlay: {
-        background: 'rgba(0,0,0,0.09)'
+        background: 'rgba(0,0,0,0.01)'
       },
     content: {
         top: '50%',
@@ -96,19 +97,44 @@ function User() {
     }
   }
 
-console.log(onlyUserPost.length, "++++++")
+
 
   return (
     <>
       <NavBar/>
         <div className='profile-info'>
-          {/* <img className='user-profile-page-profile-pic' src={user.profile_pic}></img> */}
+          <div>
+            <img className='user-profile-page-profile-pic' src={user.profile_pic}></img>
+          </div>
           <div>{user.full_name}</div>
           <div>{user.username}</div>
           <div>
             <strong>Email</strong> {user.email}
           </div>
+          <button onClick={() => setEditProfileModal(true)}>Edit Profile</button>
         </div>
+        <ReactModal isOpen={editProfileModal} style={postOptionStyles}>
+          <form>
+            <div>
+              <img className='user-profile-page-profile-pic' src={user.profile_pic}></img>
+              <input type="file" disabled ></input>
+            </div>
+            <label>Name</label>
+            <input
+            value={user.full_name}
+            ></input>
+            <label>Username</label>
+            <input
+            value={user.username}
+            ></input>
+            <label>Email</label>
+            <input
+            value={user.email}
+            ></input>
+            <button disabled >Submit Changes</button>
+          </form>
+          <button onClick={() => setEditProfileModal(false)}>Cancel</button>
+        </ReactModal>
         <div className='user-photo-grid'>
           {onlyUserPost.length === 0 && (
           <>

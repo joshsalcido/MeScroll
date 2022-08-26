@@ -13,23 +13,41 @@ form {
     min-width: 27rem;
     max-width: 27rem;
 }
+.login-media{
+  display: flex;
+  /* border: 3px solid red; */
+  margin: auto;
+  max-width: 90rem;
+  height: 50rem;
+  padding-right: 14rem;
+}
+
+.login-form-div{
+  /* border: 1px solid blue; */
+  width: max-content;
+  margin: 0;
+  height: 40rem;
+
+}
 .sign-up-container{
   background-color: #ffb4a5;
   margin: 0;
   /* padding-top: 100%; */
   padding-top: 10px;
   padding-bottom: 130px;
-  height: 100%;
+  height: 52rem;
   width: 100%;
 }
 .login-container {
+  display: flex;
   background-color: #ffb4a5;
   margin: 0;
   /* padding-top: 100%; */
   padding-top: 5rem;
   padding-bottom: 24.75rem;
-  height: 100%;
+  height: 31rem;
   width: 100%;
+  border: 1px solid green;
 }
 
 .login-logo {
@@ -75,7 +93,7 @@ form {
 
 input[type=text], input[type=password] {
   width: 100%;
-  padding: 10px 20px;
+  padding: 10px 10px;
   margin: 10px 0;
   display: grid;
   border: 1px solid #ccc;
@@ -114,3 +132,60 @@ button {
     height: auto;
     background-color: #ffb4a5;
   } */
+.video-div{
+  width: 50rem;
+  height: 50rem;
+  margin: 0;
+  margin-top: -6rem;
+  margin-right: -6rem;
+  /* border: 1px solid blue; */
+}
+
+.video-tag{
+  /* border: solid .1px #ffb4a5; */
+  /* border: solid 1px blue; */
+  border-radius: 100%;
+  /* box-shadow: 0px 0px 0px #ffb4a5 inset; */
+  width: 50rem;
+  height: 50rem;
+}
+
+.languages-div {
+  /* border: 1px solid green; */
+  position: absolute;
+  display: flex;
+  width: 60rem;
+  margin-top: 45rem;
+  margin-left: 19rem;
+  align-items: center;
+  font-family: 'Montserrat', sans-serif;
+  color: rgb(255, 230, 230);
+  font-weight: 600;
+  font-size: 13px;
+  padding-left: 0;
+}
+
+.language-p{
+  /* border: solid 1px red; */
+  margin: auto;
+}
+
+.profile-links{
+  /* border: 1px solid yellow; */
+  position: absolute;
+  display: flex;
+  width: 60rem;
+  margin-top: 47rem;
+  margin-left: 19rem;
+  align-items: center;
+  font-family: 'Montserrat', sans-serif;
+  color: rgb(255, 230, 230);
+  font-weight: 600;
+  font-size: 13px;
+  padding-left: 0;
+}
+
+.developer-links{
+  margin: auto;
+  color: white;
+}

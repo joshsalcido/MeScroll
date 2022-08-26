@@ -54,6 +54,7 @@ export default function PostForm({closeCreateForm}){
           return
         } else {
           setShowCreateButton(false)
+          console.log(caption.length, " ++++ caption length that gets sent to dispatch")
           const formData = new FormData();
           formData.append("user_id", sessionUser.id)
           formData.append("photo", photo);
@@ -104,6 +105,7 @@ console.log(caption?.length, "caption length in create")
             <label>Caption:</label>
             <textarea
               className="caption-input"
+              type="text"
               required
               value={caption}
               onChange={(e) => setCaption(e.target.value)}
@@ -113,6 +115,7 @@ console.log(caption?.length, "caption length in create")
             <label>Location:</label>
             <input
               required
+              className="location-input-CreateForm"
               maxLength={40}
               type="text"
               value={location}

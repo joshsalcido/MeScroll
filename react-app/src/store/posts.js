@@ -43,6 +43,7 @@ export const thunkGetAllPosts = () => async (dispatch) => {
 }
 
 export const thunkCreatePost = (formData) => async (dispatch) => {
+    console.log(formData, "formData from thunk")
     const response = await fetch('/api/posts/newpost', {
         method: "POST",
         body: formData,
@@ -50,7 +51,7 @@ export const thunkCreatePost = (formData) => async (dispatch) => {
 
     if (response.ok) {
         const data = await response.json();
-        console.log(data, "THUNK CREATE DATA")
+        // console.log(data.caption.length, "THUNK POST caption length")
         dispatch(actionCreatePost(data))
         return data;
     }
