@@ -6,6 +6,7 @@ import { thunkGetAllPosts, thunkDeletePost} from '../store/posts'
 import { useDispatch, useSelector } from 'react-redux';
 import ReactModal from 'react-modal';
 import EditPostForm from './editPostForm/editPostForm';
+import { updateProfileThunk } from '../store/users';
 
 ReactModal.setAppElement('body')
 
@@ -27,6 +28,11 @@ function User() {
 
   const userSession = useSelector(state => state.session?.user)
 
+  const [name, setName] = useState(userSession.full_name)
+  const [username, setUsername] = useState(userSession.username)
+  const [email, setEmail] = useState(userSession.email)
+  const [bio, setBio] = useState('')
+  const [profilepic, setProfilePic] = useState('')
 
   function closeEditForm (){
     setShowEditForm(false)
@@ -36,6 +42,18 @@ function User() {
   }
   function closePostDetails() {
     setShowPostDetails(false)
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // const formData = new FormData();
+    // formData.append("user_id", userSession?.id);
+    // formData.append("photo", photo);
+    // formData.append("caption", caption);
+    // formData.append("location", location);
+
+    // await dispatch(updateProfileThunk(formData))
   }
 
   useEffect(() => {
@@ -121,15 +139,18 @@ function User() {
             </div>
             <label>Name</label>
             <input
-            value={user.full_name}
+            value={name}
+            onChange={(e) => setName(e.target.value)}
             ></input>
             <label>Username</label>
             <input
-            value={user.username}
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
             ></input>
             <label>Email</label>
             <input
-            value={user.email}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             ></input>
             <button disabled >Submit Changes</button>
           </form>
