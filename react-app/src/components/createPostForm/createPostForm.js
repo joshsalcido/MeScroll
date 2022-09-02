@@ -54,7 +54,7 @@ export default function PostForm({closeCreateForm}){
           return
         } else {
           setShowCreateButton(false)
-          console.log(caption.length, " ++++ caption length that gets sent to dispatch")
+          // console.log(caption.length, " ++++ caption length that gets sent to dispatch")
           const formData = new FormData();
           formData.append("user_id", sessionUser.id)
           formData.append("photo", photo);
