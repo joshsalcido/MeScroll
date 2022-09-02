@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import ReactModal from 'react-modal';
 import EditPostForm from './editPostForm/editPostForm';
 import { updateProfileThunk } from '../store/users';
+import defaultUserImage from './UserProfile/user (1).png'
 
 ReactModal.setAppElement('body')
 
@@ -122,7 +123,7 @@ function User() {
       <NavBar/>
         <div className='profile-info'>
           <div>
-            <img className='user-profile-page-profile-pic' src={user.profile_pic}></img>
+            <img className='user-profile-page-profile-pic' src={user.profile_pic === null ? defaultUserImage : user.profile_pic}></img>
           </div>
           <div>{user.full_name}</div>
           <div>{user.username}</div>
