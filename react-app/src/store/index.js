@@ -4,9 +4,10 @@ import session from './session'
 
 import postReducer from './posts'
 import commentReducer from './comments';
+import userReducer from './users';
 
 const rootReducer = combineReducers({
-  session, postReducer, commentReducer
+  session, postReducer, commentReducer, userReducer
 });
 
 

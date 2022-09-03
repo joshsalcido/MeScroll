@@ -1,8 +1,8 @@
 import React, { useState, useEffect} from "react";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { thunkGetAllComments, thunkCreateComment, thunkUpdateComment, thunkDeleteComment } from "../../store/comments";
-import { thunkGetAllPosts } from "../../store/posts";
+import { thunkGetAllComments, thunkUpdateComment, thunkDeleteComment } from "../../store/comments";
+// import { thunkGetAllPosts } from "../../store/posts";
 import ReactModal from "react-modal";
 import '../commentForm.js/commentForm.css'
 
@@ -14,14 +14,14 @@ export default function CommentSection({currentPost}){
     const allComments = useSelector(state => Object.values(state.commentReducer))
     const singlePostComments = allComments.filter(comment => comment.post_id === currentPost.id)
 
-    const [comment_body, setComment_body] = useState('')
+    // const [comment_body, setComment_body] = useState('')
     const [currentComment, setCurrentComment ] = useState('');
     const [showCommentOptions, setShowCommentOptions] = useState(false);
     const [showEditComment, setShowEditComment] = useState(false);
     const [updatedComment, setUpdatedComment] = useState('');
-    const [showEditForm, setShowEditForm] = useState(false);
+    // const [showEditForm, setShowEditForm] = useState(false);
 
-    const [correctCounter, setCorrectCounter] = useState(currentComment.comment_body);
+    // const [correctCounter, setCorrectCounter] = useState(currentComment.comment_body);
     const [limitReached, setLimitReached] = useState(false);
     const [emptyComment, setEmptyComment] = useState(false);
     const [checkError, setCheckError] = useState(false);
@@ -29,12 +29,12 @@ export default function CommentSection({currentPost}){
     const [disableComment, setDisableComment] = useState(false);
     const [disableStyle, setDisableStyle] = useState(null);
 
-    const [submitted, setHasSubmitted]= useState(false);
+    // const [submitted, setHasSubmitted]= useState(false);
 
 
-    function closeEditForm(){
-        setShowEditForm(false)
-    }
+    // function closeEditForm(){
+    //     setShowEditForm(false)
+    // }
 
     async function updateComment(){
 

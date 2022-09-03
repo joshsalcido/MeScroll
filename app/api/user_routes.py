@@ -21,6 +21,12 @@ def user(id):
     user = User.query.get(id)
     return user.to_dict()
 
+# Get user info, Specifically after an update to user profile
+@user_routes.route('/<id>')
+def getUser(id):
+    user = User.query.get(id)
+    return user.to_dict()
+
 # Update User INFO
 @user_routes.route('/<id>', methods=["PUT"])
 def updateUser(id):
@@ -29,7 +35,7 @@ def updateUser(id):
     form = UserUpdateForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
-    print(form.data['fullname'], "~~~~~~~~~~~~~~BACKEND USERFORM~~~~~~~~~~~~~~~~~~~~~`")
+    # print(form.data['fullname'], "~~~~~~~~~~~~~~BACKEND USERFORM~~~~~~~~~~~~~~~~~~~~~`")
     # print("+++++++++++++++++++++ profilepic 1")
 
     if "profilepic" not in request.files:

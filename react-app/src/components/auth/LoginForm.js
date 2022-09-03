@@ -103,13 +103,13 @@ const LoginForm = () => {
         </div>
         <div className='profile-links'>
           <a style={{textDecoration: "none"}} className='developer-links' href='https://github.com/joshsalcido' target="_blank" rel="noopener noreferrer">
-            <img style={{width: "12px", height: "12px", marginRight:"5px"}} src={githublogo}></img>
+            <img style={{width: "12px", height: "12px", marginRight:"5px"}} src={githublogo} alt="github-coral-logo"></img>
              Github</a>
           <a style={{textDecoration: "none"}} className='developer-links' href='https://www.linkedin.com/in/joshua-salcido-57036a215/' target="_blank" rel="noopener noreferrer">
-            <img style={{width: "12px", height: "12px", marginRight:"5px"}} src={linkedinlogo}></img>
+            <img style={{width: "12px", height: "12px", marginRight:"5px"}} src={linkedinlogo} alt="linkedin-coral-logo"></img>
             LinkedIn</a>
           <a style={{textDecoration: "none"}} className='developer-links' href='https://angel.co/u/joshua-salcido-1' target="_blank" rel="noopener noreferrer">
-          <img style={{width: "12px", height: "12px", marginRight:"5px"}} src={angellogo}></img>
+          <img style={{width: "12px", height: "12px", marginRight:"5px"}} src={angellogo} alt="angellist-coral-logo"></img>
             AngelList</a>
         </div>
       </div>

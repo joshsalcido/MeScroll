@@ -25,14 +25,14 @@ export default function AllPosts(){
     const [showEditForm, setShowEditForm] = useState(false);
 
 
-    const [comment_body, setComment_body] = useState('')
+    // const [comment_body, setComment_body] = useState('')
 
-    const [updatedComment, setUpdatedComment] = useState('')
+    // const [updatedComment, setUpdatedComment] = useState('')
 
 
-    function openPostOptions(){
-        setPostOptions(true)
-    }
+    // function openPostOptions(){
+    //     setPostOptions(true)
+    // }
     function closePostOptions(){
         setPostOptions(false)
     }
@@ -73,7 +73,7 @@ export default function AllPosts(){
       }
 
 
-      
+
     return (
         <>
         <NavBar/>
@@ -104,7 +104,7 @@ export default function AllPosts(){
                 <Modal isOpen={showEditForm} style={editPostStyling}>
                     <EditPostForm closeEditForm={closeEditForm} postId={clickedPost?.id} closePostOptions={closePostOptions}/>
                 </Modal>
-                <img className="feed-photo" src={post.photo}></img>
+                <img className="feed-photo" src={post.photo} alt="a mescroll post"></img>
                 <div className="username-caption-div">
                     <NavLink style={{textDecoration: 'none', color: 'black'}} to={`/users/${post.userInfo.id}`}>
                         <p className="username-next-to-caption">{post.userInfo.username}</p>
