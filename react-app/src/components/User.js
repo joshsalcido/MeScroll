@@ -31,6 +31,7 @@ function User() {
 
   const [name, setName] = useState(userSession.full_name)
   const [username, setUsername] = useState(userSession.username)
+  const [fullname, setFullName] = useState(userSession.full_name)
   const [email, setEmail] = useState(userSession.email)
   const [bio, setBio] = useState('')
   const [profilepic, setProfilePic] = useState('')
@@ -47,14 +48,16 @@ function User() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(fullname, "FullNAME in frontEND")
 
-    // const formData = new FormData();
-    // formData.append("user_id", userSession?.id);
-    // formData.append("photo", photo);
-    // formData.append("caption", caption);
-    // formData.append("location", location);
+    const formData = new FormData();
+    formData.append("user_id", userSession?.id);
+    formData.append("profilepic", profilepic);
+    formData.append("username", username);
+    formData.append("fullname", fullname)
+    formData.append("email", email);
 
-    // await dispatch(updateProfileThunk(formData))
+    await dispatch(updateProfileThunk(formData, userSession.id))
   }
 
   useEffect(() => {
@@ -71,6 +74,11 @@ function User() {
     })();
 
   }, [dispatch,userId]);
+
+  const updatePhoto = (e) => {
+    const file = e.target.files[0];
+    setProfilePic(file);
+}
 
   if (!user) {
     return null;
@@ -133,27 +141,36 @@ function User() {
           <button onClick={() => setEditProfileModal(true)}>Edit Profile</button>
         </div>
         <ReactModal isOpen={editProfileModal} style={postOptionStyles}>
-          <form>
+          <form onSubmit={handleSubmit}>
             <div>
               <img className='user-profile-page-profile-pic' src={user.profile_pic}></img>
-              <input type="file" disabled ></input>
+              <input
+               type="file"
+               name="photo"
+               accept="image/jpg, image/jpeg, image/png, image/gif"
+               className="photo-input"
+               onChange={(e) => updatePhoto(e)}
+               ></input>
             </div>
             <label>Name</label>
             <input
             value={name}
+            type="text"
             onChange={(e) => setName(e.target.value)}
             ></input>
             <label>Username</label>
             <input
             value={username}
+            type="text"
             onChange={(e) => setUsername(e.target.value)}
             ></input>
             <label>Email</label>
             <input
             value={email}
+            type="text"
             onChange={(e) => setEmail(e.target.value)}
             ></input>
-            <button disabled >Submit Changes</button>
+            <button >Submit Changes</button>
           </form>
           <button onClick={() => setEditProfileModal(false)}>Cancel</button>
         </ReactModal>

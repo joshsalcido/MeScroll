@@ -60,7 +60,7 @@ def newpost():
     # flask_login allows us to get the current user from the request
     # new_image = Image(user=current_user, url=url)
 
-    print(len(form.data['caption']), " <-------- +++++++++++++ caption length in post form ############## ++ ")
+    # print(len(form.data['caption']), " <-------- +++++++++++++ caption length in post form ############## ++ ")
 
     if form.validate_on_submit():
         new_post = Post(

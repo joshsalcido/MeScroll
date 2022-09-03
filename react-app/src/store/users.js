@@ -1,5 +1,6 @@
 
 const UPDATE_PROFILE = 'user/updateProfile';
+const GET_USER = 'user/getUser'
 
 // ACTIONS
 export const updateProfileAction = (user) => {
@@ -9,13 +10,19 @@ export const updateProfileAction = (user) => {
     }
 }
 
+export const getUserInfo = (user) => {
+    return {
+        type: GET_USER,
+        user
+    }
+}
+
 // THUNKS
 
-export const updateProfileThunk = (formData) => async (dispatch) => {
-    const response = await fetch(`/api/users/{userId}`, {
+export const updateProfileThunk = (formData, userId) => async (dispatch) => {
+    const response = await fetch(`/api/users/${userId}`, {
         method: 'PUT',
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(formData)
+        body: formData
     })
 
     if (response.ok) {

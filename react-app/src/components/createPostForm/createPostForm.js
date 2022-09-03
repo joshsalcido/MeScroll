@@ -83,7 +83,7 @@ export default function PostForm({closeCreateForm}){
       setPhoto(file);
   }
 
-console.log(caption?.length, "caption length in create")
+// console.log(caption?.length, "caption length in create")
 
     return (
         <>
