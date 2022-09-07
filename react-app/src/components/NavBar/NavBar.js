@@ -57,21 +57,21 @@ const NavBar = () => {
           </NavLink>
           <LogoutButton />
           <NavLink to={`/users/${sessionUser?.id}`} exact={true} activeClassName='active'>
-            <img src={profileIcon} className='my-profile-btn'></img>
+            <img src={profileIcon} className='my-profile-btn' alt='profile icon'></img>
           </NavLink>
-          <img className='create-post-btn'onClick={openCreateForm} src={createPostbtn}></img>
+          <img className='create-post-btn'onClick={openCreateForm} src={createPostbtn} alt='plus button'></img>
           <Modal isOpen={showCreateForm} style={customStyles}>
             <button className='modal-x' onClick={closeCreateForm}>x</button>
             <PostForm closeCreateForm={closeCreateForm}/>
           </Modal>
           <NavLink to='/'>
-            <img className='homebutton' src={homebutton}></img>
+            <img className='homebutton' src={homebutton} alt='home icon'></img>
           </NavLink>
           <a href="https://www.linkedin.com/in/joshua-salcido-57036a215/" target="_blank" rel="noopener noreferrer">
-            <img className='linkedIn-button' src={linkedInLogo}></img>
+            <img className='linkedIn-button' src={linkedInLogo} alt='linkedin icon'></img>
           </a>
           <a href="https://github.com/joshsalcido" target="_blank" rel="noopener noreferrer">
-            <img className='github-button' src={githubLogo}></img>
+            <img className='github-button' src={githubLogo} alt='github icon'></img>
           </a>
       </div>
     </nav>

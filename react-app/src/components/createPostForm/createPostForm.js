@@ -1,6 +1,6 @@
 import React, { useState, useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+// import { NavLink } from "react-router-dom";
 import { thunkGetAllComments } from "../../store/comments";
 import { thunkCreatePost, thunkGetAllPosts } from "../../store/posts";
 import "../createPostForm/createPostForm.css"
@@ -11,7 +11,7 @@ export default function PostForm({closeCreateForm}){
     const dispatch = useDispatch()
     const sessionUser = useSelector(state => state.session?.user)
     const [errors, setErrors] = useState([]);
-    const [errorCheck, setErrorCheck] = useState(false);
+    // const [errorCheck, setErrorCheck] = useState(false);
 
     const [photo, setPhoto] = useState(null);
     const [caption, setCaption] = useState(null);
@@ -83,7 +83,7 @@ export default function PostForm({closeCreateForm}){
       setPhoto(file);
   }
 
-console.log(caption?.length, "caption length in create")
+// console.log(caption?.length, "caption length in create")
 
     return (
         <>
@@ -123,7 +123,7 @@ console.log(caption?.length, "caption length in create")
             />
             <p className="caption-location-length" style={locationLimitStyling} >{location?.length}/40</p>
             {showCreateButton && (<button type="submit">Create Post</button>)}
-            {!showCreateButton && (<img className="loading-gif" src={loadingGif}></img>)}
+            {!showCreateButton && (<img className="loading-gif" src={loadingGif} alt="loading animation"></img>)}
             {/* <img src={loadingGif}></img> */}
         </form>
         </>

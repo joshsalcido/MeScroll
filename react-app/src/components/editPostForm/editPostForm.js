@@ -1,14 +1,14 @@
 import React, { useState, useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, useParams } from "react-router-dom";
-import { thunkCreatePost, thunkGetAllPosts, thunkUpdatePost } from "../../store/posts";
+// import { NavLink, useParams } from "react-router-dom";
+import { thunkUpdatePost } from "../../store/posts";
 import '../editPostForm/editForm.css'
 
 
 export default function EditPostForm({closeEditForm, postId, closePostOptions, closePostDetails}){
     const dispatch = useDispatch()
 
-    const sessionUser = useSelector(state => state.session.user)
+    // const sessionUser = useSelector(state => state.session.user)
     const post = useSelector(state => state.postReducer[postId])
 
     const [photo, setPhoto] = useState(`${post.photo}`);
@@ -82,7 +82,7 @@ export default function EditPostForm({closeEditForm, postId, closePostOptions, c
         <form className="edit-post-form" onSubmit={handleSubmit}>
           <div className="edit-post-form-div">
             <div className="edit-form-photo-div">
-              <img className="edit-img" src={post.photo}></img>
+              <img className="edit-img" src={post.photo} alt="a mescroll post"></img>
             </div>
             <div className="edit-caption-location-div">
               <ul className="error-messages">

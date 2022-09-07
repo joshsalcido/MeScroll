@@ -6,7 +6,8 @@ import { thunkGetAllPosts, thunkDeletePost} from '../store/posts'
 import { useDispatch, useSelector } from 'react-redux';
 import ReactModal from 'react-modal';
 import EditPostForm from './editPostForm/editPostForm';
-import { updateProfileThunk } from '../store/users';
+import { getUserInfoThunk, updateProfileThunk } from '../store/users';
+import defaultUserImage from './UserProfile/user (1).png'
 
 ReactModal.setAppElement('body')
 
@@ -26,12 +27,16 @@ function User() {
 
   const specificPost = useSelector( state => state.postReducer[clickedPost.id])
 
-  const userSession = useSelector(state => state.session?.user)
+  const userSession = useSelector(state => state.userReducer?.user)
 
-  const [name, setName] = useState(userSession.full_name)
-  const [username, setUsername] = useState(userSession.username)
-  const [email, setEmail] = useState(userSession.email)
-  const [bio, setBio] = useState('')
+  const userOldSesh = useSelector(state => state.session?.user)
+
+  console.log(userSession?.username, "++++ USER SESSION username +++")
+  // const [name, setName] = useState(userSession.full_name)
+  const [username, setUsername] = useState(userSession?.username)
+  const [fullname, setFullName] = useState(userSession?.full_name)
+  const [email, setEmail] = useState(userSession?.email)
+  // const [bio, setBio] = useState('')
   const [profilepic, setProfilePic] = useState('')
 
   function closeEditForm (){
@@ -46,18 +51,20 @@ function User() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // console.log(fullname, "FullNAME in frontEND")
 
-    // const formData = new FormData();
-    // formData.append("user_id", userSession?.id);
-    // formData.append("photo", photo);
-    // formData.append("caption", caption);
-    // formData.append("location", location);
+    const formData = new FormData();
+    formData.append("user_id", userSession?.id);
+    formData.append("profilepic", profilepic);
+    formData.append("username", username);
+    formData.append("fullname", fullname)
+    formData.append("email", email);
 
-    // await dispatch(updateProfileThunk(formData))
+    await dispatch(updateProfileThunk(formData, userSession.id))
   }
 
   useEffect(() => {
-
+    dispatch(getUserInfoThunk(userId))
     dispatch(thunkGetAllPosts())
 
     if (!userId) {
@@ -70,6 +77,11 @@ function User() {
     })();
 
   }, [dispatch,userId]);
+
+  const updatePhoto = (e) => {
+    const file = e.target.files[0];
+    setProfilePic(file);
+}
 
   if (!user) {
     return null;
@@ -122,39 +134,48 @@ function User() {
       <NavBar/>
         <div className='profile-info'>
           <div>
-            <img className='user-profile-page-profile-pic' src={user.profile_pic}></img>
+            <img className='user-profile-page-profile-pic' src={userSession?.profile_pic === null ? defaultUserImage : userSession?.profile_pic} alt='mescroll profile pic'></img>
           </div>
-          <div>{user.full_name}</div>
-          <div>{user.username}</div>
+          <div>{userSession?.full_name}</div>
+          <div>{userSession?.username}</div>
           <div>
-            <strong>Email</strong> {user.email}
+            <strong>Email</strong> {userSession?.email}
           </div>
           <button onClick={() => setEditProfileModal(true)}>Edit Profile</button>
         </div>
         <ReactModal isOpen={editProfileModal} style={postOptionStyles}>
-          <form>
+          <button onClick={() => setEditProfileModal(false)}>X</button>
+          <form onSubmit={handleSubmit} className="edit-profile-form">
             <div>
-              <img className='user-profile-page-profile-pic' src={user.profile_pic}></img>
-              <input type="file" disabled ></input>
+              <img className='user-profile-page-profile-pic' src={userSession?.profile_pic} alt="mescroll user pic"></img>
+              <input
+               type="file"
+               name="photo"
+               accept="image/jpg, image/jpeg, image/png, image/gif"
+               className="photo-input"
+               onChange={(e) => updatePhoto(e)}
+               ></input>
             </div>
             <label>Name</label>
             <input
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            value={fullname}
+            type="text"
+            onChange={(e) => setFullName(e.target.value)}
             ></input>
             <label>Username</label>
             <input
             value={username}
+            type="text"
             onChange={(e) => setUsername(e.target.value)}
             ></input>
             <label>Email</label>
             <input
             value={email}
+            type="text"
             onChange={(e) => setEmail(e.target.value)}
             ></input>
-            <button disabled >Submit Changes</button>
+            <button >Submit Changes</button>
           </form>
-          <button onClick={() => setEditProfileModal(false)}>Cancel</button>
         </ReactModal>
         <div className='user-photo-grid'>
           {onlyUserPost.length === 0 && (
@@ -165,7 +186,7 @@ function User() {
           {onlyUserPost.map((post) =>
           <>
             <div key={post.id} className='user-indv-post' onClick={() => {setShowPostDetails(true); setClickedPost(post)}}>
-              <img className='user-indv-img' src={post.photo}></img>
+              <img className='user-indv-img' src={post.photo} alt='mescroll post'></img>
             </div>
             <ReactModal isOpen={showPostDetails} style={indvPostStyles}>
                 <ReactModal portalClassName="post-options-Modal" isOpen={showPostOptions}  style={postOptionStyles}>
@@ -178,10 +199,10 @@ function User() {
                 </ReactModal>
                 <div className='clicked-on-post-div'>
                   <div className='single-post-photo-div'>
-                    <img className='clicked-on-image' src={specificPost?.photo}></img>
+                    <img className='clicked-on-image' src={specificPost?.photo} alt='mescroll post'></img>
                   </div>
                   <div className='single-post-info-div'>
-                  {userId == userSession.id && (<button className='indv-post-options-btn' onClick={()=> setShowPostOptions(true)}>...</button>)}
+                  {userId == userSession?.id && (<button className='indv-post-options-btn' onClick={()=> setShowPostOptions(true)}>...</button>)}
                     {/* <p>{specificPost}</p> */}
                     <label className='caption-location-single-post'>Location:</label>
                     <p >{specificPost?.location}</p>

@@ -1,5 +1,5 @@
 import LoginForm from "../auth/LoginForm"
-import SignUpForm from "../auth/SignUpForm"
+// import SignUpForm from "../auth/SignUpForm"
 
 
 

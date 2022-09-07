@@ -43,7 +43,7 @@ export const thunkGetAllPosts = () => async (dispatch) => {
 }
 
 export const thunkCreatePost = (formData) => async (dispatch) => {
-    console.log(formData, "formData from thunk")
+    // console.log(formData, "formData from thunk")
     const response = await fetch('/api/posts/newpost', {
         method: "POST",
         body: formData,

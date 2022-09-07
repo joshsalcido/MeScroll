@@ -1,8 +1,8 @@
 import React, { useState, useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+// import { NavLink } from "react-router-dom";
 import { thunkGetAllComments, thunkCreateComment } from "../../store/comments";
-import { thunkGetAllPosts } from "../../store/posts";
+// import { thunkGetAllPosts } from "../../store/posts";
 import '../commentForm.js/commentForm.css'
 
 export default function CommentForm({currentPost}){
@@ -14,7 +14,7 @@ export default function CommentForm({currentPost}){
     const [commentLengthMaxStyling, setCommentLengthMaxStyling] = useState(null);
     const [showCommentCounter, setShowCommentCounter] = useState(false);
 
-    const [submitted, setHasSubmitted] = useState(false);
+    // const [submitted, setHasSubmitted] = useState(false);
     const [ errors, setErrors] = useState([])
 
     // console.log(currentPost.id, 'ComentForm')
@@ -74,7 +74,7 @@ export default function CommentForm({currentPost}){
     //   setErrors(valErrors);
     }, [comment_body])
 
-    
+
 
     return (
         <>
