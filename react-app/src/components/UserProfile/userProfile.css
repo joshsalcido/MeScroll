@@ -118,3 +118,8 @@
     object-fit: cover;
     border-radius: 100%;
 }
+
+.edit-profile-form{
+    /* border: none;
+    box-shadow: none; */
+}

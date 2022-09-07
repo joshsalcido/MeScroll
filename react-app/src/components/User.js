@@ -29,8 +29,9 @@ function User() {
 
   const userSession = useSelector(state => state.userReducer?.user)
 
-  // const updatedUser = useSelector(state => state.userReducer)
+  const userOldSesh = useSelector(state => state.session?.user)
 
+  console.log(userSession?.username, "++++ USER SESSION username +++")
   // const [name, setName] = useState(userSession.full_name)
   const [username, setUsername] = useState(userSession?.username)
   const [fullname, setFullName] = useState(userSession?.full_name)
@@ -133,19 +134,20 @@ function User() {
       <NavBar/>
         <div className='profile-info'>
           <div>
-            <img className='user-profile-page-profile-pic' src={userSession.profile_pic === null ? defaultUserImage : userSession.profile_pic} alt='mescroll profile pic'></img>
+            <img className='user-profile-page-profile-pic' src={userSession?.profile_pic === null ? defaultUserImage : userSession?.profile_pic} alt='mescroll profile pic'></img>
           </div>
-          <div>{userSession.full_name}</div>
-          <div>{userSession.username}</div>
+          <div>{userSession?.full_name}</div>
+          <div>{userSession?.username}</div>
           <div>
-            <strong>Email</strong> {userSession.email}
+            <strong>Email</strong> {userSession?.email}
           </div>
           <button onClick={() => setEditProfileModal(true)}>Edit Profile</button>
         </div>
         <ReactModal isOpen={editProfileModal} style={postOptionStyles}>
-          <form onSubmit={handleSubmit}>
+          <button onClick={() => setEditProfileModal(false)}>X</button>
+          <form onSubmit={handleSubmit} className="edit-profile-form">
             <div>
-              <img className='user-profile-page-profile-pic' src={userSession.profile_pic} alt="mescroll user pic"></img>
+              <img className='user-profile-page-profile-pic' src={userSession?.profile_pic} alt="mescroll user pic"></img>
               <input
                type="file"
                name="photo"
@@ -174,7 +176,6 @@ function User() {
             ></input>
             <button >Submit Changes</button>
           </form>
-          <button onClick={() => setEditProfileModal(false)}>Cancel</button>
         </ReactModal>
         <div className='user-photo-grid'>
           {onlyUserPost.length === 0 && (
@@ -201,7 +202,7 @@ function User() {
                     <img className='clicked-on-image' src={specificPost?.photo} alt='mescroll post'></img>
                   </div>
                   <div className='single-post-info-div'>
-                  {userId == userSession.id && (<button className='indv-post-options-btn' onClick={()=> setShowPostOptions(true)}>...</button>)}
+                  {userId == userSession?.id && (<button className='indv-post-options-btn' onClick={()=> setShowPostOptions(true)}>...</button>)}
                     {/* <p>{specificPost}</p> */}
                     <label className='caption-location-single-post'>Location:</label>
                     <p >{specificPost?.location}</p>
