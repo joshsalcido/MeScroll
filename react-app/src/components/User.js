@@ -8,6 +8,7 @@ import ReactModal from 'react-modal';
 import EditPostForm from './editPostForm/editPostForm';
 import { getUserInfoThunk, updateProfileThunk } from '../store/users';
 import defaultUserImage from './UserProfile/user (1).png'
+import EditUserForm from './UserProfile/EditUser';
 
 ReactModal.setAppElement('body')
 
@@ -33,9 +34,9 @@ function User() {
 
   console.log(userSession?.username, "++++ USER SESSION username +++")
   // const [name, setName] = useState(userSession.full_name)
-  const [username, setUsername] = useState(userSession?.username)
-  const [fullname, setFullName] = useState(userSession?.full_name)
-  const [email, setEmail] = useState(userSession?.email)
+  const [username, setUsername] = useState('')
+  const [fullname, setFullName] = useState('')
+  const [email, setEmail] = useState('')
   // const [bio, setBio] = useState('')
   const [profilepic, setProfilePic] = useState('')
 
@@ -64,9 +65,9 @@ function User() {
   }
 
   useEffect(() => {
+    setUsername(userSession?.username)
     dispatch(getUserInfoThunk(userId))
     dispatch(thunkGetAllPosts())
-
     if (!userId) {
       return;
     }
@@ -144,38 +145,7 @@ function User() {
           <button onClick={() => setEditProfileModal(true)}>Edit Profile</button>
         </div>
         <ReactModal isOpen={editProfileModal} style={postOptionStyles}>
-          <button onClick={() => setEditProfileModal(false)}>X</button>
-          <form onSubmit={handleSubmit} className="edit-profile-form">
-            <div>
-              <img className='user-profile-page-profile-pic' src={userSession?.profile_pic} alt="mescroll user pic"></img>
-              <input
-               type="file"
-               name="photo"
-               accept="image/jpg, image/jpeg, image/png, image/gif"
-               className="photo-input"
-               onChange={(e) => updatePhoto(e)}
-               ></input>
-            </div>
-            <label>Name</label>
-            <input
-            value={fullname}
-            type="text"
-            onChange={(e) => setFullName(e.target.value)}
-            ></input>
-            <label>Username</label>
-            <input
-            value={username}
-            type="text"
-            onChange={(e) => setUsername(e.target.value)}
-            ></input>
-            <label>Email</label>
-            <input
-            value={email}
-            type="text"
-            onChange={(e) => setEmail(e.target.value)}
-            ></input>
-            <button >Submit Changes</button>
-          </form>
+          <EditUserForm userInfo={userSession}></EditUserForm>
         </ReactModal>
         <div className='user-photo-grid'>
           {onlyUserPost.length === 0 && (
