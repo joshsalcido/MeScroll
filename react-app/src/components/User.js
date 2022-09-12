@@ -49,6 +49,9 @@ function User() {
   function closePostDetails() {
     setShowPostDetails(false)
   }
+  function closeEditProfile(){
+    setEditProfileModal(false)
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -145,7 +148,7 @@ function User() {
           <button onClick={() => setEditProfileModal(true)}>Edit Profile</button>
         </div>
         <ReactModal isOpen={editProfileModal} style={postOptionStyles}>
-          <EditUserForm userInfo={userSession}></EditUserForm>
+          <EditUserForm userInfo={userSession} closeEditProfile={closeEditProfile}></EditUserForm>
         </ReactModal>
         <div className='user-photo-grid'>
           {onlyUserPost.length === 0 && (

@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserInfoThunk, updateProfileThunk } from '../../store/users'
 
-export default function EditUserForm({userInfo}){
+export default function EditUserForm({userInfo, closeEditProfile}){
 
   const dispatch = useDispatch();
   const [user, setUser] = useState({});
@@ -43,10 +43,14 @@ export default function EditUserForm({userInfo}){
     formData.append("email", email);
 
     await dispatch(updateProfileThunk(formData, userSession.id))
+
+    closeEditProfile()
   }
 
   useEffect(() => {
     setUsername(userSession?.username)
+    setFullName(userSession?.full_name)
+    setEmail(userSession?.email)
     dispatch(getUserInfoThunk(userId))
     // dispatch(thunkGetAllPosts())
     if (!userId) {
@@ -67,8 +71,8 @@ export default function EditUserForm({userInfo}){
 
     return (
         <>
-          <button onClick={() => setEditProfileModal(false)}>X</button>
           <form onSubmit={handleSubmit} className="edit-profile-form">
+            <button type="button" onClick={() => closeEditProfile()}>X</button>
             <div>
               <img className='user-profile-page-profile-pic' src={userSession?.profile_pic} alt="mescroll user pic"></img>
               <input
