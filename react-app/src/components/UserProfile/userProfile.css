@@ -119,7 +119,48 @@
     border-radius: 100%;
 }
 
-.edit-profile-form{
-    /* border: none;
-    box-shadow: none; */
+/* Edit User Form */
+
+.edit-profile-form {
+    box-shadow: none;
+    /* border: 1px solid blue; */
+    border: none;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-right: 0;
+    padding-left: 0;
+    margin: 0;
+}
+
+.userform-cancel-x-button {
+    width: 20px;
+    padding: 5px 22px 5px 10px;
+    font-size: 20px;
+    /* margin: auto; */
+    margin: 0px 0px 0px 25rem;
+}
+
+.edit-user-container-1 {
+    /* border: 1px solid blue; */
+    /* display: grid; */
+    position: relative;
+    height: 9rem;
+    width: auto;
+}
+
+.edit-profile-loading{
+    width: auto;
+    height: 9rem;
+    /* border: 1px solid blue; */
+    /* margin: 0px 10px 0px 0px; */
+    position: absolute;
+    left: -9px;
+    top: -9px;
+}
+.edit-user-photo-input {
+    /* border: 1px solid blue; */
+    margin: 0px 0px 0px 20px;
+    position: absolute;
+    top: 40px;
+    right: 15px;
 }

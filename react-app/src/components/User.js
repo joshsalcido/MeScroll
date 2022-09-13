@@ -131,6 +131,21 @@ function User() {
     }
   }
 
+  const editUserStyles = {
+    overlay: {
+        background: 'rgba(0,0,0,0.1)'
+      },
+    content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)',
+
+    }
+  }
+
 
 
   return (
@@ -147,7 +162,7 @@ function User() {
           </div>
           <button onClick={() => setEditProfileModal(true)}>Edit Profile</button>
         </div>
-        <ReactModal isOpen={editProfileModal} style={postOptionStyles}>
+        <ReactModal isOpen={editProfileModal} style={editUserStyles}>
           <EditUserForm userInfo={userSession} closeEditProfile={closeEditProfile}></EditUserForm>
         </ReactModal>
         <div className='user-photo-grid'>
