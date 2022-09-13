@@ -9,6 +9,7 @@ import EditPostForm from "../editPostForm/editPostForm";
 import CommentForm from "../commentForm.js/commentForm";
 import CommentSection from "../comment-section/feedComments";
 import { NavLink } from "react-router-dom";
+import defaultUserImage from '../UserProfile/user (1).png'
 
 
 Modal.setAppElement('body')
@@ -83,7 +84,7 @@ export default function AllPosts(){
             <>
             <div key={post.id} className="indv-post">
                 <div className="userInfo-div">
-                    <img className="profile-pic" src={post.userInfo.profile_pic}></img>
+                    <img className="profile-pic" src={post.userInfo.profile_pic === null ? defaultUserImage : post.userInfo.profile_pic}></img>
                     <div className="username-location">
                         <NavLink style={{textDecoration: 'none', color: 'black'}} to={`/users/${post.userInfo.id}`}>
                             <h4 className="username-allposts-at-top">{post.userInfo.username}</h4>
