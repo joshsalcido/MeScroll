@@ -30,9 +30,11 @@ function User() {
 
   const userSession = useSelector(state => state.userReducer?.user)
 
-  const userOldSesh = useSelector(state => state.session?.user)
+  const loggedInUser = useSelector(state => state.session?.user.id)
 
-  console.log(userSession?.username, "++++ USER SESSION username +++")
+  console.log(parseInt(userId), "params", loggedInUser, "loggedin")
+
+  // console.log(userSession?.username, "++++ USER SESSION username +++")
   // const [name, setName] = useState(userSession.full_name)
   const [username, setUsername] = useState('')
   const [fullname, setFullName] = useState('')
@@ -160,7 +162,7 @@ function User() {
           <div>
             <strong>Email</strong> {userSession?.email}
           </div>
-          <button onClick={() => setEditProfileModal(true)}>Edit Profile</button>
+          { parseInt(userId) === loggedInUser && (<button onClick={() => setEditProfileModal(true)}>Edit Profile</button>)}
         </div>
         <ReactModal isOpen={editProfileModal} style={editUserStyles}>
           <EditUserForm userInfo={userSession} closeEditProfile={closeEditProfile}></EditUserForm>
