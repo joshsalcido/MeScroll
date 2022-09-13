@@ -32,7 +32,7 @@ body{
 }
 
 .feed-photo {
-    width: 33rem;
+    width: 33.1rem;
     height: 38rem;
     object-fit: cover;
 }
@@ -83,12 +83,14 @@ body{
 } */
 
 .profile-pic {
-    width: 2rem;
-    height: 2rem;
+    width: 2.5rem;
+    height: 2.5rem;
     object-fit: cover;
     border-radius: 100%;
-    border: 1px solid green;
+    /* border: 1px solid green; */
     /* margin-left: -10rem; */
+    margin: 10px 3px 10px 10px;
+
 }
 
 .username-caption-div{
