@@ -154,15 +154,19 @@ function User() {
     <>
       <NavBar/>
         <div className='profile-info'>
-          <div>
+          <div className='user-profile-pic-div'>
             <img className='user-profile-page-profile-pic' src={userSession?.profile_pic === null ? defaultUserImage : userSession?.profile_pic} alt='mescroll profile pic'></img>
           </div>
-          <div>{userSession?.full_name}</div>
-          <div>{userSession?.username}</div>
-          <div>
-            <strong>Email</strong> {userSession?.email}
+          <div className='profile-info-section-2'>
+            <div className='username-editButton-div'>
+              <div className='user-username-div'>{userSession?.username}</div>
+              { parseInt(userId) === loggedInUser && (<button className='edit-profile-button' onClick={() => setEditProfileModal(true)}>Edit Profile</button>)}
+            </div>
+            <div className='fullname-email-div'>
+              <div className='user-fullname-div'>{userSession?.full_name}</div>
+              <div className='user-email-div'> Email: {userSession?.email}</div>
+            </div>
           </div>
-          { parseInt(userId) === loggedInUser && (<button onClick={() => setEditProfileModal(true)}>Edit Profile</button>)}
         </div>
         <ReactModal isOpen={editProfileModal} style={editUserStyles}>
           <EditUserForm userInfo={userSession} closeEditProfile={closeEditProfile}></EditUserForm>

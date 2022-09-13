@@ -1,3 +1,107 @@
+/* TOP WHITE SECTION USER INFO DIV */
+.profile-info{
+    font-family: 'Montserrat', sans-serif;
+    border: 1px solid rgb(231, 231, 231);
+    /* border: 1px solid blue; */
+    border-radius: 4px;
+    margin: auto;
+    margin-bottom: 7px;
+    margin-top: 7px;
+    max-width: 818px;
+    background-color: white;
+    padding: 2rem;
+    display: flex;
+}
+/* THE USER PROFILE PHOTO */
+.user-profile-page-profile-pic{
+    width: 8rem;
+    height: 8rem;
+    object-fit: cover;
+    border-radius: 100%;
+}
+.user-profile-pic-div {
+    /* border: 1px solid red; */
+    /* padding: 0px; */
+    width: fit-content;
+    height: fit-content;
+}
+
+/* THE INFO TO THE RIGHT OF THE PROFILE PHOTO */
+
+.profile-info-section-2{
+    /* border: 1px solid blue; */
+    display: grid;
+    margin-left: 3rem;
+    padding: 0px;
+    /* position: relative; */
+}
+.username-editButton-div{
+    /* border: 1px solid red; */
+    height: fit-content;
+    width: fit-content;
+    margin: 0px;
+}
+.user-username-div{
+    /* border: 1px solid blue; */
+    width: fit-content;
+    height: fit-content;
+    font-size: 29px;
+    font-weight: 100;
+    /* position: absolute; */
+    left: 27.19rem;
+    float: left;
+    margin: 0px;
+}
+.edit-profile-button{
+    /* border: 1px solid blue; */
+    padding: 7px;
+    width: 5.5rem;
+    height: 1.8rem;
+    /* position: absolute; */
+    left: 34rem;
+    top: 5.8rem;
+    font-weight: 600;
+    font-size: 12px;
+    margin-top: 3px;
+    margin-left: 24px;
+
+}
+
+.fullname-email-div{
+    /* border: 1px solid red; */
+    display: grid;
+    padding: 0px;
+    margin: 0px;
+    margin-bottom: 28px;
+}
+.user-fullname-div {
+    /* border: 1px solid blue; */
+    width: fit-content;
+    height: fit-content;
+    /* position: absolute; */
+    /* left: 10rem; */
+    right: 49.87rem;
+    /* top: 10rem; */
+    font-weight: 600;
+    float: left;
+    margin: 0px;
+}
+.user-email-div{
+    /* border: 1px solid blue; */
+    width: fit-content;
+    height: fit-content;
+    /* position: absolute;
+    position: absolute; */
+    /* left: 10rem; */
+    /* right: 46.4rem;
+    top: 11.5rem; */
+    float: left;
+    margin: 0px;
+    margin-top: 0px;
+}
+
+/* SECOND HALF USER PHOTO GRID */
+
 .user-photo-grid {
     /* border: 1px solid blue; */
     /* position: relative; */
@@ -18,17 +122,6 @@
     border-radius: 4px;
     min-width: 27rem;
     margin-bottom: 15px;
-}
-.profile-info{
-    font-family: 'Montserrat', sans-serif;
-    border: 1px solid rgb(231, 231, 231);
-    border-radius: 4px;
-    margin: auto;
-    margin-bottom: 7px;
-    margin-top: 7px;
-    max-width: 818px;
-    background-color: white;
-    padding: 2rem;
 }
 .user-indv-post{
     width: min-content;
@@ -112,12 +205,6 @@
     padding: 8px 50px 20px 15px;
 }
 
-.user-profile-page-profile-pic{
-    width: 8rem;
-    height: 8rem;
-    object-fit: cover;
-    border-radius: 100%;
-}
 
 /* Edit User Form */
 

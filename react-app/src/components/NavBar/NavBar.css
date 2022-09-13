@@ -8,6 +8,7 @@ nav {
     padding-top: 0;
     margin: 0px;
     width: 100%;
+    z-index: 1;
 }
 .navbarDiv {
     padding-top: 10px;
