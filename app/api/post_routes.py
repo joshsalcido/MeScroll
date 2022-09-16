@@ -106,3 +106,23 @@ def deletepost(id):
     db.session.delete(post)
     db.session.commit()
     return post.to_dict()
+
+# Leave and remove a like on a Post
+@post_routes.route('/<id>/like', methods=['POST'])
+def post_like(id):
+    post = Post.query.get(id)
+
+    print(post.to_dict(), "+++++++++++++ POST in the BACK +++++++++++++++")
+    print(current_user, "***************** Current USER *****************")
+    if current_user in post.post_likes:
+        post.post_likes.remove(current_user)
+        db.session.add(post)
+        db.session.commit()
+        return post.to_dict()
+    # else
+
+    post.post_likes.append(current_user)
+
+    db.session.add(post)
+    db.session.commit()
+    return post.to_dict()

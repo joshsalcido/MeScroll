@@ -113,18 +113,21 @@ export default function EditUserForm({userInfo, closeEditProfile}){
             </div>
             <label>Name</label>
             <input
+            maxLength={50}
             value={fullname}
             type="text"
             onChange={(e) => {setFullName(e.target.value); setSaveChangesDisabled(false); setsaveChangesStyles(null)}}
             ></input>
             <label>Username</label>
             <input
+            maxLength={50}
             value={username}
             type="text"
             onChange={(e) => {setUsername(e.target.value); setSaveChangesDisabled(false); setsaveChangesStyles(null)}}
             ></input>
             <label>Email</label>
             <input
+            maxLength={50}
             value={email}
             type="text"
             onChange={(e) => {setEmail(e.target.value); setSaveChangesDisabled(false); setsaveChangesStyles(null)}}

@@ -8,19 +8,29 @@ def seed_users():
         profile_pic='https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png',
         username='Demo1',
         email='demo@aa.io',
-        password='password')
+        password='password',
+        bio='Hi! I am the Demo Profile, feel free to interact with meScroll as you please!',
+        website='www.google.com'
+        )
     marnie = User(
         full_name='Marnie Legg',
         profile_pic=None,
         username='marnie',
         email='marnie@aa.io',
-        password='password')
+        password='password',
+        bio="Hi! I'm Marnie :)",
+        website='www.google.com'
+        )
+
     bobbie = User(
         full_name='Bobbie Baggins',
         profile_pic='https://chadlindbergfansite.files.wordpress.com/2011/07/fast-furious-30.jpg',
         username='bobbie',
         email='bobbie@aa.io',
-        password='password')
+        password='password',
+        bio="Hi! I'm Bobbie :)",
+        website='www.google.com'
+        )
 
     db.session.add(demo)
     db.session.add(marnie)

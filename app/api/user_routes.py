@@ -44,7 +44,9 @@ def updateUser(id):
             # user.profile_pic = url,
             user.username = form.data['username'],
             user.full_name = form.data['fullname'],
-            user.email = form.data['email']
+            user.email = form.data['email'],
+            user.bio = form.data['bio'],
+            user.website = form.data['website']
 
             db.session.add(user)
             db.session.commit()
@@ -83,7 +85,9 @@ def updateUser(id):
         user.profile_pic = url,
         user.username = form.data['username'],
         user.full_name = form.data['fullname'],
-        user.email = form.data['email']
+        user.email = form.data['email'],
+        user.bio = form.data['bio'],
+        user.website = form.data['website']
 
         db.session.add(user)
         db.session.commit()

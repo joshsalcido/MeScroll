@@ -155,3 +155,89 @@ body{
     display: flex;
     width: 100%;
 }
+
+/* HEART and COMMENT icons */
+
+/*
+THIS IS THE FORM STYLING ACROSS THE SITE
+
+  font-family: 'Montserrat', sans-serif;
+    width: fit-content;
+    border: 1px solid #f1f1f1;
+    border-radius: 12px;
+    box-shadow: 2px  2px 8px #888888;;
+    padding: 20px 20px 50px 20px;
+    display: grid;
+    align-items: center;
+    margin: auto;
+    background-color: white;
+    min-width: 27rem;
+    max-width: 27rem;
+
+    THIS IS THE BUTTON STYLING ACROSS THE SITE
+
+    button {
+  background-color:#ffb4a5;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  border-radius: 5px;
+}
+
+*/
+.heartButton{
+    background-color: transparent;
+    /* border: 1px solid blue; */
+    padding: 0;
+    width: fit-content;
+    margin: 0px;
+    margin: 0.5rem;
+    margin-left: 0.8rem;
+    /* width: 1.5rem;
+    height: 1.5rem; */
+}
+.comment-button{
+    background-color: transparent;
+    /* border: 1px solid blue; */
+    padding: 0;
+    width: fit-content;
+    margin: 0.45rem;
+}
+
+.like-comment-form{
+    /* border: 1px solid blue; */
+    border: none;
+    box-shadow: none;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    min-width: none;
+    max-width: none;
+    border-radius: 0px;
+}
+
+
+.like-comment-buttons-div{
+    /* border: 1px solid blue; */
+    width: 100%;
+    margin: 0px;
+}
+.heart-img{
+    width: 1.5rem;
+    height: 1.5rem;
+    /* border: 1px solid red; */
+}
+.heart-img:hover{
+    opacity: 0.5;
+}
+.comment-img{
+    width: 1.5rem;
+    height: 1.5rem;
+    /* border: 1px solid red; */
+}
+.comment-img:hover{
+    opacity: 0.5;
+}

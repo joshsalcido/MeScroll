@@ -2,6 +2,7 @@ const GET_ALL_POSTS = 'post/getAllPosts';
 const CREATE_POST = 'post/createPost';
 const DELETE_POST = 'post/deletePost';
 const UPDATE_POST = 'post/updatePost';
+const CREATE_LIKE = 'post/createLike';
 
 //  ACTIONS
 export const actionGetAllPosts = (posts) => {
@@ -26,6 +27,13 @@ export const actionDeletePost = (postId) => {
 export const actionUpdatePost = (post) => {
     return {
         type: UPDATE_POST,
+        post
+    }
+}
+
+export const actionCreateLike = (post) => {
+    return {
+        type: CREATE_LIKE,
         post
     }
 }
@@ -82,6 +90,20 @@ export const thunkUpdatePost = (post) => async (dispatch) => {
     }
 }
 
+export const thunkCreateLike = (post) => async (dispatch) => {
+    console.log(post, "THUNK CREATE LIKE")
+    const response = await fetch(`/api/posts/${post.id}/like`, {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(post),
+    })
+
+    if (response.ok) {
+        const data = await response.json()
+        dispatch(actionCreateLike(data))
+    }
+}
+
 
 const postReducer = (state = {}, action) => {
     let newState = {...state}
@@ -99,6 +121,9 @@ const postReducer = (state = {}, action) => {
             delete newState[action.postId]
             return newState
         case UPDATE_POST:
+            newState[action.post.id] = action.post
+            return newState
+        case CREATE_LIKE:
             newState[action.post.id] = action.post
             return newState
         default:

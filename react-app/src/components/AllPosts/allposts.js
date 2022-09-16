@@ -5,11 +5,11 @@ import { thunkGetAllComments} from "../../store/comments";
 import './allposts.css'
 import NavBar from "../NavBar/NavBar";
 import Modal from "react-modal";
-import EditPostForm from "../editPostForm/editPostForm";
-import CommentForm from "../commentForm.js/commentForm";
-import CommentSection from "../comment-section/feedComments";
-import { NavLink } from "react-router-dom";
-import defaultUserImage from '../UserProfile/user (1).png'
+
+
+
+import LikeForm from "./LikeForm";
+import SinglePost from "./IndvPostOnFeed";
 
 
 Modal.setAppElement('body')
@@ -34,6 +34,9 @@ export default function AllPosts(){
     // function openPostOptions(){
     //     setPostOptions(true)
     // }
+
+
+
     function closePostOptions(){
         setPostOptions(false)
     }
@@ -82,41 +85,7 @@ export default function AllPosts(){
         <div className="center-feed-div">
             {allPosts.map((post) =>
             <>
-            <div key={post.id} className="indv-post">
-                <div className="userInfo-div">
-                    <img className="profile-pic" src={post.userInfo.profile_pic === null ? defaultUserImage : post.userInfo.profile_pic}></img>
-                    <div className="username-location">
-                        <NavLink style={{textDecoration: 'none', color: 'black'}} to={`/users/${post.userInfo.id}`}>
-                            <h4 className="username-allposts-at-top">{post.userInfo.username}</h4>
-                        </NavLink>
-                        <p className="post-location">{post.location}</p>
-                    </div>
-                    {post.user_id === sessionUserId && (
-                    <button className="post-options-btn" onClick={()=> {setPostOptions(true); setClickedPost(post)}}>...</button>
-                    )}
-                </div>
-                <Modal portalClassName="post-modal-options" isOpen={postOptions} style={customStyles} theme={{colors: {backdrop: "transparent"}}}>
-                    {/* <button className="unfollow-fromfeed">Unfollow</button>
-                    <button className="go-to-post-fromfeed">Go to Post</button> */}
-                    <button onClick={() => {setShowEditForm(true); closePostOptions()}}>Edit Your Post</button>
-                    <button onClick={()=> {dispatch(thunkDeletePost(clickedPost?.id)); setPostOptions(false)}}>Delete Your Post</button>
-                    <button onClick={() => setPostOptions(false)}>Cancel</button>
-                </Modal>
-                <Modal isOpen={showEditForm} style={editPostStyling}>
-                    <EditPostForm closeEditForm={closeEditForm} postId={clickedPost?.id} closePostOptions={closePostOptions}/>
-                </Modal>
-                <img className="feed-photo" src={post.photo} alt="a mescroll post"></img>
-                <div className="username-caption-div">
-                    <NavLink style={{textDecoration: 'none', color: 'black'}} to={`/users/${post.userInfo.id}`}>
-                        <p className="username-next-to-caption">{post.userInfo.username}</p>
-                    </NavLink>
-                    <p className="indv-caption">{post.caption}</p>
-                </div>
-                <br></br>
-                <span></span>
-                <CommentSection currentPost={post}/>
-                <CommentForm currentPost={post}/>
-            </div>
+            <SinglePost post={post}></SinglePost>
             </>)}
         </div>
         </>
