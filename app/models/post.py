@@ -25,6 +25,9 @@ class Post(db.Model):
     def get_likes(self):
         data = [ like.to_dict() for like in self.post_likes]
         return data
+    def get_likes_userId(self):
+        data = [ user.id for user in self.post_likes]
+        return data
 
     def to_dict(self):
         return {
@@ -35,5 +38,6 @@ class Post(db.Model):
             'location' : self.location,
             'userInfo' : self.get_users(),
             'comments' : self.get_comments(),
-            'post_likes': self.get_likes()
+            'post_likes': self.get_likes(),
+            'likes_userIds': self.get_likes_userId()
         }

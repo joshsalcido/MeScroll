@@ -11,50 +11,28 @@ export default function LikeForm({post}){
     const sessionUserId = useSelector(state => state.session?.user?.id)
     const postId = post.id
     const currentPost = post
-    const [likeHeart, setLikeHeart] = useState(heartOutlined)
-
-    const likeOrNot = () => {
-       let arr = currentPost.post_likes
-       arr.forEach(like => {
-        if (like.id === sessionUserId) {
-            setLikeHeart(heartOutlined)
-        } else {
-            setLikeHeart(heartFilled)
-        }
-       });
-    }
+    const [heartImg, setHeartImg] = useState(heartOutlined)
+    const userIdLikesArray = currentPost.likes_userIds
 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        console.log("submitting like", currentPost)
-
         await dispatch(thunkCreateLike(currentPost))
 
-        let arr = currentPost.post_likes
-        // if (arr.length === 0) return setLikeHeart(heartFilled)
-        for (let i = 0; i < arr.length; i++) {
-            console.log(arr[i].id, "like.id", sessionUserId, "sessionUserId")
-            if (arr[i].id === sessionUserId) {
-                setLikeHeart(heartOutlined)
-                break;
+            if ( userIdLikesArray.includes(sessionUserId)) {
+                setHeartImg(heartOutlined)
             } else {
-                setLikeHeart(heartFilled)
+                setHeartImg(heartFilled)
             }
-        }
+
     }
     useEffect(() => {
-        let arr = currentPost.post_likes
-        for (let i = 0; i < arr.length; i++) {
-            console.log(arr[i].id, "like.id", sessionUserId, "sessionUserId")
-            if (arr[i].id === sessionUserId) {
-                setLikeHeart(heartOutlined)
-                break;
+            if (userIdLikesArray.includes(sessionUserId)) {
+                setHeartImg(heartFilled)
             } else {
-                setLikeHeart(heartFilled)
+                setHeartImg(heartOutlined)
             }
-        }
     }, [currentPost, dispatch])
 
     return (
@@ -62,7 +40,7 @@ export default function LikeForm({post}){
         <form onSubmit={handleSubmit} className="like-comment-form" >
             <div className="like-comment-buttons-div">
                 <button type='submit' className='heartButton'>
-                    <img className="heart-img" src={likeHeart}></img>
+                    <img className="heart-img" src={heartImg}></img>
                 </button>
                 <button type='button' className="comment-button">
                     <img className="comment-img" src={commentImg}></img>
