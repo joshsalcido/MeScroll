@@ -27,16 +27,16 @@ export default function EditUserForm({userInfo, closeEditProfile}){
   const userSession = useSelector(state => state.userReducer?.user)
 
 
-  // console.log(userSession?.username, "++++ USER SESSION username +++")
-  // const [name, setName] = useState(userSession.full_name)
+
   const [username, setUsername] = useState('')
   const [fullname, setFullName] = useState('')
   const [email, setEmail] = useState('')
-  // const [bio, setBio] = useState('')
+  const [bio, setBio] = useState('')
+  const [website, setWebsite] = useState('')
   const [profilepic, setProfilePic] = useState('')
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // console.log(fullname, "FullNAME in frontEND")
 
     const formData = new FormData();
     formData.append("user_id", userSession?.id);
@@ -44,6 +44,8 @@ export default function EditUserForm({userInfo, closeEditProfile}){
     formData.append("username", username);
     formData.append("fullname", fullname)
     formData.append("email", email);
+    formData.append("bio", bio);
+    formData.append("website", website)
 
     await dispatch(updateProfileThunk(formData, userSession.id))
 
@@ -54,9 +56,11 @@ export default function EditUserForm({userInfo, closeEditProfile}){
     setUsername(userSession?.username)
     setFullName(userSession?.full_name)
     setEmail(userSession?.email)
+    setBio(userSession?.bio)
+    setWebsite(userSession?.website)
+
     dispatch(getUserInfoThunk(userId))
-    // setLoading(false)
-    // dispatch(thunkGetAllPosts())
+
     if (!userId) {
       return;
     }
@@ -69,21 +73,21 @@ export default function EditUserForm({userInfo, closeEditProfile}){
   }, [dispatch,userId]);
 
   const updatePhoto = async (e) => {
-    // setLoading(true)
+
     const file = e.target.files[0];
-    // setProfilePic(file);
-    // console.log(file, "file inside updatephoto")
+
     if (file) {
       const formData = new FormData();
       formData.append("user_id", userSession?.id);
       formData.append("profilepic", file);
       formData.append("username", username);
-      formData.append("fullname", fullname)
+      formData.append("fullname", fullname);
       formData.append("email", email);
+      formData.append("bio", bio);
+      formData.append("website", website);
       await dispatch(updateProfileThunk(formData, userSession.id))
 
-      // console.log("after DISPATCH")
-      // dispatch(getUserInfoThunk(userId))
+
     }
     setLoading(false)
   }
@@ -105,27 +109,40 @@ export default function EditUserForm({userInfo, closeEditProfile}){
               <input
                type="file"
                name="photo"
-              //  value={userSession?.profile_pic}
                accept="image/jpg, image/jpeg, image/png, image/gif"
                className="edit-user-photo-input"
                onChange={(e) => {if (e.target.value !== undefined){setLoading(true)}; updatePhoto(e); setSaveChangesDisabled(false); setsaveChangesStyles(null) }}
                ></input>
             </div>
-            <label>Name</label>
+            <label className="editForm-input-labels">Name</label>
             <input
             maxLength={50}
             value={fullname}
             type="text"
             onChange={(e) => {setFullName(e.target.value); setSaveChangesDisabled(false); setsaveChangesStyles(null)}}
             ></input>
-            <label>Username</label>
+            <label className="editForm-input-labels" >Username</label>
             <input
             maxLength={50}
             value={username}
             type="text"
             onChange={(e) => {setUsername(e.target.value); setSaveChangesDisabled(false); setsaveChangesStyles(null)}}
             ></input>
-            <label>Email</label>
+            <label className="editForm-input-labels" >Bio</label>
+            <input
+            maxLength={80}
+            value={bio}
+            type="text"
+            onChange={(e) => {setBio(e.target.value); setSaveChangesDisabled(false); setsaveChangesStyles(null)}}
+            ></input>
+            <label className="editForm-input-labels" >Website</label>
+            <input
+            maxLength={70}
+            value={website}
+            type="text"
+            onChange={(e) => {setWebsite(e.target.value); setSaveChangesDisabled(false); setsaveChangesStyles(null)}}
+            ></input>
+            <label className="editForm-input-labels" >Email</label>
             <input
             maxLength={50}
             value={email}

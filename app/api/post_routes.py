@@ -112,8 +112,8 @@ def deletepost(id):
 def post_like(id):
     post = Post.query.get(id)
 
-    print(post.to_dict(), "+++++++++++++ POST in the BACK +++++++++++++++")
-    print(current_user, "***************** Current USER *****************")
+    # print(post.to_dict(), "+++++++++++++ POST in the BACK +++++++++++++++")
+    # print(current_user, "***************** Current USER *****************")
     if current_user in post.post_likes:
         post.post_likes.remove(current_user)
         db.session.add(post)

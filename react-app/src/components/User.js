@@ -39,7 +39,8 @@ function User() {
   const [username, setUsername] = useState('')
   const [fullname, setFullName] = useState('')
   const [email, setEmail] = useState('')
-  // const [bio, setBio] = useState('')
+  const [bio, setBio] = useState('')
+  const [website, setWebsite] = useState('')
   const [profilepic, setProfilePic] = useState('')
 
   function closeEditForm (){
@@ -71,7 +72,7 @@ function User() {
 
   useEffect(() => {
     setUsername(userSession?.username)
-    dispatch(getUserInfoThunk(userId))
+    dispatch(getUserInfoThunk(loggedInUser))
     dispatch(thunkGetAllPosts())
     if (!userId) {
       return;
@@ -164,7 +165,14 @@ function User() {
             </div>
             <div className='fullname-email-div'>
               <div className='user-fullname-div'>{userSession?.full_name}</div>
-              <div className='user-email-div'> Email: {userSession?.email}</div>
+              <div className='bio-div'>{userSession?.bio}</div>
+              <div className='user-email-div'>
+                <label>email: </label>
+                <a style={{color:'#ffb4a5', textDecoration: 'none'}} href={`mailto: ${userSession?.email}`}>{userSession?.email}</a>
+              </div>
+              <div className='website-div'>
+                <a className='website-a-tag' href={`https://${userSession?.website}`} target="_blank" rel="noopener noreferrer">{userSession?.website}</a>
+              </div>
             </div>
           </div>
         </div>

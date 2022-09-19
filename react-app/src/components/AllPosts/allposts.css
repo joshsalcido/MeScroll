@@ -241,3 +241,15 @@ THIS IS THE FORM STYLING ACROSS THE SITE
 .comment-img:hover{
     opacity: 0.5;
 }
+
+/* HEART ON DOUBLLE CLICK */
+.heart {
+    width: auto;
+    height: 9rem;
+    /* border: 1px solid blue; */
+    /* margin: 0px 10px 0px 0px; */
+    position: absolute;
+    opacity: 0.89;
+    /* left: 0px; */
+    top: 22rem;
+}

@@ -11,13 +11,15 @@ import './allposts.css'
 import NavBar from "../NavBar/NavBar";
 import Modal from "react-modal";
 import LikeForm from "./LikeForm";
-
+import fullHeart from "../AllPosts/heart.png"
 
 export default function SinglePost({post}){
     const dispatch = useDispatch();
     const [clickedPost, setClickedPost] = useState(null)
     const [postOptions, setPostOptions] = useState(false);
     const [showEditForm, setShowEditForm] = useState(false);
+
+    const [showHeart, setShowHeart] = useState(true)
 
     const sessionUserId = useSelector(state => state.session?.user?.id)
 
@@ -85,7 +87,8 @@ export default function SinglePost({post}){
                 <Modal isOpen={showEditForm} style={editPostStyling}>
                     <EditPostForm closeEditForm={closeEditForm} postId={clickedPost?.id} closePostOptions={closePostOptions}/>
                 </Modal>
-                <img className="feed-photo" src={post.photo} alt="a mescroll post"></img>
+                {/* {  (<img className="heart" src={fullHeart}></img>)} */}
+                <img className="feed-photo" src={post.photo} alt="a mescroll post" onDoubleClick={() => setShowHeart(true)}></img>
                 <LikeForm post={post} ></LikeForm>
                 <div className="username-caption-div">
                     <NavLink style={{textDecoration: 'none', color: 'black'}} to={`/users/${post.userInfo.id}`}>

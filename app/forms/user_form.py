@@ -7,3 +7,5 @@ class UserUpdateForm(FlaskForm):
     fullname = StringField('fullname')
     username = StringField('username')
     email = StringField('email')
+    bio = StringField('bio')
+    website = StringField('website')
