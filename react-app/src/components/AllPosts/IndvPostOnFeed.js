@@ -81,13 +81,14 @@ export default function SinglePost({post}){
                     {/* <button className="unfollow-fromfeed">Unfollow</button>
                     <button className="go-to-post-fromfeed">Go to Post</button> */}
                     <button onClick={() => {setShowEditForm(true); closePostOptions()}}>Edit Your Post</button>
-                    <button onClick={()=> {dispatch(thunkDeletePost(clickedPost?.id)); setPostOptions(false)}}>Delete Your Post</button>
+                    <button onClick={()=> {dispatch(thunkDeletePost(post?.id)); setPostOptions(false)}}>Delete Your Post</button>
                     <button onClick={() => setPostOptions(false)}>Cancel</button>
                 </Modal>
                 <Modal isOpen={showEditForm} style={editPostStyling}>
                     <EditPostForm closeEditForm={closeEditForm} postId={clickedPost?.id} closePostOptions={closePostOptions}/>
                 </Modal>
-                {/* {  (<img className="heart" src={fullHeart}></img>)} */}
+                {/* HEART FOR DOUBLE CLICK LIKE FEATURE */}
+                {/* <img className="heart" src={fullHeart}></img> */}
                 <img className="feed-photo" src={post.photo} alt="a mescroll post" onDoubleClick={() => setShowHeart(true)}></img>
                 <LikeForm post={post} ></LikeForm>
                 <div className="username-caption-div">

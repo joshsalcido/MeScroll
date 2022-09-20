@@ -100,10 +100,12 @@ function User() {
     },
     content: {
         padding: '25px',
-        height: '43.5rem',
-        width: '63.8rem',
+        height: '38rem',
+        width: '60rem',
         margin: 'auto',
-        borderRadius: '20px',
+        borderRadius: '10px',
+        position: 'absolute',
+        zIndex: '1',
     }
   }
   const postOptionStyles = {

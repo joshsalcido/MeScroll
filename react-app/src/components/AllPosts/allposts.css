@@ -196,6 +196,7 @@ THIS IS THE FORM STYLING ACROSS THE SITE
     margin: 0px;
     margin: 0.5rem;
     margin-left: 0.8rem;
+    margin-bottom: 0px;
     /* width: 1.5rem;
     height: 1.5rem; */
 }
@@ -217,6 +218,7 @@ THIS IS THE FORM STYLING ACROSS THE SITE
     min-width: none;
     max-width: none;
     border-radius: 0px;
+    height: fit-content;
 }
 
 
@@ -241,6 +243,14 @@ THIS IS THE FORM STYLING ACROSS THE SITE
 .comment-img:hover{
     opacity: 0.5;
 }
+/* LIKED BY */
+.likedBy{
+    /* border: 1px solid  blue; */
+    margin: 0px;
+    margin-left: 7px;
+    font-size: 14px;
+    font-weight: 100;
+}
 
 /* HEART ON DOUBLLE CLICK */
 .heart {
@@ -248,8 +258,10 @@ THIS IS THE FORM STYLING ACROSS THE SITE
     height: 9rem;
     /* border: 1px solid blue; */
     /* margin: 0px 10px 0px 0px; */
-    position: absolute;
+    position: static;
     opacity: 0.89;
+    z-index: 10;
     /* left: 0px; */
-    top: 22rem;
+    /* top: 22rem; */
+    margin-bottom: -40rem;
 }

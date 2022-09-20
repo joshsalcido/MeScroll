@@ -12,7 +12,9 @@ export default function LikeForm({post}){
     const postId = post.id
     const currentPost = post
     const [heartImg, setHeartImg] = useState(heartOutlined)
-    const userIdLikesArray = currentPost.likes_userIds
+    const userIdLikesArray = currentPost?.likes_userIds
+    const likesInfo = currentPost?.post_likes
+    const firstLiker = likesInfo[0]
 
 
     const handleSubmit = async (e) => {
@@ -35,6 +37,7 @@ export default function LikeForm({post}){
             }
     }, [currentPost, dispatch])
 
+    console.log(likesInfo, "LASTLIKER")
     return (
         <>
         <form onSubmit={handleSubmit} className="like-comment-form" >
@@ -42,9 +45,10 @@ export default function LikeForm({post}){
                 <button type='submit' className='heartButton'>
                     <img className="heart-img" src={heartImg}></img>
                 </button>
-                <button type='button' className="comment-button">
+                { (userIdLikesArray.length > 0) && (<p className='likedBy'>Liked by <strong>{firstLiker?.username}</strong> {userIdLikesArray.length > 1 &&(<span>and others</span>)}</p>)}
+                {/* <button type='button' className="comment-button">
                     <img className="comment-img" src={commentImg}></img>
-                </button>
+                </button> */}
             </div>
         </form>
         </>

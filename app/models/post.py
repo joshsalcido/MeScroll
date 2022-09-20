@@ -13,7 +13,7 @@ class Post(db.Model):
 
     users = db.relationship("User", back_populates="posts", lazy="subquery")
     comments = db.relationship("Comment", back_populates="post", cascade="all, delete")
-    post_likes = db.relationship("User", secondary=likes, back_populates="user_likes", cascade="all, delete")
+    post_likes = db.relationship("User", secondary=likes, back_populates="user_likes")
 
     def get_users(self):
         data = self.users.to_dict()
