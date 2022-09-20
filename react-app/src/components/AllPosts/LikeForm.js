@@ -5,6 +5,7 @@ import commentImg from '../AllPosts/chat.png'
 import { useDispatch, useSelector } from 'react-redux';
 import { thunkCreateLike } from '../../store/posts';
 import { useEffect, useState } from 'react';
+import { NavLink } from 'react-router-dom';
 
 export default function LikeForm({post}){
     const dispatch = useDispatch();
@@ -45,7 +46,7 @@ export default function LikeForm({post}){
                 <button type='submit' className='heartButton'>
                     <img className="heart-img" src={heartImg}></img>
                 </button>
-                { (userIdLikesArray.length > 0) && (<p className='likedBy'>Liked by <strong>{firstLiker?.username}</strong> {userIdLikesArray.length > 1 &&(<span>and others</span>)}</p>)}
+                { (userIdLikesArray.length > 0) && (<p className='likedBy'>Liked by <NavLink style={{textDecoration: 'none', color: 'black'}} to={`/users/${firstLiker?.id}`}><strong>{firstLiker?.username}</strong></NavLink> {userIdLikesArray.length > 1 && (<span>and others</span>)}</p>)}
                 {/* <button type='button' className="comment-button">
                     <img className="comment-img" src={commentImg}></img>
                 </button> */}
