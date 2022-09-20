@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUserInfoThunk, updateProfileThunk } from '../../store/users'
 import '../UserProfile/userProfile.css'
 import loadingGif from '../createPostForm/Spin-1s-200px.gif'
+import defaultUserImage from '../UserProfile/user (3).png'
 
 export default function EditUserForm({userInfo, closeEditProfile}){
 
@@ -104,7 +105,7 @@ export default function EditUserForm({userInfo, closeEditProfile}){
           <form onSubmit={handleSubmit} className="edit-profile-form">
             <button type="button" className="userform-cancel-x-button" onClick={() => closeEditProfile()}>X</button>
             <div className="edit-user-container-1">
-              <img className='user-profile-page-profile-pic' src={userSession?.profile_pic} alt="mescroll user pic"></img>
+              <img className='user-profile-page-profile-pic' src={userSession?.profile_pic === null ? defaultUserImage : userSession?.profile_pic} alt="mescroll user pic"></img>
               { loading && (<img className="edit-profile-loading" src={loadingGif}></img>)}
               <input
                type="file"
