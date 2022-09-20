@@ -103,7 +103,7 @@ def updatepost(id):
 @post_routes.route('/<id>', methods=['DELETE'])
 def deletepost(id):
     post = Post.query.get(id)
-    print(post.to_dict(), "+++++++ +++++++   BACKEND POST +++++++++++++")
+   
     db.session.delete(post)
     db.session.commit()
     return post.to_dict()
