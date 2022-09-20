@@ -50,7 +50,7 @@ const userReducer = (state = {}, action) => {
     switch (action.type) {
         case GET_USER:
             // newState = {};
-            console.log(action, "action GET USER")
+            // console.log(action, "action GET USER")
             newState['user'] = action.user
             return newState;
         case UPDATE_PROFILE:
