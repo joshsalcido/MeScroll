@@ -267,3 +267,19 @@
     top: 40px;
     right: 15px;
 }
+
+.no-posts-div{
+    /* border: 1px solid blue; */
+    display: grid;
+}
+
+.no-post-yet-msg{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 100;
+    font-size: 1.8rem;
+}
+.no-post-img{
+    margin: auto;
+    margin-top: 33px;
+    /* border: 1px solid red; */
+}

@@ -7,8 +7,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import ReactModal from 'react-modal';
 import EditPostForm from './editPostForm/editPostForm';
 import { getUserInfoThunk, updateProfileThunk } from '../store/users';
-import defaultUserImage from './UserProfile/user (1).png'
+import defaultUserImage from './UserProfile/user (3).png'
 import EditUserForm from './UserProfile/EditUser';
+import cameraImg from '../components/UserProfile/camera.png'
 
 ReactModal.setAppElement('body')
 
@@ -32,7 +33,9 @@ function User() {
 
   const loggedInUser = useSelector(state => state.session?.user.id)
 
-  console.log(parseInt(userId), "params", loggedInUser, "loggedin")
+  const clickedOnUser = useSelector(state => state)
+
+  console.log(onlyUserPost[0]?.userInfo, "clicked on USEr", clickedOnUser)
 
   // console.log(userSession?.username, "++++ USER SESSION username +++")
   // const [name, setName] = useState(userSession.full_name)
@@ -72,7 +75,7 @@ function User() {
 
   useEffect(() => {
     setUsername(userSession?.username)
-    dispatch(getUserInfoThunk(loggedInUser))
+    dispatch(getUserInfoThunk(userId))
     dispatch(thunkGetAllPosts())
     if (!userId) {
       return;
@@ -184,7 +187,10 @@ function User() {
         <div className='user-photo-grid'>
           {onlyUserPost.length === 0 && (
           <>
-          <h1>You currently have zero Posts</h1>
+          <div className='no-posts-div'>
+            <img className='no-post-img' src={cameraImg}></img>
+            <p className='no-post-yet-msg'>No Posts Yet</p>
+          </div>
           </>
           )}
           {onlyUserPost.map((post) =>
