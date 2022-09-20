@@ -38,7 +38,7 @@ export default function LikeForm({post}){
             }
     }, [currentPost, dispatch])
 
-    console.log(likesInfo, "LASTLIKER")
+    // console.log(likesInfo, "LASTLIKER")
     return (
         <>
         <form onSubmit={handleSubmit} className="like-comment-form" >

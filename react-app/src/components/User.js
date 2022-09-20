@@ -35,7 +35,7 @@ function User() {
 
   const clickedOnUser = useSelector(state => state)
 
-  console.log(onlyUserPost[0]?.userInfo, "clicked on USEr", clickedOnUser)
+  // console.log(onlyUserPost[0]?.userInfo, "clicked on USEr", clickedOnUser)
 
   // console.log(userSession?.username, "++++ USER SESSION username +++")
   // const [name, setName] = useState(userSession.full_name)
