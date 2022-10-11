@@ -35,10 +35,8 @@ function User() {
 
   const clickedOnUser = useSelector(state => state)
 
-  // console.log(onlyUserPost[0]?.userInfo, "clicked on USEr", clickedOnUser)
+  
 
-  // console.log(userSession?.username, "++++ USER SESSION username +++")
-  // const [name, setName] = useState(userSession.full_name)
   const [username, setUsername] = useState('')
   const [fullname, setFullName] = useState('')
   const [email, setEmail] = useState('')
@@ -212,7 +210,7 @@ function User() {
                     <img className='clicked-on-image' src={specificPost?.photo} alt='mescroll post'></img>
                   </div>
                   <div className='single-post-info-div'>
-                  {userId == userSession?.id && (<button className='indv-post-options-btn' onClick={()=> setShowPostOptions(true)}>...</button>)}
+                  {userId == loggedInUser && (<button className='indv-post-options-btn' onClick={()=> setShowPostOptions(true)}>...</button>)}
                     {/* <p>{specificPost}</p> */}
                     <label className='caption-location-single-post'>Location:</label>
                     <p >{specificPost?.location}</p>
