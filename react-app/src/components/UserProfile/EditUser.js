@@ -45,8 +45,19 @@ export default function EditUserForm({userInfo, closeEditProfile}){
     formData.append("username", username);
     formData.append("fullname", fullname)
     formData.append("email", email);
-    formData.append("bio", bio);
-    formData.append("website", website)
+
+    if (bio === null || bio === "null") {
+      formData.append("bio", '');
+    } else {
+      formData.append("bio", bio)
+    }
+
+    if (website === null || website === "null") {
+      formData.append("website", '')
+    } else {
+      formData.append("website", website)
+    }
+
 
     await dispatch(updateProfileThunk(formData, userSession.id))
 
@@ -138,6 +149,7 @@ export default function EditUserForm({userInfo, closeEditProfile}){
             ></input>
             <label className="editForm-input-labels" >Website</label>
             <input
+            placeholder="www.example.com"
             maxLength={70}
             value={website}
             type="text"

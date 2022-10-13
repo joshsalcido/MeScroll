@@ -35,7 +35,7 @@ function User() {
 
   const clickedOnUser = useSelector(state => state)
 
-  
+
 
   const [username, setUsername] = useState('')
   const [fullname, setFullName] = useState('')
