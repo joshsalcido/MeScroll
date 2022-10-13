@@ -222,6 +222,14 @@
 
 .editForm-input-labels{
     font-weight: 600;
+    max-width: 70px;
+    /* border: 1px solid blue; */
+}
+.website-error-msg{
+    color: red;
+    font-size: 13px;
+    /* border: 1px solid blue; */
+    margin-bottom: -5px;
 }
 
 .edit-profile-form {
