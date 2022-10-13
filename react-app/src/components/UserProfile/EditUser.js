@@ -9,25 +9,17 @@ import defaultUserImage from '../UserProfile/user (3).png'
 export default function EditUserForm({userInfo, closeEditProfile}){
 
   const dispatch = useDispatch();
+
   const [user, setUser] = useState({});
-  // const { userId }  = useParams();
-  const [showPostDetails, setShowPostDetails] = useState(false);
+
   const [clickedPost, setClickedPost] = useState('');
-  const [showPostOptions, setShowPostOptions] = useState(false);
-  const [showEditForm, setShowEditForm] = useState(false);
-  const [editProfileModal, setEditProfileModal] = useState(false);
   const [loading, setLoading] = useState(false)
 
-  const allPosts = useSelector(state => Object.values(state.postReducer)).reverse()
   const userId = useSelector(state => state.session?.user.id)
-
-  const onlyUserPost = allPosts.filter(post => post.user_id === parseInt(userId))
-
-  const specificPost = useSelector( state => state.postReducer[clickedPost.id])
 
   const userSession = useSelector(state => state.userReducer?.user)
 
-
+  const [errors, setErrors] = useState([]);
 
   const [username, setUsername] = useState('')
   const [fullname, setFullName] = useState('')
@@ -36,33 +28,60 @@ export default function EditUserForm({userInfo, closeEditProfile}){
   const [website, setWebsite] = useState('')
   const [profilepic, setProfilePic] = useState('')
 
+  const disabledButton = {
+    backgroundColor: '#fedcd5',
+  }
+
+  const [saveChangesStyles, setsaveChangesStyles] = useState(disabledButton)
+  const [saveChangesdisabled, setSaveChangesDisabled] = useState(true)
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const formData = new FormData();
-    formData.append("user_id", userSession?.id);
-    formData.append("profilepic", profilepic);
-    formData.append("username", username);
-    formData.append("fullname", fullname)
-    formData.append("email", email);
+    let res = /^[a-zA-Z]+$/.test(website[4])
+    let period = /.*\..*\..*/.test(website)
+    let correctEnd = false
 
-    if (bio === null || bio === "null") {
-      formData.append("bio", '');
+    if (website.endsWith('.com') || website.endsWith('.co') || website.endsWith('.net') || website.endsWith('.org') || website.endsWith('.us')|| website.endsWith('.gov') || website.endsWith('.edu') || website.endsWith('.info')){
+      correctEnd = false;
     } else {
-      formData.append("bio", bio)
+      correctEnd = true;
     }
 
-    if (website === null || website === "null") {
-      formData.append("website", '')
+    if ( !website.startsWith('www.') || !res  || !period || correctEnd ){
+      errors.push("website error")
+      setSaveChangesDisabled(true)
+      setsaveChangesStyles(disabledButton)
+      return
     } else {
-      formData.append("website", website)
+        const formData = new FormData();
+        formData.append("user_id", userSession?.id);
+        formData.append("profilepic", profilepic);
+        formData.append("username", username);
+        formData.append("fullname", fullname)
+        formData.append("email", email);
+
+        if (bio === null || bio === "null") {
+          formData.append("bio", '');
+        } else {
+          formData.append("bio", bio)
+        }
+
+        if (website === null || website === "null") {
+          formData.append("website", '')
+        } else {
+          formData.append("website", website)
+        }
+
+        await dispatch(updateProfileThunk(formData, userSession.id))
+
+        closeEditProfile()
     }
-
-
-    await dispatch(updateProfileThunk(formData, userSession.id))
-
-    closeEditProfile()
   }
+
+  // useEffect(() => {
+
+  // }, [])
 
   useEffect(() => {
     setUsername(userSession?.username)
@@ -82,7 +101,7 @@ export default function EditUserForm({userInfo, closeEditProfile}){
       setUser(user);
     })();
 
-  }, [dispatch,userId]);
+  }, [dispatch,userId, errors]);
 
   const updatePhoto = async (e) => {
 
@@ -104,12 +123,6 @@ export default function EditUserForm({userInfo, closeEditProfile}){
     setLoading(false)
   }
 
-  const disabledButton = {
-    backgroundColor: '#fedcd5',
-  }
-
-  const [saveChangesStyles, setsaveChangesStyles] = useState(disabledButton)
-  const [saveChangesdisabled, setSaveChangesDisabled] = useState(true)
 
   return (
         <>
@@ -148,6 +161,7 @@ export default function EditUserForm({userInfo, closeEditProfile}){
             onChange={(e) => {setBio(e.target.value); setSaveChangesDisabled(false); setsaveChangesStyles(null)}}
             ></input>
             <label className="editForm-input-labels" >Website</label>
+            {errors.length > 0 && (<span className="website-error-msg">Please enter a valid website, (start: www. , end: .com, .org, .gov, etc.)</span>)}
             <input
             placeholder="www.example.com"
             maxLength={70}
