@@ -51,7 +51,6 @@ export const thunkGetAllPosts = () => async (dispatch) => {
 }
 
 export const thunkCreatePost = (formData) => async (dispatch) => {
-    // console.log(formData, "formData from thunk")
     const response = await fetch('/api/posts/newpost', {
         method: "POST",
         body: formData,
@@ -59,7 +58,6 @@ export const thunkCreatePost = (formData) => async (dispatch) => {
 
     if (response.ok) {
         const data = await response.json();
-        // console.log(data.caption.length, "THUNK POST caption length")
         dispatch(actionCreatePost(data))
         return data;
     }
@@ -91,7 +89,6 @@ export const thunkUpdatePost = (post) => async (dispatch) => {
 }
 
 export const thunkCreateLike = (post) => async (dispatch) => {
-    // console.log(post, "THUNK CREATE LIKE")
     const response = await fetch(`/api/posts/${post.id}/like`, {
         method: "POST",
         headers: {"Content-Type": "application/json"},
@@ -109,7 +106,6 @@ const postReducer = (state = {}, action) => {
     let newState = {...state}
     switch (action.type) {
         case GET_ALL_POSTS:
-            // newState = {};
             action.posts.forEach(post => {
                 newState[post.id] = post
             });

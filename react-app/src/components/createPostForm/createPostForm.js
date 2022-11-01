@@ -11,7 +11,6 @@ export default function PostForm({closeCreateForm}){
     const dispatch = useDispatch()
     const sessionUser = useSelector(state => state.session?.user)
     const [errors, setErrors] = useState([]);
-    // const [errorCheck, setErrorCheck] = useState(false);
 
     const [photo, setPhoto] = useState(null);
     const [caption, setCaption] = useState(null);
@@ -54,7 +53,6 @@ export default function PostForm({closeCreateForm}){
           return
         } else {
           setShowCreateButton(false)
-          // console.log(caption.length, " ++++ caption length that gets sent to dispatch")
           const formData = new FormData();
           formData.append("user_id", sessionUser.id)
           formData.append("photo", photo);
@@ -82,8 +80,6 @@ export default function PostForm({closeCreateForm}){
       const file = e.target.files[0];
       setPhoto(file);
   }
-
-// console.log(caption?.length, "caption length in create")
 
     return (
         <>

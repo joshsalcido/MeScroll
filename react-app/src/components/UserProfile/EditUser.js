@@ -12,7 +12,6 @@ export default function EditUserForm({userInfo, closeEditProfile}){
 
   const [user, setUser] = useState({});
 
-  const [clickedPost, setClickedPost] = useState('');
   const [loading, setLoading] = useState(false)
 
   const userId = useSelector(state => state.session?.user.id)
@@ -79,9 +78,6 @@ export default function EditUserForm({userInfo, closeEditProfile}){
     }
   }
 
-  // useEffect(() => {
-
-  // }, [])
 
   useEffect(() => {
     setUsername(userSession?.username)

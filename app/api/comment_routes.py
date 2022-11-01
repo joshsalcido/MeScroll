@@ -62,7 +62,7 @@ def deletepost(id):
 @comment_routes.route('/<id>/edit', methods=['PUT'])
 def editcomment(id):
     form = CommentForm()
-    # print(form.to_dict(), "++++++++++++++++++++++++++++")
+    
     form['csrf_token'].data = request.cookies['csrf_token']
     comment = Comment.query.get(id)
     if form.validate_on_submit():

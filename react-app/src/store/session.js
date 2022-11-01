@@ -85,7 +85,6 @@ export const signUp = (username, full_name, email, password, confirmed_password)
     }),
   });
 
-  // console.log(response.json(), "signUp THUNKKKK")
   if (response.ok) {
     const data = await response.json();
     dispatch(setUser(data))

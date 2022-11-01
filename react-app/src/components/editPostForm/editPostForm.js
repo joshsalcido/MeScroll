@@ -8,7 +8,6 @@ import '../editPostForm/editForm.css'
 export default function EditPostForm({closeEditForm, postId, closePostOptions, closePostDetails}){
     const dispatch = useDispatch()
 
-    // const sessionUser = useSelector(state => state.session.user)
     const post = useSelector(state => state.postReducer[postId])
 
     const [photo, setPhoto] = useState(`${post.photo}`);
@@ -62,20 +61,12 @@ export default function EditPostForm({closeEditForm, postId, closePostOptions, c
           setHasSubmitted(true);
           closeEditForm();
           closePostOptions();
-          // closePostDetails();
 
           setPhoto('')
           setCaption('')
           setLocation('')
         }
     }
-
-    // useEffect(()=> {
-    //   dispatch(thunkGetAllPosts())
-    // }, [dispatch])
-
-    // console.log(caption?.length, "caption length in editForm")
-    // console.log(post.caption?.length, "post.caption length")
 
     return (
         <>
