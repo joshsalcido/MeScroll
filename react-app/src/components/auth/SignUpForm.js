@@ -16,21 +16,18 @@ const SignUpForm = () => {
 
   const onSignUp = async (e) => {
     e.preventDefault();
-    // if (password === repeatPassword) {
+
       const data = await dispatch(signUp(username, full_name, email, password, confirmed_Password ));
       if (data) {
         setErrors(data)
       }
-    // }
-    // errors.push('Confirmed Password does not match')
+
   };
 
   useEffect(()=>{
 
   }, [errors])
   const demoLogin = async (e) => {
-    // e.preventDefault();
-
       await dispatch(login('demo@aa.io', 'password'))
 
   };

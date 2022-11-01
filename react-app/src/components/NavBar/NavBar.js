@@ -15,8 +15,6 @@ import linkedInLogo from './linkedin.png'
 const NavBar = () => {
   const sessionUser = useSelector(state => state.session?.user)
 
-  // console.log(sessionUser, "NAVBAR SESION USER")
-
   const [showCreateForm, setShowCreateForm] = useState(false);
 
 

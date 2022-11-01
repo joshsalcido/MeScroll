@@ -14,16 +14,12 @@ export default function CommentForm({currentPost}){
     const [commentLengthMaxStyling, setCommentLengthMaxStyling] = useState(null);
     const [showCommentCounter, setShowCommentCounter] = useState(false);
 
-    // const [submitted, setHasSubmitted] = useState(false);
     const [ errors, setErrors] = useState([])
 
-    // console.log(currentPost.id, 'ComentForm')
     const commentButtonStyleOff = {
         backgroundColor: '#fedcd5',
     }
-    // const commentMaxStyling = {
-    //     color: 'red',
-    // }
+
 
     const [commentButtonStyle, setCommentButtonStyle] = useState(commentButtonStyleOff)
     const handleSubmit = async (e) => {
@@ -40,14 +36,12 @@ export default function CommentForm({currentPost}){
 
             await dispatch(thunkCreateComment(currentPost.id, comment))
             .then(dispatch(thunkGetAllComments()))
-            // dispatch(thunkGetAllComments(currentPost.id))
 
             setComment_body('')
         }
     }
 
     useEffect(()=> {
-        // let valErrors = [];
 
         if (comment_body?.length === 1000) {
             setCommentLengthMaxStyling({color: 'red'})
@@ -65,13 +59,13 @@ export default function CommentForm({currentPost}){
         }
 
         if (comment_body?.trim().length === 0) {
-            // setShowCommentCounter(false)
+
             setCommentButtonStyle(commentButtonStyleOff)
             setCommentButtonDisabled(true)
         } else {
             setCommentButtonDisabled(false)
         }
-    //   setErrors(valErrors);
+
     }, [comment_body])
 
 
@@ -89,8 +83,6 @@ export default function CommentForm({currentPost}){
                 key={currentPost.id}
                 className="comment-textarea"
                 value={comment_body}
-                // onBlur={() => }
-                // onBlur={()=> {setErrors([]); setComment_body(null)}}
                 onChange={(e) => {setComment_body(e.target.value); setCommentButtonDisabled(false); setCommentButtonStyle(commentButtonStyleOff)}}
                 placeholder='Add a Comment...'
                 maxLength={1000}

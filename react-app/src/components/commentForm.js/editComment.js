@@ -13,7 +13,6 @@ export default function EditCommentForm({currentPost}){
 
     const [submitted, setHasSubmitted]= useState(false);
 
-    // console.log(currentPost.id, 'ComentForm')
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -26,7 +25,6 @@ export default function EditCommentForm({currentPost}){
 
         dispatch(thunkCreateComment(currentPost.id, comment))
         dispatch(thunkGetAllPosts())
-        // dispatch(thunkGetAllComments(currentPost.id))
 
         setComment_body('')
     }
@@ -48,5 +46,3 @@ export default function EditCommentForm({currentPost}){
         </>
     )
 }
-
-

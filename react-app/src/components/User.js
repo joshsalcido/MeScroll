@@ -33,8 +33,6 @@ function User() {
 
   const loggedInUser = useSelector(state => state.session?.user.id)
 
-  const clickedOnUser = useSelector(state => state)
-
 
 
   const [username, setUsername] = useState('')
@@ -59,7 +57,6 @@ function User() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // console.log(fullname, "FullNAME in frontEND")
 
     const formData = new FormData();
     formData.append("user_id", userSession?.id);
@@ -151,8 +148,6 @@ function User() {
 
     }
   }
-
-
 
   return (
     <>

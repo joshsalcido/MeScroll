@@ -1,7 +1,4 @@
 import LoginForm from "../auth/LoginForm"
-// import SignUpForm from "../auth/SignUpForm"
-
-
 
 
 export default function LandingPage(){
