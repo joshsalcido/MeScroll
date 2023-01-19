@@ -13,13 +13,17 @@ form {
     min-width: 27rem;
     max-width: 27rem;
 }
+.loginForm {
+  position: absolute;
+  z-index: 1;
+}
 .login-media{
   display: flex;
   /* border: 3px solid red; */
   margin: auto;
-  max-width: 90rem;
+  position: relative;
+  width: 80rem;
   height: 50rem;
-  padding-right: 14rem;
 }
 
 .login-form-div{
@@ -139,6 +143,7 @@ button {
   margin-top: -6rem;
   margin-right: -6rem;
   /* border: 1px solid blue; */
+  position: relative;
 }
 
 .video-tag{

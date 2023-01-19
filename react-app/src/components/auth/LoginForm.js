@@ -53,7 +53,7 @@ const LoginForm = () => {
           </video>
         </div>
         <div className='login-form-div'>
-          <form onSubmit={onLogin}>
+          <form onSubmit={onLogin} className='loginForm'>
             <h1 className='login-logo'>meScroll</h1>
             <h4 className='signup-subtext'>Login to your meScroll account and start viewing posts from all your buddies!</h4>
             <ul className='error-messages'>
